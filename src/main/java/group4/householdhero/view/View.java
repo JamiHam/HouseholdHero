@@ -8,6 +8,8 @@ import javafx.stage.Stage;
 import group4.householdhero.controller.*;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  * JavaFX App
@@ -44,6 +46,18 @@ public class View extends Application {
     //MVC testing
     static String getTestString() throws IOException{
     	return controller.getTestString();
+    }
+    
+    static void createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate, boolean inDatabase) {
+    	 controller.createBudget(id, plannedBudget, spentBudget, startDate, endDate, inDatabase);
+    }
+    
+    static void createProduct(int id, String name, double price, LocalDate bestBefore, int categoryId, int budgetId, int statusId, boolean inDatabase) {
+    	controller.createProduct(id, name, price, bestBefore, categoryId, budgetId, statusId, inDatabase);
+    }
+    
+    static List getProductsInFridge() {
+    	return controller.getProductsInFridge();
     }
 
 }
