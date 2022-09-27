@@ -19,21 +19,23 @@ public class Model {
 		return testString;
 	}
 	
-	public Budget createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate, boolean inDatabase) {
+	public Budget createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) {
 		Budget budget = new Budget(id, plannedBudget, spentBudget, startDate, endDate);
-		if (!inDatabase) {
-			//dataAccessObject.addBudget(budget);
-		}
 		return budget;
 	}
 	
-	public Product createProduct(int id, String name, double price, LocalDate bestBefore, int categoryId, int budgetId, int statusId, boolean inDatabase) {
+	public Product createProduct(int id, String name, double price, LocalDate bestBefore, int categoryId, int budgetId, int statusId) {
     	Product product = new Product(id, name, price, bestBefore, categoryId, budgetId, statusId);
-    	if (!inDatabase) {
-    		//dataAccessObject.addProduct(product);
-    	}
     	return product;
     }
+	
+	public void addBudgetToDatabase(Budget budget) {
+		//dataAccessObject.addBudget(budget);
+	}
+	
+	public void addProductToDatabase(Product product) {
+		//dataAcccessObject.addProduct(product);
+	}
 	
 	public List getProductsInFridge() {
 		//return dataAccessObject.getProductsInFridge();
