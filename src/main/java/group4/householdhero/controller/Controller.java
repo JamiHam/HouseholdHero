@@ -31,7 +31,7 @@ public class Controller {
     	model.addProductToDatabase(product);
     }
 	
-	public List getProductsInFridge() {
+	public List<Product> getProductsInFridge() {
 		return model.getProductsInFridge();
 	}
 }

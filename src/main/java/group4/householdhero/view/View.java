@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import group4.householdhero.controller.*;
+import group4.householdhero.model.Product;
 
 import java.io.IOException;
 import java.time.LocalDate;
@@ -56,7 +57,7 @@ public class View extends Application {
     	controller.createProduct(id, name, price, bestBefore, categoryId, budgetId, statusId);
     }
     
-    static List getProductsInFridge() {
+    static List<Product> getProductsInFridge() {
     	return controller.getProductsInFridge();
     }
 
