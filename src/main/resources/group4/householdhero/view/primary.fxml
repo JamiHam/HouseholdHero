@@ -17,6 +17,7 @@
           <TableColumn fx:id="categoryColumn" prefWidth="75.0" text="Category" />
             <TableColumn fx:id="priceColumn" prefWidth="94.0" text="Price" />
             <TableColumn fx:id="bestBeforeColumn" prefWidth="106.0" text="Best Before" />
+            <TableColumn fx:id="editColumn" prefWidth="75.0" text="Edit" />
         </columns>
       </TableView>
    </children>

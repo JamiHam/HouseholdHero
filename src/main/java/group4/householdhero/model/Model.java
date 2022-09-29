@@ -7,17 +7,10 @@ import java.util.List;
 import group4.householdhero.controller.*;
 
 public class Model {
-	
 	private Controller controller;
-	private String testString = "Test"; //MVC testing
 	
-	public Model(Controller controller) {
+	public void setController(Controller controller) {
 		this.controller = controller;
-	}
-	
-	//MVC testing
-	public String getTestString() {
-		return testString;
 	}
 	
 	public Budget createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) {
@@ -26,9 +19,13 @@ public class Model {
 	}
 	
 	public Product createProduct(int id, String name, double price, LocalDate bestBefore, int categoryId, int budgetId, int statusId) {
-    	Product product = new Product(id, name, price, bestBefore, categoryId, budgetId, statusId);
+    	Product product = new Product(id, name, price, bestBefore, categoryId, budgetId, statusId, this);
     	return product;
     }
+	
+	public void editProduct(int id) {
+		controller.editProduct(id);
+	}
 	
 	public void addBudgetToDatabase(Budget budget) {
 		//dataAccessObject.addBudget(budget);
