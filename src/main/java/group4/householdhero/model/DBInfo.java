@@ -3,7 +3,7 @@ package group4.householdhero.model;
 public class DBInfo {
 
 	public String getDatabase() {
-		return "HouseHoldHero";
+		return "HouseholdHero";
 	}
 	
 	public String getUsername() {

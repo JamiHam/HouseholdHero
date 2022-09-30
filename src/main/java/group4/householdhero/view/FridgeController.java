@@ -1,6 +1,7 @@
 package group4.householdhero.view;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import group4.householdhero.model.Product;
@@ -23,7 +24,7 @@ public class FridgeController {
 	@FXML private TableColumn<Product, Button> editColumn;
 	
 	@FXML
-	private void initialize() throws IOException {
+	private void initialize() throws IOException, SQLException {
 		view = App.getView();
 		initializeColumns();
 		updateFridgeContents();
@@ -42,7 +43,7 @@ public class FridgeController {
 		editColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
     }
     
-    private void updateFridgeContents() {
+    private void updateFridgeContents() throws SQLException {
     	fridgeTable.setItems(FXCollections.observableArrayList(view.getProductsInFridge()));
     }
     

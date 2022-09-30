@@ -1,5 +1,6 @@
 package group4.householdhero.model;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,13 +38,13 @@ public class Model {
 		//dataAcccessObject.addProduct(product);
 	}
 
-	public List<Product> getProductsInFridge() {
-		//return dataAccessObject.getProductsInFridge();
-		Product product = createProduct(1, "test", 2, LocalDate.parse("2022-01-01"), 1, 1, 1);
+	public List<Product> getProductsInFridge() throws SQLException {
+		return dao.getProductsInFridge();
+		/*Product product = createProduct(1, "test", 2, LocalDate.parse("2022-01-01"), 1, 1, 1);
 		Product product2 = createProduct(2, "test2", 1, LocalDate.parse("2022-09-01"), 1, 1, 1);
 		List<Product> list = new ArrayList<Product>();
 		list.add(product);
 		list.add(product2);
-		return list;
+		return list;*/
 	}
 }

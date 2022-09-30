@@ -2,6 +2,7 @@ package group4.householdhero.controller;
 
 import group4.householdhero.view.*;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -33,7 +34,7 @@ public class Controller {
 		view.editProduct(id);
 	}
 	
-	public List<Product> getProductsInFridge() {
+	public List<Product> getProductsInFridge() throws SQLException {
 		return model.getProductsInFridge();
 	}
 }
