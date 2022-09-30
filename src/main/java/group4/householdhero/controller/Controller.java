@@ -11,14 +11,12 @@ public class Controller {
 	private Model model;
 	private View view;
 	
-	public Controller(View view) {
-		this.view = view;
-		this.model = new Model(this);
+	public void setModel(Model model) {
+		this.model = model;
 	}
 	
-	// MVC testing
-	public String getTestString() {
-		return model.getTestString();
+	public void setView(View view) {
+		this.view = view;
 	}
 	
 	public void createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) {
@@ -31,7 +29,11 @@ public class Controller {
     	model.addProductToDatabase(product);
     }
 	
-	public List getProductsInFridge() {
+	public void editProduct(int id) {
+		view.editProduct(id);
+	}
+	
+	public List<Product> getProductsInFridge() {
 		return model.getProductsInFridge();
 	}
 }

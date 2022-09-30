@@ -2,6 +2,8 @@ package group4.householdhero.model;
 
 import java.time.LocalDate;
 
+import javafx.scene.control.Button;
+
 public class Product {
 	private int id;
 	private String name;
@@ -11,7 +13,10 @@ public class Product {
 	private int budgetId;
 	private int statusId;
 	
-	public Product(int id, String name, double price, LocalDate bestBefore, int categoryId, int budgetId, int statusId) {
+	private Model model;
+	private Button editButton;
+	
+	public Product(int id, String name, double price, LocalDate bestBefore, int categoryId, int budgetId, int statusId, Model model) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
@@ -19,6 +24,16 @@ public class Product {
 		this.categoryId = categoryId;
 		this.budgetId = budgetId;
 		this.statusId = statusId;
+		
+		this.model = model;
+		editButton = new Button("Edit");
+		editButton.setOnAction(e -> {
+			editProduct();
+		});
+	}
+	
+	public void editProduct() {
+		model.editProduct(getId());
 	}
 
 	public int getId() {
@@ -75,5 +90,9 @@ public class Product {
 
 	public void setStatusId(int statusId) {
 		this.statusId = statusId;
+	}
+	
+	public Button getEditButton() {
+		return editButton;
 	}
 }
