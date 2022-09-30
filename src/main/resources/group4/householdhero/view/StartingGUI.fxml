@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="main-anchorpane-starting-gui" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="main-anchorpane-starting-gui" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.view.FridgeController">
    <children>
       <AnchorPane id="left-anchorpane-starting-gui" prefHeight="600.0" prefWidth="252.0">
          <children>
@@ -46,14 +46,14 @@
             <TableColumn prefWidth="100.0" text="Put To Waste" />
         </columns>
       </TableView>
-      <TableView layoutX="253.0" layoutY="229.0" prefHeight="300.0" prefWidth="750.0">
+      <TableView fx:id="fridgeTable" layoutX="253.0" layoutY="229.0" prefHeight="300.0" prefWidth="750.0">
         <columns>
-          <TableColumn prefWidth="200.0" text="Name" />
-          <TableColumn prefWidth="200.0" text="Category" />
+          <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Name" />
+          <TableColumn fx:id="categoryColumn" prefWidth="200.0" text="Category" />
             <TableColumn prefWidth="75.0" text="(Image)" />
-            <TableColumn prefWidth="75.0" text="Price" />
-            <TableColumn prefWidth="100.0" text="Best Before" />
-            <TableColumn prefWidth="100.0" text="Edit" />
+            <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
+            <TableColumn fx:id="bestBeforeColumn" prefWidth="100.0" text="Best Before" />
+            <TableColumn fx:id="editColumn" prefWidth="100.0" text="Edit" />
         </columns>
       </TableView>
    </children>
