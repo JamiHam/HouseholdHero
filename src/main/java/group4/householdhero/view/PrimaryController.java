@@ -18,4 +18,5 @@ public class PrimaryController {
     private void switchToSecondary() throws IOException {
         View.setRoot("secondary");
     }
+    
 }
