@@ -9,10 +9,12 @@ public class DataAccessObject {
 	
 	DBInfo db = new DBInfo();
 	private Connection conn;
+	private Model model;
 	
 	
-	public DataAccessObject() {
+	public DataAccessObject(Model model) {
 		connect();
+		this.model = model;
 	}
 	
 	public void connect() {
@@ -50,7 +52,7 @@ public class DataAccessObject {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
 				//create product metodi
-				Product product = new Product(rs.getInt("product_ID"), rs.getString("name"), rs.getDouble("price"), LocalDate.parse(rs.getDate("best_before").toString()), rs.getInt("category_ID"), rs.getInt("status_ID"), rs.getInt("budget_ID"));
+				Product product = model.createProduct(rs.getInt("product_ID"), rs.getString("name"), rs.getDouble("price"), LocalDate.parse(rs.getDate("best_before").toString()), rs.getInt("category_ID"), rs.getInt("status_ID"), rs.getInt("budget_ID"));
 				products.add(product);
 			}
 			return products;
