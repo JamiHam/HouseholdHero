@@ -11,6 +11,6 @@ public class DBInfo {
 	}
 	
 	public String getPassword() {
-		return "loG!209%Ihl";
+		return "";
 	}
 }
