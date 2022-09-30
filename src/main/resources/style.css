@@ -1,0 +1,42 @@
+.button {
+	-fx-background-color: #ffffff;
+	-fx-border-color: #40e2eb;
+	-fx-border-width: 3px;
+	-fx-font-color: black;
+	-fx-font-size: 14px;
+}
+
+.button:hover {
+	-fx-background-color: #40e2eb;
+	-fx-border-color: #ffffff;
+	-fx-border-width: 3px;
+	-fx-font-color: black;
+	-fx-font-size: 14px;
+}
+
+/*
+
+.table-view .column-header {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #40e2eb;
+	-fx-border-width: 1px;
+}
+
+.table-view .column-header-background .label {
+    -fx-text-fill: #40e2eb;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+*/
+
+#left-anchorpane-starting-gui {
+	-fx-background-color: #ffffff;
+}
+
+#main-anchorpane-starting-gui {
+	-fx-background-color: #40e2eb;
+}
+
+#main-anchorpane-add-edit-budget-gui {
+	-fx-background-color: #40e2eb;
+}
