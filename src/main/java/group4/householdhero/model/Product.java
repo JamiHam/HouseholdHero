@@ -27,6 +27,7 @@ public class Product {
 		
 		this.model = model;
 		editButton = new Button("Edit");
+		editButton.getStyleClass().add("product-edit-button");
 		editButton.setOnAction(e -> {
 			editProduct();
 		});
