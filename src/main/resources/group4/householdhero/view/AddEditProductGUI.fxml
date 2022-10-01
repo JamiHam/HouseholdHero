@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="main-anchorpane-add-edit-product-gui" minHeight="600.0" minWidth="500.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="main-anchorpane-add-edit-product-gui" minHeight="600.0" minWidth="500.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.view.AddEditProductController">
    <children>
       <AnchorPane id="top-anchorpane-add-edit-product-gui" prefHeight="130.0" prefWidth="500.0">
          <children>
@@ -45,22 +45,22 @@
               </rowConstraints>
                <children>
                   <Label text="Name" GridPane.halignment="CENTER" />
-                  <TextField prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <TextField fx:id="nameTextField" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
                   <Label text="Category" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <ChoiceBox prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
+                  <ChoiceBox fx:id="categoryChoiceBox" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                   <Label text="Price" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <TextField prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
+                  <TextField fx:id="priceTextField" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                   <Label text="Best Before Date" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <DatePicker prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                  <DatePicker fx:id="bestBeforeDatePicker" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                </children>
             </GridPane>
          </children>
       </VBox>
       <HBox layoutY="457.0" prefHeight="150.0" prefWidth="500.0" spacing="20.0">
          <children>
-            <Button id="product-save-delete-put-to-waste-buttons" mnemonicParsing="false" prefWidth="100.0" text="Save" />
-            <Button id="product-save-delete-put-to-waste-buttons" mnemonicParsing="false" prefWidth="100.0" text="Delete" />
-            <Button id="product-save-delete-put-to-waste-buttons" mnemonicParsing="false" prefWidth="100.0" text="Put To Waste" />
+            <Button id="product-save-delete-put-to-waste-buttons" fx:id="saveButton" mnemonicParsing="false" onAction="#save" prefWidth="100.0" text="Save" />
+            <Button id="product-save-delete-put-to-waste-buttons" fx:id="deleteButton" mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="Delete" />
+            <Button id="product-save-delete-put-to-waste-buttons" fx:id="wasteButton" mnemonicParsing="false" onAction="#moveToWaste" prefWidth="100.0" text="Put To Waste" />
          </children>
          <padding>
             <Insets left="100.0" right="100.0" />

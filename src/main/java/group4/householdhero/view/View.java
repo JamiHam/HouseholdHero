@@ -3,6 +3,7 @@ package group4.householdhero.view;
 import group4.householdhero.controller.*;
 import group4.householdhero.model.Budget;
 import group4.householdhero.model.Product;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -47,4 +48,16 @@ public class View {
     public List<Product> getProductsInFridge() throws SQLException {
     	return controller.getProductsInFridge();
     }
+
+	public List<String> getCategories() {
+		return controller.getCategories();
+	}
+
+	public List<Product> getExpiredProducts() {
+		return controller.getExpiredProducts();
+	}
+    
+    /*public List<Product> getExpiredProducts() throws SQLException {
+    	//return controller.getExpiredProducts();
+    }*/
 }

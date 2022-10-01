@@ -59,17 +59,14 @@ public class App extends Application {
     	stage.initModality(Modality.APPLICATION_MODAL);
     	stage.setAlwaysOnTop(true);
     	
-    	if (fxml.equals("AddBudgetGUI")) {
+    	if (fxml.equals("AddEditBudgetGUI")) {
+    		fxmlLoader.<AddEditBudgetController>getController().initialize(false, null);
     		stage.showAndWait();
     	} else {
     		stage.show();
     	}
     	
     	return fxmlLoader;
-    }
-    
-    static void initializeAddEditProductController(FXMLLoader fxmlLoader, boolean editing, Product product) {
-    	fxmlLoader.<AddEditProductController>getController().initialize(editing, product);
     }
     
     static View getView() {

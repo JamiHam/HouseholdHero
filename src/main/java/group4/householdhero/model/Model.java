@@ -56,15 +56,31 @@ public class Model {
 		//dao.addProduct(product);
 	}
 	
-	
-
 	public List<Product> getProductsInFridge() throws SQLException {
 		//return dao.getProductsInFridge();
-		Product product = createProduct(1, "test", 2, LocalDate.parse("2022-01-01"), "test", 1, 1);
-		Product product2 = createProduct(2, "test2", 1, LocalDate.parse("2022-09-01"), "test", 1, 1);
+		Product product = createProduct(1, "test", 2, LocalDate.parse("2022-01-01"), "category 1", 1, 1);
+		Product product2 = createProduct(2, "test2", 1, LocalDate.parse("2022-09-01"), "category 2", 1, 1);
 		List<Product> list = new ArrayList<Product>();
 		list.add(product);
 		list.add(product2);
+		return list;
+	}
+
+	public List<String> getCategories() {
+		//return dao.getCategories();
+		List<String> list = new ArrayList<String>();
+		list.add("category 1");
+		list.add("category 2");
+		return list;
+	}
+	
+	public List<Product> getExpiredProducts() {
+		//return dao.getExpiredProducts();
+		Product product = createProduct(1, "test3", 2, LocalDate.parse("2022-01-01"), "category 1", 1, 1);
+		Product product2 = createProduct(2, "test4", 1, LocalDate.parse("2022-09-01"), "category 2", 1, 1);
+		List<Product> list = new ArrayList<Product>();
+		/*list.add(product);
+		list.add(product2);*/
 		return list;
 	}
 }

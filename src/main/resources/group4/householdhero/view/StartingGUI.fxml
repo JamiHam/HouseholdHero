@@ -38,25 +38,25 @@
                      </font></Button>
                </children>
             </VBox>
-            <Button layoutX="76.0" layoutY="408.0" mnemonicParsing="false" text="Add Product" />
+            <Button layoutX="76.0" layoutY="408.0" mnemonicParsing="false" onAction="#addProduct" text="Add Product" />
             <Button id="icon-test-button" layoutX="111.0" layoutY="498.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
          </children>
       </AnchorPane>
-      <VBox id="vbox-expired-products-in-fridge" layoutX="253.0" prefHeight="200.0" prefWidth="750.0">
+      <VBox id="vbox-expired-products-in-fridge" fx:id="expiredVBox" layoutX="253.0" prefHeight="200.0" prefWidth="750.0">
          <children>
             <Label id="label-expired" prefHeight="30.0" prefWidth="750.0" text="Expired Products In Fridge">
                <VBox.margin>
                   <Insets left="10.0" />
                </VBox.margin>
             </Label>
-            <TableView id="expired-products-in-fridge" prefHeight="170.0" prefWidth="750.0">
+            <TableView id="expired-products-in-fridge" fx:id="expiredTable" prefHeight="170.0" prefWidth="750.0">
               <columns>
-                <TableColumn prefWidth="200.0" text="Name" />
-                <TableColumn prefWidth="200.0" text="Category" />
+                <TableColumn fx:id="expiredNameColumn" prefWidth="200.0" text="Name" />
+                <TableColumn fx:id="expiredCategoryColumn" prefWidth="200.0" text="Category" />
                   <TableColumn prefWidth="75.0" text="(Image)" />
-                  <TableColumn prefWidth="75.0" text="Price" />
-                  <TableColumn prefWidth="100.0" text="Best Before" />
-                  <TableColumn prefWidth="100.0" text="Put To Waste" />
+                  <TableColumn fx:id="expiredPriceColumn" prefWidth="75.0" text="Price" />
+                  <TableColumn fx:id="expiredBestBeforeColumn" prefWidth="100.0" text="Best Before" />
+                  <TableColumn fx:id="expiredEditColumn" prefWidth="100.0" text="Put To Waste" />
               </columns>
             </TableView>
          </children>
@@ -70,12 +70,12 @@
             </Label>
             <TableView id="products-in-fridge" fx:id="fridgeTable" prefHeight="300.0" prefWidth="750.0">
               <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Name" />
-                <TableColumn fx:id="categoryColumn" prefWidth="200.0" text="Category" />
+                <TableColumn fx:id="fridgeNameColumn" prefWidth="200.0" text="Name" />
+                <TableColumn fx:id="fridgeCategoryColumn" prefWidth="200.0" text="Category" />
                   <TableColumn prefWidth="75.0" text="(Image)" />
-                  <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
-                  <TableColumn fx:id="bestBeforeColumn" prefWidth="100.0" text="Best Before" />
-                  <TableColumn fx:id="editColumn" prefWidth="100.0" text="Edit" />
+                  <TableColumn fx:id="fridgePriceColumn" prefWidth="75.0" text="Price" />
+                  <TableColumn fx:id="fridgeBestBeforeColumn" prefWidth="100.0" text="Best Before" />
+                  <TableColumn fx:id="fridgeEditColumn" prefWidth="100.0" text="Edit" />
               </columns>
             </TableView>
          </children>

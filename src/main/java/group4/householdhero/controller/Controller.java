@@ -55,4 +55,12 @@ public class Controller {
 	public List<Product> getProductsInFridge() throws SQLException {
 		return model.getProductsInFridge();
 	}
+
+	public List<String> getCategories() {
+		return model.getCategories();
+	}
+	
+	public List<Product> getExpiredProducts() {
+		return model.getExpiredProducts();
+	}
 }
