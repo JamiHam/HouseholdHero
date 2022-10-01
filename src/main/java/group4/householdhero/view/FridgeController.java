@@ -3,6 +3,7 @@ package group4.householdhero.view;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import group4.householdhero.model.Product;
 import javafx.collections.FXCollections;
@@ -14,7 +15,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 public class FridgeController {
-	View view;
+	private View view;
 	
 	@FXML private TableView<Product> fridgeTable;
 	@FXML private TableColumn<Product, String> nameColumn;
@@ -35,9 +36,18 @@ public class FridgeController {
         App.setRoot("secondary");
     }
     
+    @FXML
+    private void addProduct() throws IOException {
+    	App.openAddEditWindow("secondary", true, null);
+    }
+    
+    static void editProduct(Product product) throws IOException {
+    	App.openAddEditWindow("secondary", true, product);
+    }
+    
     private void initializeColumns() {
     	nameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-		categoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("categoryId"));
+		categoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("category"));
 		priceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 		bestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
 		editColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
@@ -45,9 +55,5 @@ public class FridgeController {
     
     private void updateFridgeContents() throws SQLException {
     	fridgeTable.setItems(FXCollections.observableArrayList(view.getProductsInFridge()));
-    }
-    
-    static void editProduct(int id) {
-    	System.out.println("Editing test " + id);
     }
 }

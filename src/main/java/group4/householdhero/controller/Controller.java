@@ -2,6 +2,7 @@ package group4.householdhero.controller;
 
 import group4.householdhero.view.*;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
@@ -25,13 +26,26 @@ public class Controller {
 		model.addBudgetToDatabase(budget);
 	}
 	
-	public void createProduct(int id, String name, double price, LocalDate bestBefore, int categoryId, int budgetId, int statusId) {
-    	Product product = model.createProduct(id, name, price, bestBefore, categoryId, budgetId, statusId);
+	public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
+    	Product product = model.createProduct(id, name, price, bestBefore, category, budgetId, statusId);
     	model.addProductToDatabase(product);
     }
 	
-	public void editProduct(int id) {
-		view.editProduct(id);
+	public void updateProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
+    	Product product = model.createProduct(id, name, price, bestBefore, category, budgetId, statusId);
+    	model.updateProduct(product);
+    }
+	
+	public void deleteProduct(Product product) {
+		model.deleteProduct(product);
+	}
+	
+	public void changeProductStatus(Product product, String status) {
+		model.changeProductStatus(product, status);
+	}
+
+	public void editProduct(Product product) throws IOException {
+		view.editProduct(product);
 	}
 	
 	public List<Product> getProductsInFridge() throws SQLException {
