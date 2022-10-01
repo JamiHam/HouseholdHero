@@ -3,13 +3,14 @@ package group4.householdhero.model;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class DataAccessObject {
 	
 	DBInfo db = new DBInfo();
 	private Connection conn;
-	private Model model;
+	private Model model = new Model();
 	
 	
 	public DataAccessObject(Model model) {
@@ -43,7 +44,29 @@ public class DataAccessObject {
 		}
 	}
 	
+	public HashMap<Integer, String> getCategoryNameById() throws SQLException {
+		HashMap<Integer, String> categories = new HashMap<Integer, String>();
+		try(PreparedStatement stms = conn.prepareStatement("select * from category")) {
+			ResultSet rs = stms.executeQuery();
+			while(rs.next()) {
+				categories.put(rs.getInt("category_ID"), rs.getString("type"));
+				System.out.println("Found categories: " + categories);
+			}
+		}
+		return categories;
+	}
 	
+	public String getCategoryByName(String productName) throws SQLException {
+		String type = null;
+		try (PreparedStatement stmt = conn.prepareStatement("select type from category "
+				+ "inner join product on category.category_ID = product.category_ID where product.name = '" + productName + "';")) {
+			ResultSet rs = stmt.executeQuery();
+			if(rs.next()) {
+				type = rs.getString("type");
+			}
+		}
+		return type;
+	}
 	
 	public List<Product> getProductsInFridge() throws SQLException {
 		//connection();
@@ -51,8 +74,9 @@ public class DataAccessObject {
  		try (PreparedStatement stmt = conn.prepareStatement("select * from product")) {
 			ResultSet rs = stmt.executeQuery();
 			while(rs.next()) {
-				//create product metodi
-				Product product = model.createProduct(rs.getInt("product_ID"), rs.getString("name"), rs.getDouble("price"), LocalDate.parse(rs.getDate("best_before").toString()), rs.getInt("category_ID"), rs.getInt("status_ID"), rs.getInt("budget_ID"));
+				Product product = model.createProduct(rs.getInt("product_ID"), rs.getString("name"),
+						rs.getDouble("price"), LocalDate.parse(rs.getDate("best_before").toString()),
+						getCategoryByName(rs.getString("name")), rs.getInt("status_ID"), rs.getInt("budget_ID"));
 				products.add(product);
 			}
 			return products;

@@ -11,10 +11,12 @@ import group4.householdhero.controller.Controller;
 public class Model {
 	private Controller controller;
 	private DataAccessObject dao;
+	private Testmain main;
 	
 	public void setController(Controller controller) {
 		this.controller = controller;
 		dao = new DataAccessObject(this);
+		main = new Testmain(this);
 	}
 
 	public Budget createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) {
