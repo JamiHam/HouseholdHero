@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="main-anchorpane-add-edit-budget-gui" minHeight="600.0" minWidth="500.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="main-anchorpane-add-edit-budget-gui" minHeight="600.0" minWidth="500.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.view.AddEditBudgetController">
    <children>
       <AnchorPane id="top-anchorpane-add-edit-budget-gui" prefHeight="130.0" prefWidth="500.0">
          <children>
@@ -39,18 +39,18 @@
               </rowConstraints>
                <children>
                   <Label text="Start Date" GridPane.halignment="CENTER" />
-                  <DatePicker GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <DatePicker fx:id="startDatePicker" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="3.0" right="3.0" />
                      </GridPane.margin>
                   </DatePicker>
                   <Label text="Planned Budget" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <TextField GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <TextField fx:id="plannedBudgetTextField" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="50.0" right="50.0" />
                      </GridPane.margin></TextField>
                   <Label text="End Date" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                  <DatePicker GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <DatePicker fx:id="endDatePicker" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="3.0" right="3.0" />
                      </GridPane.margin>
@@ -61,8 +61,8 @@
       </VBox>
       <HBox layoutY="449.0" prefHeight="150.0" prefWidth="500.0" spacing="30.0">
          <children>
-            <Button id="product-save-delete-put-to-waste-buttons" mnemonicParsing="false" prefWidth="100.0" text="Save" />
-            <Button id="product-save-delete-put-to-waste-buttons" mnemonicParsing="false" prefWidth="100.0" text="Delete" />
+            <Button id="product-save-delete-put-to-waste-buttons" fx:id="saveButton" mnemonicParsing="false" onAction="#save" prefWidth="100.0" text="Save" />
+            <Button id="product-save-delete-put-to-waste-buttons" fx:id="deleteButton" mnemonicParsing="false" prefWidth="100.0" text="Delete" />
          </children>
          <padding>
             <Insets left="135.0" right="135.0" />

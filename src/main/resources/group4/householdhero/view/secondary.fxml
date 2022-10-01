@@ -14,9 +14,9 @@
       <TextField fx:id="categoryField" />
       <TextField fx:id="priceField" />
       <DatePicker fx:id="bestBeforeField" />
-        <Button fx:id="saveButton" text="Save" />
-      <Button fx:id="deleteButton" mnemonicParsing="false" text="Delete" />
-      <Button fx:id="wasteButton" mnemonicParsing="false" text="Move to waste" />
+        <Button fx:id="saveButton" onAction="#save" text="Save" />
+      <Button fx:id="deleteButton" mnemonicParsing="false" onAction="#delete" text="Delete" />
+      <Button fx:id="wasteButton" mnemonicParsing="false" onAction="#moveToWaste" text="Move to waste" />
     </children>
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
