@@ -9,6 +9,7 @@ import group4.householdhero.model.Product;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -29,20 +30,29 @@ public class FridgeController {
 		view = App.getView();
 		initializeColumns();
 		updateFridgeContents();
+		checkCurrentBudget();
 	}
 	
     @FXML
-    private void switchToSecondary() throws IOException {
+    private void switchToWaste() throws IOException {
         App.setRoot("secondary");
     }
     
     @FXML
     private void addProduct() throws IOException {
-    	App.openAddEditWindow("secondary", true, null);
+    	FXMLLoader fxmlLoader = App.openWindow("secondary");
+    	App.initializeAddEditProductController(fxmlLoader, false, null);
     }
     
     static void editProduct(Product product) throws IOException {
-    	App.openAddEditWindow("secondary", true, product);
+    	FXMLLoader fxmlLoader = App.openWindow("secondary");
+    	App.initializeAddEditProductController(fxmlLoader, true, product);
+    }
+    
+    private void checkCurrentBudget() throws IOException {
+    	if (view.getCurrentBudget() == null) {
+    		App.openWindow("secondary");
+    	}
     }
     
     private void initializeColumns() {

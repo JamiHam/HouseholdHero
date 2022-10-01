@@ -26,6 +26,10 @@ public class Controller {
 		model.addBudgetToDatabase(budget);
 	}
 	
+	public Budget getCurrentBudget() {
+    	return model.getCurrentBudget();
+    }
+	
 	public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
     	Product product = model.createProduct(id, name, price, bestBefore, category, budgetId, statusId);
     	model.addProductToDatabase(product);

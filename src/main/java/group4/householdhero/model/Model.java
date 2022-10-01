@@ -21,6 +21,11 @@ public class Model {
 		Budget budget = new Budget(id, plannedBudget, spentBudget, startDate, endDate);
 		return budget;
 	}
+	
+	public Budget getCurrentBudget() {
+		return null;
+    	//return dao.getCurrentBudget();
+    }
 
 	public Product createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
     	Product product = new Product(id, name, price, bestBefore, category, budgetId, statusId, this);
