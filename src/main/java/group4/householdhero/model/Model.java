@@ -1,5 +1,6 @@
 package group4.householdhero.model;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -21,30 +22,44 @@ public class Model {
 		return budget;
 	}
 
-	public Product createProduct(int id, String name, double price, LocalDate bestBefore, int categoryId, int budgetId, int statusId) {
-    	Product product = new Product(id, name, price, bestBefore, categoryId, budgetId, statusId, this);
+	public Product createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
+    	Product product = new Product(id, name, price, bestBefore, category, budgetId, statusId, this);
     	return product;
     }
 	
-	public void editProduct(int id) {
-		controller.editProduct(id);
+	public void updateProduct(Product product) {
+    	//dao.updateProduct(product);
+    }
+	
+	public void deleteProduct(Product product) {
+		//dao.deleteProduct(product);
+	}
+	
+	public void changeProductStatus(Product product, String status) {
+		//dao.updateStatus(product, status);
+	}
+	
+	public void editProduct(Product product) throws IOException {
+		controller.editProduct(product);
 	}
 
 	public void addBudgetToDatabase(Budget budget) {
-		//dataAccessObject.addBudget(budget);
+		//dao.addBudget(budget);
 	}
 
 	public void addProductToDatabase(Product product) {
-		//dataAcccessObject.addProduct(product);
+		//dao.addProduct(product);
 	}
+	
+	
 
 	public List<Product> getProductsInFridge() throws SQLException {
-		return dao.getProductsInFridge();
-		/*Product product = createProduct(1, "test", 2, LocalDate.parse("2022-01-01"), 1, 1, 1);
-		Product product2 = createProduct(2, "test2", 1, LocalDate.parse("2022-09-01"), 1, 1, 1);
+		//return dao.getProductsInFridge();
+		Product product = createProduct(1, "test", 2, LocalDate.parse("2022-01-01"), "test", 1, 1);
+		Product product2 = createProduct(2, "test2", 1, LocalDate.parse("2022-09-01"), "test", 1, 1);
 		List<Product> list = new ArrayList<Product>();
 		list.add(product);
 		list.add(product2);
-		return list;*/
+		return list;
 	}
 }

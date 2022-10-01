@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import group4.householdhero.controller.Controller;
 import group4.householdhero.model.Model;
+import group4.householdhero.model.Product;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,7 +30,9 @@ public class App extends Application {
     	stage.getIcons().add(icon);
 
         scene = new Scene(loadFXML("StartingGUI"), 1000, 600);
+
         //scene = new Scene(loadFXML("AddEditProductGUI"), 600, 500);
+
 
         // Tällä CSS-lisäys ei onnistu, CSS lisätty Scene Builderin kautta AnchorPaneen
         // scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
@@ -40,6 +43,17 @@ public class App extends Application {
 
     static void setRoot(String fxml) throws IOException {
         scene.setRoot(loadFXML(fxml));
+    }
+    
+    static void openAddEditWindow(String fxml, boolean editing, Product product) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(View.class.getResource(fxml + ".fxml"));
+    	Parent root = (Parent) fxmlLoader.load();
+    	
+    	fxmlLoader.<AddEditProductController>getController().initialize(editing, product);
+    	
+    	Stage stage = new Stage();
+    	stage.setScene(new Scene(root));
+    	stage.show();
     }
 
     private static Parent loadFXML(String fxml) throws IOException {
