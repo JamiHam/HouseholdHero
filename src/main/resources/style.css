@@ -6,6 +6,10 @@
 	-fx-font-size: 14px;
 }
 
+.product-edit-button {
+	-fx-background-color: pink;
+}
+
 .button:hover {
 	-fx-background-color: #40e2eb;
 	-fx-border-color: #ffffff;

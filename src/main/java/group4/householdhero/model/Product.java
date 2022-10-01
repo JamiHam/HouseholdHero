@@ -1,5 +1,6 @@
 package group4.householdhero.model;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 import javafx.scene.control.Button;
@@ -9,31 +10,37 @@ public class Product {
 	private String name;
 	private double price;
 	private LocalDate bestBefore;
-	private int categoryId;
+	private String category;
 	private int budgetId;
 	private int statusId;
 	
 	private Model model;
 	private Button editButton;
 	
-	public Product(int id, String name, double price, LocalDate bestBefore, int categoryId, int budgetId, int statusId, Model model) {
+	public Product(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId, Model model) {
 		this.id = id;
 		this.name = name;
 		this.price = price;
 		this.bestBefore = bestBefore;
-		this.categoryId = categoryId;
+		this.category = category;
 		this.budgetId = budgetId;
 		this.statusId = statusId;
 		
 		this.model = model;
 		editButton = new Button("Edit");
+		editButton.getStyleClass().add("product-edit-button");
 		editButton.setOnAction(e -> {
-			editProduct();
+			try {
+				editProduct();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		});
 	}
 	
-	public void editProduct() {
-		model.editProduct(getId());
+	public void editProduct() throws IOException {
+		model.editProduct(this);
 	}
 
 	public int getId() {
@@ -68,12 +75,12 @@ public class Product {
 		this.bestBefore = bestBefore;
 	}
 
-	public int getCategoryId() {
-		return categoryId;
+	public String getCategory() {
+		return category;
 	}
 
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
+	public void setCategory(String category) {
+		this.category = category;
 	}
 
 	public int getBudgetId() {

@@ -10,7 +10,7 @@
 <VBox alignment="CENTER" prefHeight="322.0" prefWidth="546.0" spacing="20.0" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.view.FridgeController">
    <children>
       <Label text="Primary View" />
-      <Button fx:id="primaryButton" onAction="#switchToSecondary" text="Switch to Secondary View" />
+      <Button fx:id="AddButton" onAction="#addProduct" text="Switch to Secondary View" />
       <TableView fx:id="fridgeTable" prefHeight="200.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name" />
