@@ -1,21 +1,69 @@
 .button {
-	-fx-background-color: #ffffff;
-	-fx-border-color: #40e2eb;
-	-fx-border-width: 3px;
-	-fx-font-color: black;
+	-fx-background-color: #1ec6cf;
+	-fx-border-radius: 10px;
+	-fx-font-color: #ffffff;
+	-fx-font-weight: bold;
 	-fx-font-size: 14px;
-}
-
-.product-edit-button {
-	-fx-background-color: pink;
 }
 
 .button:hover {
-	-fx-background-color: #40e2eb;
-	-fx-border-color: #ffffff;
-	-fx-border-width: 3px;
+	-fx-background-color: #098894;
 	-fx-font-color: black;
 	-fx-font-size: 14px;
+}
+
+#icon-test-button {
+	-fx-background-color: #ffffff;
+	-fx-border-radius: 3px;
+	-fx-border-color: #1ec6cf;
+	-fx-border-width: 1px;
+	-fx-background-image: url("edit-icon-turquoise.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 20 20;
+	-fx-background-position: center;
+}
+
+#icon-test-button:hover {
+	-fx-background-color: #098894;
+	-fx-border-radius: 3px;
+	-fx-border-color: #1ec6cf;
+	-fx-border-width: 1px;
+	-fx-background-image: url("edit-icon-turquoise.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 20 20;
+	-fx-background-position: center;
+}
+
+.product-edit-button {
+	-fx-background-color: #ffffff;
+	-fx-border-radius: 3px;
+	-fx-border-color: #1ec6cf;
+	-fx-border-width: 1px;
+	-fx-background-image: url("edit-icon-turquoise.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 20 20;
+	-fx-background-position: center;
+}
+
+.product-edit-button:hover {
+	-fx-background-color: #098894;
+	-fx-border-radius: 3px;
+	-fx-border-color: #1ec6cf;
+	-fx-border-width: 1px;
+	-fx-background-image: url("edit-icon-turquoise.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 20 20;
+	-fx-background-position: center;
+}
+
+#product-save-delete-put-to-waste-buttons, #budget-save-button {
+	-fx-font-weight: normal;
+	-fx-font-size: 12px;
+}
+
+#product-save-delete-put-to-waste-buttons:hover, #budget-save-button:hover {
+	-fx-font-weight: normal;
+	-fx-font-size: 12px;
 }
 
 /*
@@ -38,9 +86,33 @@
 }
 
 #main-anchorpane-starting-gui {
-	-fx-background-color: #40e2eb;
+	-fx-background-color: #1ec6cf;
+}
+
+#label-expired {
+	-fx-font-color: #000000;
+	-fx-font-weight: bold;
+	-fx-font-size: 14px;
+}
+
+#label-products {
+	-fx-font-color: #000000;
+	-fx-font-weight: bold;
+	-fx-font-size: 14px;
+}
+
+#top-anchorpane-add-edit-product-gui {
+	-fx-background-color: #1ec6cf;
+}
+
+#main-anchorpane-add-edit-product-gui {
+	-fx-background-color: #ffffff;
+}
+
+#top-anchorpane-add-edit-budget-gui {
+	-fx-background-color: #1ec6cf;
 }
 
 #main-anchorpane-add-edit-budget-gui {
-	-fx-background-color: #40e2eb;
+	-fx-background-color: #ffffff;
 }

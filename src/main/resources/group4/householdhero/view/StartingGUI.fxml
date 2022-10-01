@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
@@ -12,49 +13,72 @@
 
 <AnchorPane id="main-anchorpane-starting-gui" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.view.FridgeController">
    <children>
-      <AnchorPane id="left-anchorpane-starting-gui" prefHeight="600.0" prefWidth="252.0">
+      <AnchorPane id="left-anchorpane-starting-gui" prefHeight="600.0" prefWidth="250.0">
          <children>
-            <VBox layoutX="2.0" layoutY="228.0">
+            <ImageView id="householdhero-logo" fitHeight="80.0" fitWidth="250.0" layoutX="2.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../householdhero-logo.png" />
+               </image>
+            </ImageView>
+            <VBox layoutX="2.0" layoutY="201.0" spacing="5">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Fridge" textAlignment="CENTER">
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" text="Fridge" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
-                     </font></Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="250.0" text="Budget And Waste" textAlignment="CENTER">
+                     </font>
                      <VBox.margin>
-                        <Insets top="3.0" />
+                        <Insets left="20.0" />
+                     </VBox.margin></Button>
+                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" text="Budget And Waste" textAlignment="CENTER" textFill="WHITE">
+                     <VBox.margin>
+                        <Insets left="20.0" top="3.0" />
                      </VBox.margin>
                      <font>
                         <Font size="14.0" />
                      </font></Button>
                </children>
             </VBox>
-            <ImageView id="householdhero-logo" fitHeight="80.0" fitWidth="250.0" layoutX="2.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../householdhero-logo.png" />
-               </image>
-            </ImageView>
+            <Button layoutX="76.0" layoutY="408.0" mnemonicParsing="false" text="Add Product" />
+            <Button id="icon-test-button" layoutX="111.0" layoutY="498.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" />
          </children>
       </AnchorPane>
-      <TableView layoutX="253.0" layoutY="80.0" prefHeight="150.0" prefWidth="750.0">
-        <columns>
-          <TableColumn prefWidth="200.0" text="Name" />
-          <TableColumn prefWidth="200.0" text="Category" />
-            <TableColumn prefWidth="75.0" text="(Image)" />
-            <TableColumn prefWidth="75.0" text="Price" />
-            <TableColumn prefWidth="100.0" text="Best Before" />
-            <TableColumn prefWidth="100.0" text="Put To Waste" />
-        </columns>
-      </TableView>
-      <TableView fx:id="fridgeTable" layoutX="253.0" layoutY="229.0" prefHeight="300.0" prefWidth="750.0">
-        <columns>
-          <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Name" />
-          <TableColumn fx:id="categoryColumn" prefWidth="200.0" text="Category" />
-            <TableColumn prefWidth="75.0" text="(Image)" />
-            <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
-            <TableColumn fx:id="bestBeforeColumn" prefWidth="100.0" text="Best Before" />
-            <TableColumn fx:id="editColumn" prefWidth="100.0" text="Edit" />
-        </columns>
-      </TableView>
+      <VBox id="vbox-expired-products-in-fridge" layoutX="253.0" prefHeight="200.0" prefWidth="750.0">
+         <children>
+            <Label id="label-expired" prefHeight="30.0" prefWidth="750.0" text="Expired Products In Fridge">
+               <VBox.margin>
+                  <Insets left="10.0" />
+               </VBox.margin>
+            </Label>
+            <TableView id="expired-products-in-fridge" prefHeight="170.0" prefWidth="750.0">
+              <columns>
+                <TableColumn prefWidth="200.0" text="Name" />
+                <TableColumn prefWidth="200.0" text="Category" />
+                  <TableColumn prefWidth="75.0" text="(Image)" />
+                  <TableColumn prefWidth="75.0" text="Price" />
+                  <TableColumn prefWidth="100.0" text="Best Before" />
+                  <TableColumn prefWidth="100.0" text="Put To Waste" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
+      <VBox layoutX="253.0" layoutY="200.0" prefHeight="400.0" prefWidth="750.0">
+         <children>
+            <Label id="label-products" prefHeight="30.0" prefWidth="750.0" text="Products In Fridge">
+               <VBox.margin>
+                  <Insets left="10.0" top="40.0" />
+               </VBox.margin>
+            </Label>
+            <TableView id="products-in-fridge" fx:id="fridgeTable" prefHeight="300.0" prefWidth="750.0">
+              <columns>
+                <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Name" />
+                <TableColumn fx:id="categoryColumn" prefWidth="200.0" text="Category" />
+                  <TableColumn prefWidth="75.0" text="(Image)" />
+                  <TableColumn fx:id="priceColumn" prefWidth="75.0" text="Price" />
+                  <TableColumn fx:id="bestBeforeColumn" prefWidth="100.0" text="Best Before" />
+                  <TableColumn fx:id="editColumn" prefWidth="100.0" text="Edit" />
+              </columns>
+            </TableView>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>
