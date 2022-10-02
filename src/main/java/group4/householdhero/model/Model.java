@@ -16,7 +16,7 @@ public class Model {
 	public void setController(Controller controller) {
 		this.controller = controller;
 		dao = new DataAccessObject(this);
-		main = new Testmain(this);
+		main = new Testmain();
 	}
 
 	public Budget createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) {
