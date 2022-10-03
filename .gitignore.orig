@@ -1,0 +1,6 @@
+/target/
+<<<<<<< HEAD
+/src/main/java/group4/householdhero/model/DBInfo
+=======
+/src/main/java/group4/householdhero/model/DBInfo/
+>>>>>>> 4f18643982e267b9579ada1d4bd2f9e0b989f984
