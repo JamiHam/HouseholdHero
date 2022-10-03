@@ -2,8 +2,10 @@ package group4.householdhero.view;
 
 import java.io.File;
 import java.io.IOException;
+import java.sql.SQLException;
 
 import group4.householdhero.controller.Controller;
+import group4.householdhero.model.Budget;
 import group4.householdhero.model.Model;
 import group4.householdhero.model.Product;
 import javafx.application.Application;
@@ -22,6 +24,7 @@ public class App extends Application {
 	private static View view;
 	private static Controller controller;
 	private static Model model;
+	private static FridgeController fridgeController;
 	
 	@Override
     public void start(Stage stage) throws IOException {
@@ -30,7 +33,9 @@ public class App extends Application {
     	Image icon = new Image(String.valueOf(new File("householdhero-icon.png")));
     	stage.getIcons().add(icon);
 
-        scene = new Scene(loadFXML("StartingGUI"), 1000, 600);
+    	FXMLLoader loader = new FXMLLoader(View.class.getResource("StartingGUI.fxml"));
+        scene = new Scene(loader.load(), 1000, 600);
+        fridgeController = loader.getController();
 
         //scene = new Scene(loadFXML("AddEditProductGUI"), 600, 500);
 
@@ -51,22 +56,35 @@ public class App extends Application {
         return fxmlLoader.load();
     }
     
-    static FXMLLoader openWindow(String fxml) throws IOException {
-    	FXMLLoader fxmlLoader = new FXMLLoader(View.class.getResource(fxml + ".fxml"));
-    	Parent root = (Parent) fxmlLoader.load();
+    protected static void openProductWindow(boolean editing, Product product) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(View.class.getResource("AddEditProductGUI.fxml"));
+    	Parent root = loader.load();
+    	Stage stage = setupWindow(root);
+    	loader.<AddEditProductController>getController().initialize(editing, product);
+    	stage.setOnHidden(e -> {
+    		try {
+    			fridgeController.updateTables();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+    	});
+    	stage.show();
+    }
+    
+    protected static void openBudgetWindow(boolean editing, Budget budget) throws IOException {
+    	FXMLLoader loader = new FXMLLoader(View.class.getResource("AddEditBudgetGUI.fxml"));
+    	Parent root = loader.load();
+    	Stage stage = setupWindow(root);
+		loader.<AddEditBudgetController>getController().initialize(editing, budget);
+    	stage.showAndWait();
+    }
+    
+    static Stage setupWindow(Parent root) throws IOException {
     	Stage stage = new Stage();
     	stage.setScene(new Scene(root));
     	stage.initModality(Modality.APPLICATION_MODAL);
     	stage.setAlwaysOnTop(true);
-    	
-    	if (fxml.equals("AddEditBudgetGUI")) {
-    		fxmlLoader.<AddEditBudgetController>getController().initialize(false, null);
-    		stage.showAndWait();
-    	} else {
-    		stage.show();
-    	}
-    	
-    	return fxmlLoader;
+    	return stage;
     }
     
     static View getView() {

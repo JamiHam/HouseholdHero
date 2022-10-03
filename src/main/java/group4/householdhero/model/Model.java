@@ -24,9 +24,8 @@ public class Model {
 		return budget;
 	}
 	
-	public Budget getCurrentBudget() {
-		return null;
-    	//return dao.getCurrentBudget();
+	public Budget getCurrentBudget() throws SQLException {
+    	return dao.getCurrentBudget();
     }
 
 	public Product createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
@@ -34,38 +33,32 @@ public class Model {
     	return product;
     }
 	
-	public void updateProduct(Product product) {
-    	//dao.updateProduct(product);
+	public void updateProduct(Product product) throws SQLException {
+    	dao.updateProduct(product);
     }
 	
-	public void deleteProduct(Product product) {
-		//dao.deleteProduct(product);
+	public void deleteProduct(Product product) throws SQLException {
+		dao.deleteProduct(product);
 	}
 	
-	public void changeProductStatus(Product product, String status) {
-		//dao.updateStatus(product, status);
+	public void changeProductStatus(Product product, String status) throws SQLException {
+		dao.updateStatus(product, status);
 	}
 	
 	public void editProduct(Product product) throws IOException {
 		controller.editProduct(product);
 	}
 
-	public void addBudgetToDatabase(Budget budget) {
+	public void addBudgetToDatabase(Budget budget) throws SQLException {
 		//dao.addBudget(budget);
 	}
 
-	public void addProductToDatabase(Product product) {
-		//dao.addProduct(product);
+	public void addProductToDatabase(Product product) throws SQLException {
+		dao.addProduct(product);
 	}
 	
 	public List<Product> getProductsInFridge() throws SQLException {
-		//return dao.getProductsInFridge();
-		Product product = createProduct(1, "test", 2, LocalDate.parse("2022-01-01"), "category 1", 1, 1);
-		Product product2 = createProduct(2, "test2", 1, LocalDate.parse("2022-09-01"), "category 2", 1, 1);
-		List<Product> list = new ArrayList<Product>();
-		list.add(product);
-		list.add(product2);
-		return list;
+		return dao.getProductsInFridge();
 	}
 
 	public List<String> getCategories() {
@@ -76,13 +69,7 @@ public class Model {
 		return list;
 	}
 	
-	public List<Product> getExpiredProducts() {
-		//return dao.getExpiredProducts();
-		Product product = createProduct(1, "test3", 2, LocalDate.parse("2022-01-01"), "category 1", 1, 1);
-		Product product2 = createProduct(2, "test4", 1, LocalDate.parse("2022-09-01"), "category 2", 1, 1);
-		List<Product> list = new ArrayList<Product>();
-		/*list.add(product);
-		list.add(product2);*/
-		return list;
+	public List<Product> getExpiredProducts() throws SQLException {
+		return dao.getExpiredProducts();
 	}
 }

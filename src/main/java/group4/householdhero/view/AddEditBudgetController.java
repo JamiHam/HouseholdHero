@@ -1,5 +1,6 @@
 package group4.householdhero.view;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import group4.householdhero.model.Budget;
@@ -25,9 +26,10 @@ public class AddEditBudgetController {
 	
 	/**
 	 * Saves the budget
+	 * @throws SQLException 
 	 */
 	@FXML
-	private void save() {
+	private void save() throws SQLException {
 		if(validateInputs()) {
 			LocalDate startDate = startDatePicker.getValue();
 			LocalDate endDate = endDatePicker.getValue();

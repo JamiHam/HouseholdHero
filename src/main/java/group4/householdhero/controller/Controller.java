@@ -21,30 +21,30 @@ public class Controller {
 		this.view = view;
 	}
 	
-	public void createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) {
+	public void createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) throws SQLException {
 		Budget budget = model.createBudget(id, plannedBudget, spentBudget, startDate, endDate);
 		model.addBudgetToDatabase(budget);
 	}
 	
-	public Budget getCurrentBudget() {
+	public Budget getCurrentBudget() throws SQLException {
     	return model.getCurrentBudget();
     }
 	
-	public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
+	public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException {
     	Product product = model.createProduct(id, name, price, bestBefore, category, budgetId, statusId);
     	model.addProductToDatabase(product);
     }
 	
-	public void updateProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
+	public void updateProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException {
     	Product product = model.createProduct(id, name, price, bestBefore, category, budgetId, statusId);
     	model.updateProduct(product);
     }
 	
-	public void deleteProduct(Product product) {
+	public void deleteProduct(Product product) throws SQLException {
 		model.deleteProduct(product);
 	}
 	
-	public void changeProductStatus(Product product, String status) {
+	public void changeProductStatus(Product product, String status) throws SQLException {
 		model.changeProductStatus(product, status);
 	}
 
@@ -60,7 +60,7 @@ public class Controller {
 		return model.getCategories();
 	}
 	
-	public List<Product> getExpiredProducts() {
+	public List<Product> getExpiredProducts() throws SQLException {
 		return model.getExpiredProducts();
 	}
 }
