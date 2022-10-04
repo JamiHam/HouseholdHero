@@ -30,7 +30,7 @@ public class App extends Application {
     public void start(Stage stage) throws IOException {
         stage.setTitle("HouseholdHero");
 
-    	Image icon = new Image(String.valueOf(new File("householdhero-icon.png")));
+    	Image icon = new Image(String.valueOf(new File("householdhero-icon-white-fridge.png")));
     	stage.getIcons().add(icon);
 
     	FXMLLoader loader = new FXMLLoader(View.class.getResource("StartingGUI.fxml"));
@@ -60,6 +60,12 @@ public class App extends Application {
     	FXMLLoader loader = new FXMLLoader(View.class.getResource("AddEditProductGUI.fxml"));
     	Parent root = loader.load();
     	Stage stage = setupWindow(root);
+    	
+        stage.setTitle("HouseholdHero");
+
+    	Image icon = new Image(String.valueOf(new File("householdhero-icon-white-fridge.png")));
+    	stage.getIcons().add(icon);
+    	
     	loader.<AddEditProductController>getController().initialize(editing, product);
     	stage.setOnHidden(e -> {
     		try {
@@ -75,6 +81,12 @@ public class App extends Application {
     	FXMLLoader loader = new FXMLLoader(View.class.getResource("AddEditBudgetGUI.fxml"));
     	Parent root = loader.load();
     	Stage stage = setupWindow(root);
+    	
+        stage.setTitle("HouseholdHero");
+
+    	Image icon = new Image(String.valueOf(new File("householdhero-icon-white-fridge.png")));
+    	stage.getIcons().add(icon);
+    	
 		loader.<AddEditBudgetController>getController().initialize(editing, budget);
     	stage.showAndWait();
     }
