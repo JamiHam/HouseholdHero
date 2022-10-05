@@ -38,7 +38,7 @@
                      </font></Button>
                </children>
             </VBox>
-            <Button id="button-add-product" layoutX="76.0" layoutY="408.0" mnemonicParsing="false" onAction="#addProduct" text="Add Product" />
+            <Button id="button-add-product" layoutX="71.0" layoutY="394.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="110.0" text="Add Product" />
          </children>
       </AnchorPane>
       <VBox layoutX="253.0" prefHeight="340.0" prefWidth="750.0">

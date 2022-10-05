@@ -64,28 +64,6 @@
 	-fx-font-size: 14px;
 }
 
-#icon-test-button {
-	-fx-background-color: #ffffff;
-	-fx-border-radius: 3px;
-	-fx-border-color: #1ec6cf;
-	-fx-border-width: 1px;
-	-fx-background-image: url("edit-icon-turquoise.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 20 20;
-	-fx-background-position: center;
-}
-
-#icon-test-button:hover {
-	-fx-background-color: #098894;
-	-fx-border-radius: 3px;
-	-fx-border-color: #1ec6cf;
-	-fx-border-width: 1px;
-	-fx-background-image: url("edit-icon-turquoise.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 20 20;
-	-fx-background-position: center;
-}
-
 .product-edit-button {
 	-fx-background-color: #ffffff;
 	-fx-border-radius: 3px;
@@ -105,6 +83,14 @@
 	-fx-background-image: url("edit-icon-turquoise.png");
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: 20 20;
+	-fx-background-position: center;
+}
+
+.product-category-icon {
+	-fx-background-color: #ffffff;
+	-fx-background-image: url("category-icon-baked-goods");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 40 40;
 	-fx-background-position: center;
 }
 
@@ -146,6 +132,12 @@
 }
 
 #label-expired {
+	-fx-font-color: #000000;
+	-fx-font-weight: bold;
+	-fx-font-size: 14px;
+}
+
+#label-budget {
 	-fx-font-color: #000000;
 	-fx-font-weight: bold;
 	-fx-font-size: 14px;
