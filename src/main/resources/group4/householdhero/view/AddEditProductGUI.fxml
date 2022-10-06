@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -25,7 +24,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <VBox alignment="CENTER" layoutX="150.0" layoutY="157.0" prefHeight="305.0" prefWidth="200.0">
+      <VBox alignment="CENTER" layoutX="150.0" layoutY="138.0" prefHeight="305.0" prefWidth="200.0">
          <children>
             <GridPane prefHeight="306.0" prefWidth="200.0">
               <columnConstraints>
@@ -52,19 +51,25 @@
                   <TextField fx:id="priceTextField" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
                   <Label text="Best Before Date" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <DatePicker fx:id="bestBeforeDatePicker" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
+                  <Label fx:id="errorLabel" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
                </children>
             </GridPane>
          </children>
       </VBox>
-      <HBox layoutY="457.0" prefHeight="150.0" prefWidth="500.0" spacing="20.0">
+      <VBox layoutX="190.0" layoutY="444.0" prefHeight="150.0" prefWidth="120.0">
          <children>
-            <Button id="product-save-delete-put-to-waste-buttons" fx:id="saveButton" mnemonicParsing="false" onAction="#save" prefWidth="100.0" text="Save" />
-            <Button id="product-save-delete-put-to-waste-buttons" fx:id="deleteButton" mnemonicParsing="false" onAction="#delete" prefWidth="100.0" text="Delete" />
-            <Button id="product-save-delete-put-to-waste-buttons" fx:id="wasteButton" mnemonicParsing="false" onAction="#moveToWaste" prefWidth="100.0" text="Put To Waste" />
+            <Button id="product-save-delete-put-to-waste-buttons" fx:id="saveButton" mnemonicParsing="false" onAction="#save" prefWidth="120.0" text="Save" />
+            <Button id="product-save-delete-put-to-waste-buttons" fx:id="deleteButton" mnemonicParsing="false" onAction="#delete" prefWidth="120.0" text="Delete">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button id="product-save-delete-put-to-waste-buttons" fx:id="wasteButton" mnemonicParsing="false" onAction="#moveToWaste" prefWidth="120.0" text="Put To Waste">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Button>
          </children>
-         <padding>
-            <Insets left="100.0" right="100.0" />
-         </padding>
-      </HBox>
+      </VBox>
    </children>
 </AnchorPane>
