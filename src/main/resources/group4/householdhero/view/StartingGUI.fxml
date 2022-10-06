@@ -39,6 +39,8 @@
                </children>
             </VBox>
             <Button id="button-add-product" layoutX="71.0" layoutY="394.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="110.0" text="Add Product" />
+            <Button layoutX="101.0" layoutY="497.0" mnemonicParsing="false" styleClass="product-edit-button" />
+            <Button layoutX="91.0" layoutY="547.0" mnemonicParsing="false" styleClass="product-put-to-waste-button" />
          </children>
       </AnchorPane>
       <VBox layoutX="253.0" prefHeight="340.0" prefWidth="750.0">

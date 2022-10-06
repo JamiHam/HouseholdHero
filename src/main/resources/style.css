@@ -21,11 +21,6 @@
 
 #button-fridge:hover {
 	-fx-background-color: #1ec6cf;
-	-fx-border: 1px;
-	-fx-border-color: #000000;
-	-fx-font-color: #000000;
-	-fx-font-weight: bold;
-	-fx-font-size: 14px;
 }
 
 #button-budget {
@@ -39,11 +34,6 @@
 
 #button-budget:hover {
 	-fx-background-color: #1ec6cf;
-	-fx-border: 1px;
-	-fx-border-color: #000000;
-	-fx-font-color: #000000;
-	-fx-font-weight: bold;
-	-fx-font-size: 14px;
 }
 
 #button-add-product {
@@ -57,40 +47,199 @@
 
 #button-add-product:hover {
 	-fx-background-color: #1ec6cf;
-	-fx-border: 1px;
-	-fx-border-color: #000000;
-	-fx-font-color: #000000;
-	-fx-font-weight: bold;
-	-fx-font-size: 14px;
 }
 
 .product-edit-button {
 	-fx-background-color: #ffffff;
-	-fx-border-radius: 3px;
-	-fx-border-color: #1ec6cf;
+	-fx-border-color: #000000;
 	-fx-border-width: 1px;
-	-fx-background-image: url("edit-icon-turquoise.png");
+	-fx-padding: 2px 10px 2px 10px;
+	-fx-background-image: url("edit-icon-black.png");
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: 20 20;
 	-fx-background-position: center;
 }
 
 .product-edit-button:hover {
-	-fx-background-color: #098894;
-	-fx-border-radius: 3px;
-	-fx-border-color: #1ec6cf;
+	-fx-background-color: #1ec6cf;
+}
+
+.product-put-to-waste-button {
+	-fx-background-color: #ffffff;
+	-fx-border-color: #000000;
 	-fx-border-width: 1px;
-	-fx-background-image: url("edit-icon-turquoise.png");
+	-fx-padding: 2px 10px 2px 10px;
+	-fx-background-image: url("delete-icon-black.png");
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: 20 20;
 	-fx-background-position: center;
 }
 
-.product-category-icon {
-	-fx-background-color: #ffffff;
-	-fx-background-image: url("category-icon-baked-goods");
+.product-put-to-waste-button:hover {
+	-fx-background-color: #1ec6cf;
+}
+
+/*
+ * category icons
+ */
+.baked-goods {
+	-fx-background-image: url("category-icon-1.png");
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: 40 40;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.bread {
+	-fx-background-image: url("category-icon-2.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.candy {
+	-fx-background-image: url("category-icon-3.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.canned-goods {
+	-fx-background-image: url("category-icon-4.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.condiments {
+	-fx-background-image: url("category-icon-5.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.dairy {
+	-fx-background-image: url("category-icon-6.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.eggs {
+	-fx-background-image: url("category-icon-7.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.fats-and-oils {
+	-fx-background-image: url("category-icon-8.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.fish {
+	-fx-background-image: url("category-icon-9.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.fruits-and-berries {
+	-fx-background-image: url("category-icon-10.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.juice {
+	-fx-background-image: url("category-icon-11.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.meat {
+	-fx-background-image: url("category-icon-12.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.nuts-and-seeds {
+	-fx-background-image: url("category-icon-13.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.other-drinks {
+	-fx-background-image: url("category-icon-14.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.other-food {
+	-fx-background-image: url("category-icon-15.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.plant-based-dairy-alternatives {
+	-fx-background-image: url("category-icon-16.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.plant-based-protein {
+	-fx-background-image: url("category-icon-17.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.poultry {
+	-fx-background-image: url("category-icon-18.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.rice-and-pasta {
+	-fx-background-image: url("category-icon-19.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.shellfish {
+	-fx-background-image: url("category-icon-20.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.soft-drinks {
+	-fx-background-image: url("category-icon-21.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.sugars-and-honey {
+	-fx-background-image: url("category-icon-22.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
+	-fx-background-position: center;
+}
+
+.vegetables {
+	-fx-background-image: url("category-icon-23.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 30 30;
 	-fx-background-position: center;
 }
 
@@ -101,21 +250,6 @@
 #product-save-delete-put-to-waste-buttons:hover, #budget-save-delete-buttons:hover {
 	-fx-font-size: 12px;
 }
-
-/*
-
-.table-view .column-header {
-    -fx-background-color: #ffffff;
-    -fx-border-color: #40e2eb;
-	-fx-border-width: 1px;
-}
-
-.table-view .column-header-background .label {
-    -fx-text-fill: #40e2eb;
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
-}
-*/
 
 #left-anchorpane-starting-gui {
 	-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #1ec6cf, #0349a8);
