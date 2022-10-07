@@ -1,2 +1,3 @@
 /target/
-/src/main/java/group4/householdhero/model/DBInfo/
+/src/main/java/group4/householdhero/model/DBInfo
+/src/main/java/group4/householdhero/model/Testmain.java
