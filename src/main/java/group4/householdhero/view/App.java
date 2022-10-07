@@ -12,6 +12,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -36,15 +37,10 @@ public class App extends Application {
     	FXMLLoader loader = new FXMLLoader(View.class.getResource("StartingGUI.fxml"));
         scene = new Scene(loader.load(), 1000, 600);
         fridgeController = loader.getController();
-
-        //scene = new Scene(loadFXML("AddEditProductGUI"), 600, 500);
-
-
-        // Tällä CSS-lisäys ei onnistu, CSS lisätty Scene Builderin kautta AnchorPaneen
-        // scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         
         stage.setScene(scene);
         stage.show();
+
     }
 
     static void setRoot(String fxml) throws IOException {

@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 public class Product {
 	private int id;
@@ -51,6 +49,11 @@ public class Product {
 						imageView.setImage(image);
 					}
 				}
+		editButton = new Button("");
+		editButton.getStyleClass().add("product-edit-button");
+		editButton.setOnAction(e -> {
+			try {
+				editProduct();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
