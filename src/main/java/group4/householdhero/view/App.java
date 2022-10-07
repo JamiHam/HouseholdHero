@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
@@ -30,7 +31,9 @@ public class App extends Application {
     	stage.getIcons().add(icon);
 
         scene = new Scene(loadFXML("StartingGUI"), 1000, 600);
-    	//scene = new Scene(loadFXML("primary"), 1000, 600);
+
+        //scene = new Scene(loadFXML("AddEditProductGUI"), 600, 500);
+
 
         // Tällä CSS-lisäys ei onnistu, CSS lisätty Scene Builderin kautta AnchorPaneen
         // scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
@@ -43,20 +46,27 @@ public class App extends Application {
         scene.setRoot(loadFXML(fxml));
     }
     
-    static void openAddEditWindow(String fxml, boolean editing, Product product) throws IOException {
-    	FXMLLoader fxmlLoader = new FXMLLoader(View.class.getResource(fxml + ".fxml"));
-    	Parent root = (Parent) fxmlLoader.load();
-    	
-    	fxmlLoader.<AddEditProductController>getController().initialize(editing, product);
-    	
-    	Stage stage = new Stage();
-    	stage.setScene(new Scene(root));
-    	stage.show();
-    }
-
     private static Parent loadFXML(String fxml) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(View.class.getResource(fxml + ".fxml"));
         return fxmlLoader.load();
+    }
+    
+    static FXMLLoader openWindow(String fxml) throws IOException {
+    	FXMLLoader fxmlLoader = new FXMLLoader(View.class.getResource(fxml + ".fxml"));
+    	Parent root = (Parent) fxmlLoader.load();
+    	Stage stage = new Stage();
+    	stage.setScene(new Scene(root));
+    	stage.initModality(Modality.APPLICATION_MODAL);
+    	stage.setAlwaysOnTop(true);
+    	
+    	if (fxml.equals("AddEditBudgetGUI")) {
+    		fxmlLoader.<AddEditBudgetController>getController().initialize(false, null);
+    		stage.showAndWait();
+    	} else {
+    		stage.show();
+    	}
+    	
+    	return fxmlLoader;
     }
     
     static View getView() {

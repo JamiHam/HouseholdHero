@@ -1,7 +1,9 @@
 package group4.householdhero.view;
 
 import group4.householdhero.controller.*;
+import group4.householdhero.model.Budget;
 import group4.householdhero.model.Product;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,6 +19,10 @@ public class View {
     
     public void createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) {
     	 controller.createBudget(id, plannedBudget, spentBudget, startDate, endDate);
+    }
+    
+    public Budget getCurrentBudget() {
+    	return controller.getCurrentBudget();
     }
     
     public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
@@ -42,9 +48,16 @@ public class View {
     public List<Product> getProductsInFridge() throws SQLException {
     	return controller.getProductsInFridge();
     }
-    
-    public int getCurrentBudget() {
-    	return 0;
-    }
 
+	public List<String> getCategories() {
+		return controller.getCategories();
+	}
+
+	public List<Product> getExpiredProducts() {
+		return controller.getExpiredProducts();
+	}
+    
+    /*public List<Product> getExpiredProducts() throws SQLException {
+    	//return controller.getExpiredProducts();
+    }*/
 }
