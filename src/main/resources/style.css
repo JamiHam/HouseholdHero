@@ -83,9 +83,9 @@
  * category icons
  */
 .baked-goods {
-	-fx-background-image: url("category-icon-1.png");
+	-fx-image: url("category-icon-1.png");
 	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
+	-fx-image-size: 30 30;
 	-fx-background-position: center;
 }
 
