@@ -49,14 +49,16 @@ public class Product {
 				e1.printStackTrace();
 			}
 		});
+		System.out.println(editButton.getStyleClass());
 	}
 	
 	private void setUpImageView() {
 		categoryImageView = new ImageView();
+		categoryImageView.setFitHeight(30);
+		categoryImageView.setFitWidth(30);
 		String className = category.replace(" ", "-");
-		//Image image = new Image(Product.class.getResourceAsStream("resources/category-icon-1.png"));
-		//categoryImageView.setImage(image);
 		categoryImageView.getStyleClass().add(className);
+		System.out.println(categoryImageView.getStyleClass());
 	}
 
 	public int getId() {
