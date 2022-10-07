@@ -58,7 +58,7 @@ public class AddEditBudgetController {
 	 * @param error
 	 */
 	protected void setError(boolean error) {
-		//errorLabel.setVisible(error);
+		errorLabel.setVisible(error);
 	}
 	
 	/**

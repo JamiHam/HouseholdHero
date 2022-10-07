@@ -16,6 +16,7 @@ public class Product {
 	
 	private Model model;
 	private Button editButton;
+	private ImageView categoryImageView;
 	
 	public Product(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId, Model model) {
 		this.id = id;
@@ -27,6 +28,27 @@ public class Product {
 		this.statusId = statusId;
 		
 		this.model = model;
+		
+		setUpButton();
+		setUpImageView();
+		
+		// Pohjaa kategoriaikonin asettamiselle
+		/*
+		categoryButton = new Button("");
+		categoryButton.setOnAction(e -> {
+			try {
+				// Tähän täytyy hakea tuotteen kategorian ID
+				int categoryId = 1;
+				
+				for (int i = 1; i <= 23; i++) {
+					if (categoryId == i) {
+						
+						image = new Image(Product.class.getResourceAsStream("resources/category-icon-" + i + ".png"),
+								40, 40, true, true);
+
+						imageView.setImage(image);
+					}
+				}
 		editButton = new Button("");
 		editButton.getStyleClass().add("product-edit-button");
 		editButton.setOnAction(e -> {
@@ -37,10 +59,29 @@ public class Product {
 				e1.printStackTrace();
 			}
 		});
+		*/
 	}
 	
 	public void editProduct() throws IOException {
 		model.editProduct(this);
+	}
+	
+	private void setUpButton() {
+		editButton = new Button("");
+		editButton.getStyleClass().add("product-edit-button");
+		editButton.setOnAction(e -> {
+			try {
+				editProduct();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		});
+	}
+	
+	private void setUpImageView() {
+		categoryImageView = new ImageView();
+		String className = category.replace(" ", "-");
+		categoryImageView.getStyleClass().add(className);
 	}
 
 	public int getId() {
@@ -101,5 +142,9 @@ public class Product {
 	
 	public Button getEditButton() {
 		return editButton;
+	}
+	
+	public ImageView getCategoryImageView() {
+		return categoryImageView;
 	}
 }
