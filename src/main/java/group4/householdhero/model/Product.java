@@ -18,9 +18,7 @@ public class Product {
 	
 	private Model model;
 	private Button editButton;
-	private Button categoryButton;
-	private ImageView imageView;
-	private Image image;
+	private ImageView categoryImageView;
 	
 	public Product(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId, Model model) {
 		this.id = id;
@@ -32,16 +30,9 @@ public class Product {
 		this.statusId = statusId;
 		
 		this.model = model;
-		editButton = new Button("");
-		editButton.getStyleClass().add("product-edit-button");
-		editButton.setOnAction(e -> {
-			try {
-				editProduct();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		});
+		
+		setUpButton();
+		setUpImageView();
 		
 		// Pohjaa kategoriaikonin asettamiselle
 		/*
@@ -70,6 +61,24 @@ public class Product {
 	
 	public void editProduct() throws IOException {
 		model.editProduct(this);
+	}
+	
+	private void setUpButton() {
+		editButton = new Button("");
+		editButton.getStyleClass().add("product-edit-button");
+		editButton.setOnAction(e -> {
+			try {
+				editProduct();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		});
+	}
+	
+	private void setUpImageView() {
+		categoryImageView = new ImageView();
+		String className = category.replace(" ", "-");
+		categoryImageView.getStyleClass().add(className);
 	}
 
 	public int getId() {
@@ -130,5 +139,9 @@ public class Product {
 	
 	public Button getEditButton() {
 		return editButton;
+	}
+	
+	public ImageView getCategoryImageView() {
+		return categoryImageView;
 	}
 }

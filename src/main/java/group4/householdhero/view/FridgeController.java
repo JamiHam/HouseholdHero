@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 public class FridgeController {
@@ -23,6 +24,7 @@ public class FridgeController {
 	@FXML private TableView<Product> fridgeTable;
 	@FXML private TableColumn<Product, String> fridgeNameColumn;
 	@FXML private TableColumn<Product, Integer> fridgeCategoryColumn;
+	@FXML private TableColumn<Product, ImageView> fridgeIconColumn;
 	@FXML private TableColumn<Product, Double> fridgePriceColumn;
 	@FXML private TableColumn<Product, LocalDate> fridgeBestBeforeColumn;
 	@FXML private TableColumn<Product, Button> fridgeEditColumn;
@@ -30,6 +32,7 @@ public class FridgeController {
 	@FXML private TableView<Product> expiredTable;
 	@FXML private TableColumn<Product, String> expiredNameColumn;
 	@FXML private TableColumn<Product, Integer> expiredCategoryColumn;
+	@FXML private TableColumn<Product, ImageView> expiredIconColumn;
 	@FXML private TableColumn<Product, Double> expiredPriceColumn;
 	@FXML private TableColumn<Product, LocalDate> expiredBestBeforeColumn;
 	@FXML private TableColumn<Product, Button> expiredEditColumn;
@@ -53,7 +56,7 @@ public class FridgeController {
 	 */
     @FXML
     private void switchToWaste() throws IOException {
-        App.setRoot("WasteGUI");
+        App.setRoot("secondary");
     }
     
     /**
@@ -91,12 +94,14 @@ public class FridgeController {
     private void initializeColumns() {
     	fridgeNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 		fridgeCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("category"));
+		fridgeIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
 		fridgePriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 		fridgeBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
 		fridgeEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
 		
 		expiredNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 		expiredCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("category"));
+		expiredIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
 		expiredPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 		expiredBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
 		expiredEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
