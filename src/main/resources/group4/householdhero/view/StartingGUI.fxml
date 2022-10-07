@@ -39,8 +39,6 @@
                </children>
             </VBox>
             <Button id="button-add-product" layoutX="71.0" layoutY="394.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="110.0" text="Add Product" />
-            <Button layoutX="101.0" layoutY="497.0" mnemonicParsing="false" styleClass="product-edit-button" />
-            <Button layoutX="91.0" layoutY="547.0" mnemonicParsing="false" styleClass="product-put-to-waste-button" />
          </children>
       </AnchorPane>
       <VBox layoutX="253.0" prefHeight="340.0" prefWidth="750.0">
@@ -54,7 +52,7 @@
               <columns>
                 <TableColumn fx:id="fridgeNameColumn" prefWidth="200.0" text="Name" />
                 <TableColumn fx:id="fridgeCategoryColumn" prefWidth="200.0" text="Category" />
-                  <TableColumn prefWidth="75.0" text="(Image)" />
+                  <TableColumn fx:id="fridgeIconColumn" prefWidth="75.0" text="(Image)" />
                   <TableColumn fx:id="fridgePriceColumn" prefWidth="75.0" text="Price" />
                   <TableColumn fx:id="fridgeBestBeforeColumn" prefWidth="100.0" text="Best Before" />
                   <TableColumn fx:id="fridgeEditColumn" prefWidth="100.0" text="Edit" />
@@ -73,7 +71,7 @@
               <columns>
                 <TableColumn fx:id="expiredNameColumn" prefWidth="200.0" text="Name" />
                 <TableColumn fx:id="expiredCategoryColumn" prefWidth="200.0" text="Category" />
-                  <TableColumn prefWidth="75.0" text="(Image)" />
+                  <TableColumn fx:id="expiredIconColumn" prefWidth="75.0" text="(Image)" />
                   <TableColumn fx:id="expiredPriceColumn" prefWidth="75.0" text="Price" />
                   <TableColumn fx:id="expiredBestBeforeColumn" prefWidth="100.0" text="Best Before" />
                   <TableColumn fx:id="expiredEditColumn" prefWidth="100.0" text="Put To Waste" />

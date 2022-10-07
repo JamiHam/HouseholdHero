@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Product {
 	private int id;
@@ -31,35 +33,6 @@ public class Product {
 		
 		setUpButton();
 		setUpImageView();
-		
-		// Pohjaa kategoriaikonin asettamiselle
-		/*
-		categoryButton = new Button("");
-		categoryButton.setOnAction(e -> {
-			try {
-				// Tähän täytyy hakea tuotteen kategorian ID
-				int categoryId = 1;
-				
-				for (int i = 1; i <= 23; i++) {
-					if (categoryId == i) {
-						
-						image = new Image(Product.class.getResourceAsStream("resources/category-icon-" + i + ".png"),
-								40, 40, true, true);
-
-						imageView.setImage(image);
-					}
-				}
-		editButton = new Button("");
-		editButton.getStyleClass().add("product-edit-button");
-		editButton.setOnAction(e -> {
-			try {
-				editProduct();
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-		});
-		*/
 	}
 	
 	public void editProduct() throws IOException {
@@ -81,6 +54,8 @@ public class Product {
 	private void setUpImageView() {
 		categoryImageView = new ImageView();
 		String className = category.replace(" ", "-");
+		//Image image = new Image(Product.class.getResourceAsStream("resources/category-icon-1.png"));
+		//categoryImageView.setImage(image);
 		categoryImageView.getStyleClass().add(className);
 	}
 
