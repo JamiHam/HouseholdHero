@@ -17,27 +17,27 @@ public class View {
     	this.controller = controller;
     }
     
-    public void createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) {
+    public void createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) throws SQLException {
     	 controller.createBudget(id, plannedBudget, spentBudget, startDate, endDate);
     }
     
-    public Budget getCurrentBudget() {
+    public Budget getCurrentBudget() throws SQLException {
     	return controller.getCurrentBudget();
     }
     
-    public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
+    public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException {
     	controller.createProduct(id, name, price, bestBefore, category, budgetId, statusId);
     }
     
-    public void updateProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
+    public void updateProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException {
     	controller.updateProduct(id, name, price, bestBefore, category, budgetId, statusId);
     }
     
-    public void deleteProduct(Product product) {
-		//dao.deleteProduct(product);
+    public void deleteProduct(Product product) throws SQLException {
+		controller.deleteProduct(product);
 	}
     
-    public void changeProductStatus(Product product, String status) {
+    public void changeProductStatus(Product product, String status) throws SQLException {
 		controller.changeProductStatus(product, status);
 	}
     
@@ -53,7 +53,7 @@ public class View {
 		return controller.getCategories();
 	}
 
-	public List<Product> getExpiredProducts() {
+	public List<Product> getExpiredProducts() throws SQLException {
 		return controller.getExpiredProducts();
 	}
     

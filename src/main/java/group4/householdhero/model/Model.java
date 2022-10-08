@@ -11,12 +11,10 @@ import group4.householdhero.controller.Controller;
 public class Model {
 	private Controller controller;
 	private DataAccessObject dao;
-	private Testmain main;
 	
 	public void setController(Controller controller) {
 		this.controller = controller;
 		dao = new DataAccessObject(this);
-		main = new Testmain();
 	}
 
 	public Budget createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) {
@@ -60,8 +58,8 @@ public class Model {
 	
 	public List<Product> getProductsInFridge() throws SQLException {
 		//return dao.getProductsInFridge();
-		Product product = createProduct(1, "test", 2, LocalDate.parse("2022-01-01"), "category 1", 1, 1);
-		Product product2 = createProduct(2, "test2", 1, LocalDate.parse("2022-09-01"), "category 2", 1, 1);
+		Product product = createProduct(1, "test", 2, LocalDate.parse("2022-01-01"), "bread", 1, 1);
+		Product product2 = createProduct(2, "test2", 1, LocalDate.parse("2022-09-01"), "baked goods", 1, 1);
 		List<Product> list = new ArrayList<Product>();
 		list.add(product);
 		list.add(product2);
@@ -71,15 +69,15 @@ public class Model {
 	public List<String> getCategories() {
 		//return dao.getCategories();
 		List<String> list = new ArrayList<String>();
-		list.add("category 1");
-		list.add("category 2");
+		list.add("bread");
+		list.add("baked goods");
 		return list;
 	}
 	
 	public List<Product> getExpiredProducts() {
 		//return dao.getExpiredProducts();
-		Product product = createProduct(1, "test3", 2, LocalDate.parse("2022-01-01"), "category 1", 1, 1);
-		Product product2 = createProduct(2, "test4", 1, LocalDate.parse("2022-09-01"), "category 2", 1, 1);
+		Product product = createProduct(1, "test3", 2, LocalDate.parse("2022-01-01"), "bread", 1, 1);
+		Product product2 = createProduct(2, "test4", 1, LocalDate.parse("2022-09-01"), "baked goods", 1, 1);
 		List<Product> list = new ArrayList<Product>();
 		/*list.add(product);
 		list.add(product2);*/

@@ -1,5 +1,6 @@
 package group4.householdhero.view;
 
+import java.sql.SQLException;
 import java.time.LocalDate;
 import group4.householdhero.model.Budget;
 import group4.householdhero.model.Product;
@@ -28,9 +29,10 @@ public class AddEditProductController {
 	
 	/**
 	 * Saves the product to database
+	 * @throws SQLException 
 	 */
 	@FXML
-	private void save() {
+	private void save() throws SQLException {
 		if (validateInputs()) {
 			String name = nameTextField.getText();
 			String category = categoryChoiceBox.getValue();
@@ -52,18 +54,20 @@ public class AddEditProductController {
 	
 	/**
 	 * Deletes the product
+	 * @throws SQLException 
 	 */
 	@FXML
-	private void delete() {
+	private void delete() throws SQLException {
 		view.deleteProduct(product);
 		closeWindow();
 	}
 	
 	/**
 	 * Changes the product's status to "waste"
+	 * @throws SQLException 
 	 */
 	@FXML
-	private void moveToWaste() {
+	private void moveToWaste() throws SQLException {
 		view.changeProductStatus(product, "waste");
 		closeWindow();
 	}

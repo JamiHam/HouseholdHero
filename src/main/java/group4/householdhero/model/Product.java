@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.time.LocalDate;
 
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class Product {
 	private int id;
@@ -16,6 +18,7 @@ public class Product {
 	
 	private Model model;
 	private Button editButton;
+	private ImageView categoryImageView;
 	
 	public Product(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId, Model model) {
 		this.id = id;
@@ -27,20 +30,33 @@ public class Product {
 		this.statusId = statusId;
 		
 		this.model = model;
-		editButton = new Button("Edit");
+		
+		setUpButton();
+		setUpImageView();
+	}
+	
+	public void editProduct() throws IOException {
+		model.editProduct(this);
+	}
+	
+	private void setUpButton() {
+		editButton = new Button("");
 		editButton.getStyleClass().add("product-edit-button");
 		editButton.setOnAction(e -> {
 			try {
 				editProduct();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		});
 	}
 	
-	public void editProduct() throws IOException {
-		model.editProduct(this);
+	private void setUpImageView() {
+		categoryImageView = new ImageView();
+		String className = category.replace(" ", "-");
+		//Image image = new Image(Product.class.getResourceAsStream("resources/category-icon-1.png"));
+		//categoryImageView.setImage(image);
+		categoryImageView.getStyleClass().add(className);
 	}
 
 	public int getId() {
@@ -101,5 +117,9 @@ public class Product {
 	
 	public Button getEditButton() {
 		return editButton;
+	}
+	
+	public ImageView getCategoryImageView() {
+		return categoryImageView;
 	}
 }
