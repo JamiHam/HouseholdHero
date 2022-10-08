@@ -83,171 +83,102 @@
  * category icons
  */
 .baked-goods {
-	-fx-image: url("category-icon-1.png");
-	-fx-background-repeat: no-repeat;
-	-fx-image-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-baked-goods-40.png");
 }
 
 .bread {
-	-fx-background-image: url("category-icon-2.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-bread-40.png");
 }
 
 .candy {
-	-fx-background-image: url("category-icon-3.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-candy-40.png");
 }
 
 .canned-goods {
-	-fx-background-image: url("category-icon-4.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-canned-goods-40.png");
 }
 
 .condiments {
-	-fx-background-image: url("category-icon-5.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-condiments-40.png");
 }
 
 .dairy {
-	-fx-background-image: url("category-icon-6.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-dairy-40.png");
 }
 
 .eggs {
-	-fx-background-image: url("category-icon-7.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-eggs-40.png");
 }
 
 .fats-and-oils {
-	-fx-background-image: url("category-icon-8.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-fats-and-oils-40.png");
 }
 
 .fish {
-	-fx-background-image: url("category-icon-9.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-fish-40.png");
 }
 
 .fruits-and-berries {
-	-fx-background-image: url("category-icon-10.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-fruits-and-berries-40.png");
 }
 
 .juice {
-	-fx-background-image: url("category-icon-11.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-juice-40.png");
 }
 
 .meat {
-	-fx-background-image: url("category-icon-12.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-meat-40.png");
 }
 
 .nuts-and-seeds {
-	-fx-background-image: url("category-icon-13.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-nuts-and-seeds-40.png");
 }
 
 .other-drinks {
-	-fx-background-image: url("category-icon-14.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-other-drinks-40.png");
 }
 
 .other-food {
-	-fx-background-image: url("category-icon-15.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-other-food-40.png");
 }
 
 .plant-based-dairy-alternatives {
-	-fx-background-image: url("category-icon-16.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-plant-based-dairy-alternatives-40.png");
 }
 
 .plant-based-protein {
-	-fx-background-image: url("category-icon-17.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-plant-based-protein-40.png");
 }
 
 .poultry {
-	-fx-background-image: url("category-icon-18.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-poultry-40.png");
 }
 
 .rice-and-pasta {
-	-fx-background-image: url("category-icon-19.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-rice-and-pasta-40.png");
 }
 
 .shellfish {
-	-fx-background-image: url("category-icon-20.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-shellfish-40.png");
 }
 
 .soft-drinks {
-	-fx-background-image: url("category-icon-21.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-soft-drinks-40.png");
 }
 
 .sugars-and-honey {
-	-fx-background-image: url("category-icon-22.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-sugars-and-honey-40.png");
 }
 
 .vegetables {
-	-fx-background-image: url("category-icon-23.png");
-	-fx-background-repeat: no-repeat;
-	-fx-background-size: 30 30;
-	-fx-background-position: center;
+	-fx-image: url("category-icon-vegetables-40.png");
 }
 
-#product-save-delete-put-to-waste-buttons, #budget-save-delete-buttons {
+#product-save-delete-used-waste-buttons, #budget-save-delete-buttons {
 	-fx-font-size: 12px;
 }
 
-#product-save-delete-put-to-waste-buttons:hover, #budget-save-delete-buttons:hover {
+#product-save-delete-used-waste-buttons:hover, #budget-save-delete-buttons:hover {
 	-fx-font-size: 12px;
 }
 
@@ -259,16 +190,24 @@
 	-fx-background-color: #ffffff;
 }
 
-#label-products {
+#label-products-in-fridge {
 	-fx-font-color: #000000;
 	-fx-font-weight: bold;
 	-fx-font-size: 14px;
 }
 
-#label-expired {
+#products-in-fridge {
+	-fx-cell-size: 40px;
+}
+
+#label-expired-products-in-fridge {
 	-fx-font-color: #000000;
 	-fx-font-weight: bold;
 	-fx-font-size: 14px;
+}
+
+#expired-products-in-fridge {
+	-fx-cell-size: 40px;
 }
 
 #label-budget {

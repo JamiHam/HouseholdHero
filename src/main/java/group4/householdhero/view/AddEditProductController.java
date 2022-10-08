@@ -41,9 +41,9 @@ public class AddEditProductController {
 			LocalDate bestBefore = bestBeforeDatePicker.getValue();
 			
 			if (editing) {
-				updateProduct(category, category, price, bestBefore);
+				updateProduct(name, category, price, bestBefore);
 			} else {
-				createProduct(category, category, price, bestBefore);
+				createProduct(name, category, price, bestBefore);
 			}
 			closeWindow();
 		} else {

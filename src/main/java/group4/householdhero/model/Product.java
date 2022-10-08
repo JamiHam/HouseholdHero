@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -54,8 +55,6 @@ public class Product {
 	
 	private void setUpImageView() {
 		categoryImageView = new ImageView();
-		categoryImageView.setFitHeight(30);
-		categoryImageView.setFitWidth(30);
 		String className = category.replace(" ", "-");
 		categoryImageView.getStyleClass().add(className);
 	}
