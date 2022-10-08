@@ -40,12 +40,13 @@ public class FridgeController {
 	@FXML
 	private void initialize() throws IOException, SQLException {
 		view = App.getView();
-		//checkCurrentBudget();
+		checkCurrentBudget();
 		initializeColumns();
 		updateTables();
 	}
 	
 	protected void updateTables() throws SQLException {
+		checkBestBefore();
 		updateFridgeContents();
 		updateExpiredContents();
 	}
@@ -55,26 +56,28 @@ public class FridgeController {
 	 * @throws IOException
 	 */
     @FXML
-    private void switchToWaste() throws IOException {
-        App.setRoot("secondary");
+    private void switchToBudget() throws IOException {
+        App.showBudget();
     }
     
     /**
      * Opens AddEditProductGUI with editing mode off
      * @throws IOException
+     * @throws SQLException 
      */
     @FXML
-    private void addProduct() throws IOException {
-    	App.openProductWindow(false, null);
+    private void addProduct() throws IOException, SQLException {
+    	App.showProductWindow(false, null);
     }
     
     /**
      * Opens AddEditProductGUI with editing mode on
      * @param product
      * @throws IOException
+     * @throws SQLException 
      */
-    protected static void editProduct(Product product) throws IOException {
-    	App.openProductWindow(true, product);
+    protected static void editProduct(Product product) throws IOException, SQLException {
+    	App.showProductWindow(true, product);
     }
     
     /**
@@ -83,8 +86,8 @@ public class FridgeController {
      * @throws SQLException 
      */
     private void checkCurrentBudget() throws IOException, SQLException {
-    	if (view.getCurrentBudget() == null) {
-    		App.openBudgetWindow(false, null);
+    	if (view.getBudget(LocalDate.now()) == null) {
+    		App.showBudgetWindow(false, null);
     	}
     }
     
@@ -112,7 +115,7 @@ public class FridgeController {
      * @throws SQLException
      */
     private void updateFridgeContents() throws SQLException {
-    	fridgeTable.setItems(FXCollections.observableArrayList(view.getProductsInFridge()));
+    	fridgeTable.setItems(FXCollections.observableArrayList(view.getProducts("fridge")));
     }
     
     /**
@@ -120,12 +123,16 @@ public class FridgeController {
      * @throws SQLException
      */
     private void updateExpiredContents() throws SQLException {
-    	List<Product> list = view.getExpiredProducts();
-    	expiredTable.setItems(FXCollections.observableArrayList(list));
+    	List<Product> list = view.getProducts("expired");
     	if (list.isEmpty()) {
-    		//expiredVBox.setVisible(false);
+    		expiredVBox.setVisible(false);
     	} else {
-    		//expiredTable.setItems(FXCollections.observableArrayList(list));
+    		expiredVBox.setVisible(true);
+    		expiredTable.setItems(FXCollections.observableArrayList(list));
     	}
+    }
+    
+    private void checkBestBefore() throws SQLException {
+    	view.checkBestBefore();
     }
 }

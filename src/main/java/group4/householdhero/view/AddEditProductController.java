@@ -16,6 +16,7 @@ public class AddEditProductController {
 	private View view;
 	private boolean editing;
 	private Product product;
+	private Budget budget;
 	
 	@FXML private TextField nameTextField;
 	@FXML private TextField priceTextField;
@@ -38,18 +39,35 @@ public class AddEditProductController {
 			String category = categoryChoiceBox.getValue();
 			double price = Double.parseDouble(priceTextField.getText());
 			LocalDate bestBefore = bestBeforeDatePicker.getValue();
-			Budget budget = view.getCurrentBudget();
 			
 			if (editing) {
-				view.updateProduct(product.getId(), name, price, bestBefore, category, product.getBudgetId(), 1);
+				updateProduct(category, category, price, bestBefore);
 			} else {
-				view.createProduct(0, name, price, bestBefore, category, budget.getId(), 1);
+				createProduct(category, category, price, bestBefore);
 			}
-			
 			closeWindow();
 		} else {
-			setError(true);
+			showError(true);
 		}
+	}
+	
+	private void updateProduct(String name, String category, double price, LocalDate bestBefore) throws SQLException {
+		budget.setSpentBudget(budget.getSpentBudget() - product.getPrice());
+		budget.setSpentBudget(budget.getSpentBudget() + price);
+		
+		product.setName(name);
+		product.setCategory(category);
+		product.setPrice(price);
+		product.setBestBefore(bestBefore);
+		
+		view.updateProduct(product);
+		view.updateBudget(budget);
+	}
+	
+	private void createProduct(String name, String category, double price, LocalDate bestBefore) throws SQLException {
+		view.createProduct(0, name, price, bestBefore, category, budget.getId(), 1);
+		budget.setSpentBudget(budget.getSpentBudget() + price);
+		view.updateBudget(budget);
 	}
 	
 	/**
@@ -59,6 +77,8 @@ public class AddEditProductController {
 	@FXML
 	private void delete() throws SQLException {
 		view.deleteProduct(product);
+		budget.setSpentBudget(budget.getSpentBudget() - product.getPrice());
+		view.updateBudget(budget);
 		closeWindow();
 	}
 	
@@ -80,18 +100,23 @@ public class AddEditProductController {
 		stage.close();
 	}
 	
+	protected void setErrorMessage(String message) {
+		errorLabel.setText(message);
+	}
+	
 	/**
 	 * Sets visibility for errorLabel
 	 * @param error
 	 */
-	protected void setError(boolean error) {
-		//errorLabel.setVisible(error);
+	private void showError(boolean error) {
+		errorLabel.setVisible(error);
 	}
 	
 	/**
 	 * Gets all categories from the database and sets them to categoryChoiceBox
+	 * @throws SQLException 
 	 */
-	private void getCategories() {
+	private void getCategories() throws SQLException {
 		categoryChoiceBox.getItems().addAll(view.getCategories());
 	}
 	
@@ -102,25 +127,39 @@ public class AddEditProductController {
 	private boolean validateInputs() {
 		boolean validity = true;
 		
-		if (nameTextField.getText().isEmpty()) validity = false;
-		if (categoryChoiceBox.getValue() == null) validity = false;
-		if (bestBeforeDatePicker.getValue() == null) validity = false;
+		if (bestBeforeDatePicker.getValue() == null) {
+			validity = false;
+			setErrorMessage("Please select a best before date");
+		}
 		
 		try {
 			Double.parseDouble(priceTextField.getText());
 		} catch (NumberFormatException e) {
 			validity = false;
+			setErrorMessage("The price must be a number");
+		}
+		
+		if (categoryChoiceBox.getValue() == null) {
+			validity = false;
+			setErrorMessage("Please select a category");
+		}
+		
+		if (nameTextField.getText().isEmpty()) {
+			validity = false;
+			setErrorMessage("Please enter a product name");
 		}
 		
 		return validity;
 	}
 	
-	protected void initialize(boolean editing, Product product) {
+	protected void initialize(boolean editing, Product product) throws SQLException {
 		this.view = App.getView();
 		this.editing = editing;
 		this.product = product;
+		budget = view.getBudget(LocalDate.now());
+		
 		getCategories();
-		setError(false);
+		showError(false);
 		
 		if (editing) {
 			deleteButton.setVisible(true);
