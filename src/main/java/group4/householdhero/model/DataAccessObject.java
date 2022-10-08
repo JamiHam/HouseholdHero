@@ -188,7 +188,7 @@ public class DataAccessObject {
 		while (rs.next()) {
 			Product product = model.createProduct(rs.getInt("product_ID"), rs.getString("name"), rs.getDouble("price"),
 					LocalDate.parse(rs.getDate("best_before").toString()), getCategoryByName(rs.getInt("product_ID")),
-					rs.getInt("status_ID"), rs.getInt("budget_ID"));
+					rs.getInt("budget_ID"), rs.getInt("status_ID"));
 			products.add(product);
 			System.out.println("Found: " + product.getBestBefore());
 		}
@@ -197,7 +197,7 @@ public class DataAccessObject {
 	
 	public List<String> getCategories() throws SQLException {
 		ArrayList<String> categories = new ArrayList<String>();
-		String getCategoriesString = "select type from categories";
+		String getCategoriesString = "select type from category";
 		
 		PreparedStatement stmt = conn.prepareStatement(getCategoriesString);
 		
@@ -225,10 +225,11 @@ public class DataAccessObject {
 		
 		PreparedStatement stmt = conn.prepareStatement(updateBudgetQuery);
 		stmt.setDouble(1, newBudget.getPlannedBudget());
-		stmt.setDouble(2,newBudget.getSpentBudget());
+		stmt.setDouble(2, newBudget.getSpentBudget());
 		stmt.setDate(3, Date.valueOf(newBudget.getStartDate()));
 		stmt.setDate(4, Date.valueOf(newBudget.getEndDate()));
 		stmt.setInt(5, newBudget.getId());
 		
+		stmt.executeUpdate();
 	}
 }

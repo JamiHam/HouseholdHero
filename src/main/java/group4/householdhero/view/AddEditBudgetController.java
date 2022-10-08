@@ -36,12 +36,17 @@ public class AddEditBudgetController {
 			double plannedBudget = Double.parseDouble(plannedBudgetTextField.getText());
 			
 			if (editing) {
-				//view.updateBudget(budget.getId(), plannedBudget, budget.getSpentBudget(), startDate, endDate);
+				budget.setStartDate(startDate);
+				budget.setEndDate(endDate);
+				budget.setPlannedBudget(plannedBudget);
+				view.updateBudget(budget);
 			} else {
 				view.createBudget(0, plannedBudget, 0, startDate, endDate);
 			}
 			
 			closeWindow();
+		} else {
+			showError(true);
 		}
 	}
 	
@@ -53,11 +58,15 @@ public class AddEditBudgetController {
 		stage.close();
 	}
 	
+	private void setErrorMessage(String message) {
+		errorLabel.setText(message);
+	}
+	
 	/**
 	 * Sets visibility for errorLabel
 	 * @param error
 	 */
-	protected void setError(boolean error) {
+	private void showError(boolean error) {
 		errorLabel.setVisible(error);
 	}
 	
@@ -67,12 +76,22 @@ public class AddEditBudgetController {
 	 */
 	private boolean validateInputs() {
 		boolean validity = true;
-		if (startDatePicker.getValue() == null) validity = false;
-		if (endDatePicker.getValue() == null) validity = false;
+		
 		try {
 			Double.parseDouble(plannedBudgetTextField.getText());
 		} catch (NumberFormatException e) {
 			validity = false;
+			setErrorMessage("Planned budget must be a number");
+		}
+		
+		if (endDatePicker.getValue() == null) {
+			validity = false;
+			setErrorMessage("Please select an end date for your budget");
+		}
+		
+		if (startDatePicker.getValue() == null) {
+			validity = false;
+			setErrorMessage("Please select a start date for your budget");
 		}
 		
 		return validity;
@@ -82,6 +101,7 @@ public class AddEditBudgetController {
 		this.view = App.getView();
 		this.budget = budget;
 		this.editing = editing;
+		showError(false);
 
 		if (editing) {
 			deleteButton.setVisible(true);

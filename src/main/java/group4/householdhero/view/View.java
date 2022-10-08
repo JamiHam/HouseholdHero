@@ -10,10 +10,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-public class View {
-    private Controller controller;
+public class View implements IView {
+    private IControllerVtoM controller;
     
-    public void setController(Controller controller) {
+    public void setController(IControllerVtoM controller) {
     	this.controller = controller;
     }
     
@@ -21,43 +21,47 @@ public class View {
     	 controller.createBudget(id, plannedBudget, spentBudget, startDate, endDate);
     }
     
-    public Budget getCurrentBudget() throws SQLException {
-    	return controller.getCurrentBudget();
+    public void updateBudget(Budget budget) throws SQLException {
+    	controller.updateBudget(budget);
+    }
+    
+    public Budget getBudget(LocalDate date) throws SQLException {
+    	return controller.getBudget(date);
+    }
+    
+    public List<Budget> getAllBudgets() {
+    	return null;
     }
     
     public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException {
     	controller.createProduct(id, name, price, bestBefore, category, budgetId, statusId);
     }
     
-    public void updateProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException {
-    	controller.updateProduct(id, name, price, bestBefore, category, budgetId, statusId);
+    public void updateProduct(Product product) throws SQLException {
+    	controller.updateProduct(product);
     }
     
-    public void deleteProduct(Product product) throws SQLException {
-		controller.deleteProduct(product);
-	}
+    public List<Product> getProducts(String status) throws SQLException {
+    	return controller.getProducts(status);
+    }
     
     public void changeProductStatus(Product product, String status) throws SQLException {
 		controller.changeProductStatus(product, status);
 	}
     
-    public void editProduct(Product product) throws IOException {
+    public void deleteProduct(Product product) throws SQLException {
+		controller.deleteProduct(product);
+	}
+    
+    public void checkBestBefore() throws SQLException {
+    	controller.checkBestBefore();
+    }
+    
+    public void editProduct(Product product) throws IOException, SQLException {
     	FridgeController.editProduct(product);
     }
-    
-    public List<Product> getProductsInFridge() throws SQLException {
-    	return controller.getProductsInFridge();
-    }
 
-	public List<String> getCategories() {
+	public List<String> getCategories() throws SQLException {
 		return controller.getCategories();
 	}
-
-	public List<Product> getExpiredProducts() throws SQLException {
-		return controller.getExpiredProducts();
-	}
-    
-    /*public List<Product> getExpiredProducts() throws SQLException {
-    	//return controller.getExpiredProducts();
-    }*/
 }
