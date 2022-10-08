@@ -219,4 +219,16 @@ public class DataAccessObject {
 		int updates = stmt.executeUpdate();
 		System.out.println("updated: " + updates);
 	}
+	
+	public void updateBudget(Budget newBudget) throws SQLException {
+		String updateBudgetQuery = "update budget set planned_budget=?, spent_budget=?, start_date=?, end_date=? where budget_ID=?";
+		
+		PreparedStatement stmt = conn.prepareStatement(updateBudgetQuery);
+		stmt.setDouble(1, newBudget.getPlannedBudget());
+		stmt.setDouble(2,newBudget.getSpentBudget());
+		stmt.setDate(3, Date.valueOf(newBudget.getStartDate()));
+		stmt.setDate(4, Date.valueOf(newBudget.getEndDate()));
+		stmt.setInt(5, newBudget.getId());
+		
+	}
 }
