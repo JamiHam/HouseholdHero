@@ -63,7 +63,7 @@
       <VBox layoutX="190.0" layoutY="449.0" prefHeight="150.0" prefWidth="120.0">
          <children>
             <Button id="budget-save-delete-buttons" fx:id="saveButton" mnemonicParsing="false" onAction="#save" prefWidth="120.0" text="Save" />
-            <Button id="budget-save-delete-buttons" fx:id="deleteButton" mnemonicParsing="false" prefWidth="120.0" text="Delete">
+            <Button id="budget-save-delete-buttons" fx:id="deleteButton" mnemonicParsing="false" prefWidth="120.0" text="Delete" visible="false">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
