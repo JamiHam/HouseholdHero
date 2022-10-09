@@ -1,4 +1,4 @@
-package group4.householdhero.view;
+package group4.householdhero.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -6,9 +6,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 import group4.householdhero.model.Product;
+import group4.householdhero.view.App;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -17,7 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
 
 public class FridgeController {
-	private View view;
+	private static IController controller;
 	
 	@FXML private VBox expiredVBox;
 	
@@ -39,61 +39,38 @@ public class FridgeController {
 	
 	@FXML
 	private void initialize() throws IOException, SQLException {
-		view = App.getView();
+		controller = App.getController();
 		checkCurrentBudget();
 		initializeColumns();
 		updateTables();
 	}
 	
-	protected void updateTables() throws SQLException {
+	public void updateTables() throws SQLException {
 		checkBestBefore();
 		updateFridgeContents();
 		updateExpiredContents();
 	}
 	
-	/**
-	 * Switches to waste view
-	 * @throws IOException
-	 */
     @FXML
     private void switchToBudget() throws IOException {
-        App.showBudget();
+        controller.showBudget();
     }
     
-    /**
-     * Opens AddEditProductGUI with editing mode off
-     * @throws IOException
-     * @throws SQLException 
-     */
     @FXML
     private void addProduct() throws IOException, SQLException {
-    	App.showProductWindow(false, null);
+    	controller.showProductWindow(false, null);
     }
     
-    /**
-     * Opens AddEditProductGUI with editing mode on
-     * @param product
-     * @throws IOException
-     * @throws SQLException 
-     */
-    protected static void editProduct(Product product) throws IOException, SQLException {
-    	App.showProductWindow(true, product);
+    public static void editProduct(Product product) throws IOException, SQLException {
+    	controller.showProductWindow(true, product);
     }
     
-    /**
-     * Checks for an active budget and opens AddEditBudgetGUI if one doesn't exist
-     * @throws IOException
-     * @throws SQLException 
-     */
     private void checkCurrentBudget() throws IOException, SQLException {
-    	if (view.getBudget(LocalDate.now()) == null) {
-    		App.showBudgetWindow(false, null);
+    	if (controller.getBudget(LocalDate.now()) == null) {
+    		controller.showBudgetWindow(false, null);
     	}
     }
     
-    /**
-     * Initializes all columns for fridgeTable and expiredTable
-     */
     private void initializeColumns() {
     	fridgeNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 		fridgeCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("category"));
@@ -110,20 +87,12 @@ public class FridgeController {
 		expiredEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
     }
     
-    /**
-     * Gets all fridge items from the database and sets them to fridgeTable
-     * @throws SQLException
-     */
     private void updateFridgeContents() throws SQLException {
-    	fridgeTable.setItems(FXCollections.observableArrayList(view.getProducts("fridge")));
+    	fridgeTable.setItems(FXCollections.observableArrayList(controller.getProducts("fridge")));
     }
     
-    /**
-     * Gets all expired items from the database and sets them to expiredTable
-     * @throws SQLException
-     */
     private void updateExpiredContents() throws SQLException {
-    	List<Product> list = view.getProducts("expired");
+    	List<Product> list = controller.getProducts("expired");
     	if (list.isEmpty()) {
     		expiredVBox.setVisible(false);
     	} else {
@@ -133,6 +102,6 @@ public class FridgeController {
     }
     
     private void checkBestBefore() throws SQLException {
-    	view.checkBestBefore();
+    	controller.checkBestBefore();
     }
 }

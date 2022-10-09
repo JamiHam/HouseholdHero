@@ -4,7 +4,11 @@ import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import group4.householdhero.controller.AddEditBudgetController;
+import group4.householdhero.controller.AddEditProductController;
+import group4.householdhero.controller.BudgetController;
 import group4.householdhero.controller.Controller;
+import group4.householdhero.controller.FridgeController;
 import group4.householdhero.model.Budget;
 import group4.householdhero.model.Model;
 import group4.householdhero.model.Product;
@@ -23,7 +27,6 @@ import javafx.util.Pair;
  */
 public class App extends Application {
 	private static Scene scene;
-	private static View view;
 	private static Controller controller;
 	private static Model model;
 	private static FridgeController fridgeController;
@@ -40,15 +43,6 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
     }
-
-    /*static void setRoot(String fxml) throws IOException {
-        scene.setRoot(loadFXML(fxml));
-    }
-    
-    private static Parent loadFXML(String fxml) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(View.class.getResource(fxml + ".fxml"));
-        return fxmlLoader.load();
-    }*/
     
     private static FXMLLoader setRoot(String fxml) throws IOException {
     	FXMLLoader loader = getFXMLLoader(fxml);
@@ -57,21 +51,21 @@ public class App extends Application {
     }
     
     private static FXMLLoader getFXMLLoader(String fxml) throws IOException {
-    	FXMLLoader loader = new FXMLLoader(View.class.getResource(fxml + ".fxml"));
+    	FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
     	return loader;
     }
     
-    protected static void showFridge() throws IOException {
+    public static void showFridge() throws IOException {
     	FXMLLoader loader = setRoot("StartingGUI");
     	fridgeController = loader.getController();
     }
     
-    protected static void showBudget() throws IOException {
+    public static void showBudget() throws IOException {
     	FXMLLoader loader = setRoot("BudgetGUI");
     	budgetController = loader.getController();
     }
     
-    protected static void showProductWindow(boolean editing, Product product) throws IOException, SQLException {
+    public static void showProductWindow(boolean editing, Product product) throws IOException, SQLException {
     	Pair<FXMLLoader, Stage> pair = setupWindow("AddEditProductGUI");
     	FXMLLoader loader = pair.getKey();
     	Stage stage = pair.getValue();
@@ -87,16 +81,18 @@ public class App extends Application {
     	stage.show();
     }
     
-    protected static void showBudgetWindow(boolean editing, Budget budget) throws IOException {
+    public static void showBudgetWindow(boolean editing, Budget budget) throws IOException {
     	Pair<FXMLLoader, Stage> pair = setupWindow("AddEditBudgetGUI");
     	FXMLLoader loader = pair.getKey();
     	Stage stage = pair.getValue();
     	
 		loader.<AddEditBudgetController>getController().initialize(editing, budget);
-		stage.setOnCloseRequest(e -> {
-			Platform.exit();
-			System.exit(0);
-		});
+		if (!editing) {
+			stage.setOnCloseRequest(e -> {
+				Platform.exit();
+				System.exit(0);
+			});
+		}
     	stage.showAndWait();
     }
     
@@ -120,18 +116,15 @@ public class App extends Application {
     	stage.getIcons().add(icon);
 	}
     
-    static View getView() {
-    	return view;
+    public static Controller getController() {
+    	return controller;
     }
 
     public static void main(String[] args) {
     	model = new Model();
-    	view = new View();
     	controller = new Controller();
     	
     	model.setController(controller);
-    	view.setController(controller);
-    	controller.setView(view);
     	controller.setModel(model);
     	
         launch();

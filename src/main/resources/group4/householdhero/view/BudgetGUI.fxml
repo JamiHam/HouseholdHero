@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="main-anchorpane-starting-gui" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.view.BudgetController">
+<AnchorPane id="main-anchorpane-starting-gui" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.controller.BudgetController">
    <children>
       <AnchorPane id="left-anchorpane-starting-gui" prefHeight="600.0" prefWidth="250.0">
          <children>
@@ -93,7 +93,7 @@
       </VBox>
       <VBox layoutX="562.0" layoutY="461.0" prefHeight="100.0" prefWidth="120.0">
          <children>
-            <Button id="budget-save-delete-buttons" mnemonicParsing="false" prefWidth="120.0" text="Edit" />
+            <Button id="budget-save-delete-buttons" mnemonicParsing="false" onAction="#editBudget" prefWidth="120.0" text="Edit" />
          </children>
       </VBox>
    </children>

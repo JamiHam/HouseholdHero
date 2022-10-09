@@ -1,9 +1,10 @@
-package group4.householdhero.view;
+package group4.householdhero.controller;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
 import group4.householdhero.model.Budget;
 import group4.householdhero.model.Product;
+import group4.householdhero.view.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -13,7 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class AddEditProductController {
-	private View view;
+	private IController controller;
 	private boolean editing;
 	private Product product;
 	private Budget budget;
@@ -25,13 +26,10 @@ public class AddEditProductController {
 	@FXML private Label errorLabel;
 	
 	@FXML private Button saveButton;
+	@FXML private Button usedButton;
 	@FXML private Button deleteButton;
 	@FXML private Button wasteButton;
 	
-	/**
-	 * Saves the product to database
-	 * @throws SQLException 
-	 */
 	@FXML
 	private void save() throws SQLException {
 		if (validateInputs()) {
@@ -60,41 +58,36 @@ public class AddEditProductController {
 		product.setPrice(price);
 		product.setBestBefore(bestBefore);
 		
-		view.updateProduct(product);
-		view.updateBudget(budget);
+		controller.updateProduct(product);
+		controller.updateBudget(budget);
 	}
 	
 	private void createProduct(String name, String category, double price, LocalDate bestBefore) throws SQLException {
-		view.createProduct(0, name, price, bestBefore, category, budget.getId(), 1);
+		controller.createProduct(0, name, price, bestBefore, category, budget.getId(), 1);
 		budget.setSpentBudget(budget.getSpentBudget() + price);
-		view.updateBudget(budget);
+		controller.updateBudget(budget);
 	}
 	
-	/**
-	 * Deletes the product
-	 * @throws SQLException 
-	 */
+	@FXML
+	private void moveToUsed() throws SQLException {
+		controller.changeProductStatus(product, "used");
+		closeWindow();
+	}
+	
 	@FXML
 	private void delete() throws SQLException {
-		view.deleteProduct(product);
+		controller.deleteProduct(product);
 		budget.setSpentBudget(budget.getSpentBudget() - product.getPrice());
-		view.updateBudget(budget);
+		controller.updateBudget(budget);
 		closeWindow();
 	}
 	
-	/**
-	 * Changes the product's status to "waste"
-	 * @throws SQLException 
-	 */
 	@FXML
 	private void moveToWaste() throws SQLException {
-		view.changeProductStatus(product, "waste");
+		controller.changeProductStatus(product, "waste");
 		closeWindow();
 	}
 	
-	/**
-	 * Closes the window
-	 */
 	private void closeWindow() {
 		Stage stage = (Stage) saveButton.getScene().getWindow();
 		stage.close();
@@ -104,26 +97,14 @@ public class AddEditProductController {
 		errorLabel.setText(message);
 	}
 	
-	/**
-	 * Sets visibility for errorLabel
-	 * @param error
-	 */
 	private void showError(boolean error) {
 		errorLabel.setVisible(error);
 	}
 	
-	/**
-	 * Gets all categories from the database and sets them to categoryChoiceBox
-	 * @throws SQLException 
-	 */
 	private void getCategories() throws SQLException {
-		categoryChoiceBox.getItems().addAll(view.getCategories());
+		categoryChoiceBox.getItems().addAll(controller.getCategories());
 	}
 	
-	/**
-	 * Returns true if user inputs are valid and false if not
-	 * @return
-	 */
 	private boolean validateInputs() {
 		boolean validity = true;
 		
@@ -152,16 +133,17 @@ public class AddEditProductController {
 		return validity;
 	}
 	
-	protected void initialize(boolean editing, Product product) throws SQLException {
-		this.view = App.getView();
+	public void initialize(boolean editing, Product product) throws SQLException {
+		this.controller = App.getController();
 		this.editing = editing;
 		this.product = product;
-		budget = view.getBudget(LocalDate.now());
+		budget = controller.getBudget(LocalDate.now());
 		
 		getCategories();
 		showError(false);
 		
 		if (editing) {
+			usedButton.setVisible(true);
 			deleteButton.setVisible(true);
 			wasteButton.setVisible(true);
 			nameTextField.setText(product.getName());
@@ -169,6 +151,7 @@ public class AddEditProductController {
 			priceTextField.setText(Double.toString(product.getPrice()));
 			bestBeforeDatePicker.setValue(product.getBestBefore());
 		} else {
+			usedButton.setVisible(false);
 			deleteButton.setVisible(false);
 			wasteButton.setVisible(false);
 		}

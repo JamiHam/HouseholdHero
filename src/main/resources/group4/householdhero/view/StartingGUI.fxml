@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="main-anchorpane-starting-gui" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.view.FridgeController">
+<AnchorPane id="main-anchorpane-starting-gui" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.controller.FridgeController">
    <children>
       <AnchorPane id="left-anchorpane-starting-gui" prefHeight="600.0" prefWidth="250.0">
          <children>

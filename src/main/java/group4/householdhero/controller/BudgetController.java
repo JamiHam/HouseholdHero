@@ -1,16 +1,18 @@
-package group4.householdhero.view;
+package group4.householdhero.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
 import group4.householdhero.model.Budget;
+import group4.householdhero.view.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 
 public class BudgetController {
-	private IView view;
+	private IController controller;
+	private Budget budget;
 	
 	@FXML private DatePicker startDatePicker;
 	@FXML private DatePicker endDatePicker;
@@ -19,8 +21,8 @@ public class BudgetController {
 	
 	@FXML
 	private void initialize() throws SQLException {
-		view = App.getView();
-		Budget budget = view.getBudget(LocalDate.now());
+		controller = App.getController();
+		budget = controller.getBudget(LocalDate.now());
 		
 		startDatePicker.setValue(budget.getStartDate());
 		endDatePicker.setValue(budget.getEndDate());
@@ -30,8 +32,11 @@ public class BudgetController {
 	
 	@FXML
 	private void switchToFridge() throws IOException {
-		App.showFridge();
+		controller.showFridge();
 	}
 	
-	
+	@FXML
+	private void editBudget() throws SQLException, IOException {
+		controller.showBudgetWindow(true, budget);
+	}
 }

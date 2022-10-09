@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="main-anchorpane-add-edit-budget-gui" minHeight="600.0" minWidth="500.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.view.AddEditBudgetController">
+<AnchorPane id="main-anchorpane-add-edit-budget-gui" minHeight="600.0" minWidth="500.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.controller.AddEditBudgetController">
    <children>
       <AnchorPane id="top-anchorpane-add-edit-budget-gui" prefHeight="130.0" prefWidth="500.0">
          <children>

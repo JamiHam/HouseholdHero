@@ -5,10 +5,10 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
-import group4.householdhero.controller.IControllerMtoV;
+import group4.householdhero.controller.IController;
 
 public interface IModel {
-	public void setController(IControllerMtoV controller);
+	public void setController(IController controller);
 	
 	public Budget createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) throws SQLException;
 	public void updateBudget(Budget budget) throws SQLException;

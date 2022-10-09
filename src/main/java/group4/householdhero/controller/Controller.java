@@ -1,25 +1,21 @@
 package group4.householdhero.controller;
 
-import group4.householdhero.view.*;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
 import group4.householdhero.model.*;
+import group4.householdhero.view.App;
 
-public class Controller implements IControllerVtoM, IControllerMtoV{
+public class Controller implements IController {
 	private IModel model;
-	private IView view;
 	
 	public void setModel(IModel model) {
 		this.model = model;
 	}
 	
-	public void setView(IView view) {
-		this.view = view;
-	}
+	
 	
 	public void createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) throws SQLException {
 		Budget budget = model.createBudget(id, plannedBudget, spentBudget, startDate, endDate);
@@ -37,6 +33,8 @@ public class Controller implements IControllerVtoM, IControllerMtoV{
 	public List<Budget> getAllBudgets() throws SQLException {
 		return null;
 	}
+	
+	
 	
 	public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException {
     	Product product = model.createProduct(id, name, price, bestBefore, category, budgetId, statusId);
@@ -64,10 +62,30 @@ public class Controller implements IControllerVtoM, IControllerMtoV{
     }
 
 	public void editProduct(Product product) throws IOException, SQLException {
-		view.editProduct(product);
+		FridgeController.editProduct(product);
 	}
+	
+	
 
 	public List<String> getCategories() throws SQLException {
 		return model.getCategories();
+	}
+	
+	
+	
+	public void showBudget() throws IOException {
+		App.showBudget();
+	}
+	
+	public void showFridge() throws IOException {
+		App.showFridge();
+	}
+	
+	public void showProductWindow(boolean editing, Product product) throws IOException, SQLException {
+		App.showProductWindow(editing, product);
+	}
+	
+	public void showBudgetWindow(boolean editing, Budget budget) throws IOException, SQLException {
+		App.showBudgetWindow(editing, budget);
 	}
 }
