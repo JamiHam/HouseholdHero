@@ -24,7 +24,7 @@ HouseholdHero makes it easier to plan and track what you have in your fridge and
 
 3. Run HouseholdHero.sql in MariaDB.
 
-4. Add your MariaDB credentials to DBInfo.java
+4. Add your MariaDB credentials to DBInfo.java in Eclipse.
 
 5. Run the application by right clicking the project name in Eclipse and selecting ```Run As > Java Application.```
 
