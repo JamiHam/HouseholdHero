@@ -1,7 +1,3 @@
-# HouseholdHero
-
-# Team members: Jami Hämäläinen, Iina Laamo, Ville Yli-Kivistö
-
 # Project vision
 
 HouseHoldHero is a software for households to keep track of their economy.
@@ -29,6 +25,7 @@ JavaFX was used for the projects UI and Maven was used as the projects managemen
 
 5. Run the application by right clicking the project name in Eclipse and selecting ```Run As > Java Application.```
 
-
-# UI
-
+# Team members
+- Jami Hämäläinen
+- Iina Laamo
+- Ville Yli-Kivistö
