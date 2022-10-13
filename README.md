@@ -11,7 +11,7 @@ HouseholdHero makes it easier to plan and track what you have in your fridge and
 
 
 # Installation and configuration
-### Required software:
+### Required software
 - [Eclipse IDE](https://www.eclipse.org/downloads/)
 - [MariaDB](https://mariadb.org/download/)
 
