@@ -4,10 +4,11 @@
 
 # Project vision
 
-HouseholdHero makes it easier to plan and track what you have in your fridge and how much money you're going to spend on groceries.
+HouseHoldHero is a software for households to keep track of their economy.
+With the software you can keep track of your food and the amount of money spent on the groceries.
 
 # Development environment
-
+JavaFX was used for the projects UI and Maven was used as the projects management and comprehension tool.
 
 
 # Installation and configuration
