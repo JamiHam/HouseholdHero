@@ -22,7 +22,7 @@ HouseholdHero makes it easier to plan and track what you have in your fridge and
 2. Import the project to Eclipse.
 ```File > Open projects from file system...```
 
-3. Run HouseholdHero.sql in MariaDB.
+3. Run [HouseholdHero.sql](documents/HouseholdHero.sql) in MariaDB.
 
 4. Add your MariaDB credentials to DBInfo.java in Eclipse.
 
