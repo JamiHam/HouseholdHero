@@ -47,6 +47,7 @@ public class AddEditBudgetController {
 		}
 	}
 	
+	//Will be completed in OTP2
 	@FXML
 	private void deleteBudget() throws SQLException {
 		//controller.deleteBudget();
