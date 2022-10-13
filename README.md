@@ -20,7 +20,7 @@ HouseholdHero makes it easier to plan and track what you have in your fridge and
 1. Clone the Git repository to your machine.
 
 2. Import the project to Eclipse.
-'''File > Open projects from file system...'''
+```File > Open projects from file system...```
 
 3. Run HouseholdHero.sql in MariaDB.
 
