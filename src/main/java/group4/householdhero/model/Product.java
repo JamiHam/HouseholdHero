@@ -1,10 +1,10 @@
 package group4.householdhero.model;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.time.LocalDate;
 
 import javafx.scene.control.Button;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class Product {
@@ -35,7 +35,7 @@ public class Product {
 		setUpImageView();
 	}
 	
-	public void editProduct() throws IOException {
+	public void editProduct() throws IOException, SQLException {
 		model.editProduct(this);
 	}
 	
@@ -45,7 +45,7 @@ public class Product {
 		editButton.setOnAction(e -> {
 			try {
 				editProduct();
-			} catch (IOException e1) {
+			} catch (IOException | SQLException e1) {
 				e1.printStackTrace();
 			}
 		});
@@ -54,8 +54,6 @@ public class Product {
 	private void setUpImageView() {
 		categoryImageView = new ImageView();
 		String className = category.replace(" ", "-");
-		//Image image = new Image(Product.class.getResourceAsStream("resources/category-icon-1.png"));
-		//categoryImageView.setImage(image);
 		categoryImageView.getStyleClass().add(className);
 	}
 

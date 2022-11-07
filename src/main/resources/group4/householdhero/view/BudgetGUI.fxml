@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="main-anchorpane-starting-gui" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane id="main-anchorpane-starting-gui" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.controller.BudgetController">
    <children>
       <AnchorPane id="left-anchorpane-starting-gui" prefHeight="600.0" prefWidth="250.0">
          <children>
@@ -25,7 +25,7 @@
             </ImageView>
             <VBox layoutX="2.0" layoutY="201.0" spacing="5">
                <children>
-                  <Button id="button-fridge" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" text="Fridge" textAlignment="CENTER">
+                  <Button id="button-fridge" mnemonicParsing="false" onAction="#switchToFridge" prefHeight="40.0" prefWidth="210.0" text="Fridge" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -41,7 +41,7 @@
                      </font></Button>
                </children>
             </VBox>
-            <Button id="button-add-product" layoutX="71.0" layoutY="394.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="110.0" text="Add Product" />
+            <Button id="button-add-product" layoutX="71.0" layoutY="394.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="110.0" text="Add Product" />
          </children>
       </AnchorPane>
       <Label id="label-budget" layoutX="598.0" layoutY="88.0" text="Budget" />
@@ -64,31 +64,25 @@
                </rowConstraints>
                <children>
                   <Label text="Start Date" GridPane.halignment="CENTER" />
-                  <DatePicker fx:id="startDatePicker" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <DatePicker fx:id="startDatePicker" editable="false" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="3.0" right="3.0" />
                      </GridPane.margin>
                   </DatePicker>
                   <Label text="End Date" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
-                  <DatePicker fx:id="endDatePicker" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                  <DatePicker fx:id="endDatePicker" editable="false" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets left="3.0" right="3.0" />
                      </GridPane.margin>
                   </DatePicker>
                   <Label text="Planned Budget" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
-                  <TextField fx:id="plannedBudgetTextField" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
+                  <TextField fx:id="plannedBudgetTextField" editable="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3">
                      <GridPane.margin>
                         <Insets left="50.0" right="50.0" />
                      </GridPane.margin>
                   </TextField>
                   <Label text="Spent Budget" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
-                  <TextField GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
-                     <GridPane.margin>
-                        <Insets left="50.0" right="50.0" />
-                     </GridPane.margin>
-                  </TextField>
-                  <Label text="Remaining Budget" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
-                  <TextField GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="7">
+                  <TextField fx:id="spentBudgetTextField" editable="false" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="5">
                      <GridPane.margin>
                         <Insets left="50.0" right="50.0" />
                      </GridPane.margin>
@@ -99,7 +93,7 @@
       </VBox>
       <VBox layoutX="562.0" layoutY="461.0" prefHeight="100.0" prefWidth="120.0">
          <children>
-            <Button id="budget-save-delete-buttons" mnemonicParsing="false" prefWidth="120.0" text="Edit" />
+            <Button id="budget-save-delete-buttons" mnemonicParsing="false" onAction="#editBudget" prefWidth="120.0" text="Edit" />
          </children>
       </VBox>
    </children>

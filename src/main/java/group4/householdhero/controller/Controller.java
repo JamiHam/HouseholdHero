@@ -1,66 +1,91 @@
 package group4.householdhero.controller;
 
-import group4.householdhero.view.*;
-
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
 import group4.householdhero.model.*;
+import group4.householdhero.view.App;
 
-public class Controller {
-	private Model model;
-	private View view;
+public class Controller implements IController {
+	private IModel model;
 	
-	public void setModel(Model model) {
+	public void setModel(IModel model) {
 		this.model = model;
 	}
 	
-	public void setView(View view) {
-		this.view = view;
-	}
+	
 	
 	public void createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) throws SQLException {
 		Budget budget = model.createBudget(id, plannedBudget, spentBudget, startDate, endDate);
 		model.addBudgetToDatabase(budget);
 	}
 	
-	public Budget getCurrentBudget() throws SQLException {
-    	return model.getCurrentBudget();
+	public void updateBudget(Budget budget) throws SQLException {
+		model.updateBudget(budget);
+	}
+	
+	public Budget getBudget(LocalDate date) throws SQLException {
+    	return model.getBudget(date);
     }
+	
+	public List<Budget> getAllBudgets() throws SQLException {
+		return null;
+	}
+	
+	
 	
 	public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException {
     	Product product = model.createProduct(id, name, price, bestBefore, category, budgetId, statusId);
     	model.addProductToDatabase(product);
     }
 	
-	public void updateProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException {
-    	Product product = model.createProduct(id, name, price, bestBefore, category, budgetId, statusId);
+	public void updateProduct(Product product) throws SQLException {
     	model.updateProduct(product);
     }
 	
-	public void deleteProduct(Product product) throws SQLException {
-		model.deleteProduct(product);
+	public List<Product> getProducts(String status) throws SQLException {
+		return model.getProducts(status);
 	}
 	
 	public void changeProductStatus(Product product, String status) throws SQLException {
 		model.changeProductStatus(product, status);
 	}
-
-	public void editProduct(Product product) throws IOException {
-		view.editProduct(product);
+	
+	public void deleteProduct(Product product) throws SQLException {
+		model.deleteProduct(product);
 	}
 	
-	public List<Product> getProductsInFridge() throws SQLException {
-		return model.getProductsInFridge();
-	}
+	public void checkBestBefore() throws SQLException {
+    	model.checkBestBefore();
+    }
 
-	public List<String> getCategories() {
+	public void editProduct(Product product) throws IOException, SQLException {
+		FridgeController.editProduct(product);
+	}
+	
+	
+
+	public List<String> getCategories() throws SQLException {
 		return model.getCategories();
 	}
 	
-	public List<Product> getExpiredProducts() throws SQLException {
-		return model.getExpiredProducts();
+	
+	
+	public void showBudget() throws IOException {
+		App.showBudget();
+	}
+	
+	public void showFridge() throws IOException {
+		App.showFridge();
+	}
+	
+	public void showProductWindow(boolean editing, Product product) throws IOException, SQLException {
+		App.showProductWindow(editing, product);
+	}
+	
+	public void showBudgetWindow(boolean editing, Budget budget) throws IOException, SQLException {
+		App.showBudgetWindow(editing, budget);
 	}
 }
