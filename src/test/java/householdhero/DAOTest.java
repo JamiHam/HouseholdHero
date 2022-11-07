@@ -11,22 +11,25 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import group4.householdhero.model.DataAccessObject;
+import group4.householdhero.model.Model;
 import group4.householdhero.model.Product;
 
-public class DAOTest extends DataAccessObject {
-	/*
-	DataAccessObject dao = new DataAccessObject();
+public class DAOTest {
 	
-	Product dummy = new Product("Maito", 3.50, );
+	private Model model = new Model();
+	DataAccessObject dao = new DataAccessObject(model);
+	
+	
 
 	@BeforeEach
 	public void testConnection() {
 		dao.connect();
+		Product dummy = new Product(1, "Maito", 3.50, 2017-01-13, "maitotuote", 1, 1, model);
 	}
 	
 	@AfterEach
 	public void testEndConnection() {
-		dao.endConnection();
+		dao.finalize();
 	}
 	
 	@Test
@@ -57,5 +60,5 @@ public class DAOTest extends DataAccessObject {
 		
 	}
 	
-	*/
+	
 }

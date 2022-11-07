@@ -34,7 +34,7 @@ public class DataAccessObject {
 	}
 
 	@Override
-	protected void finalize() { // destruktori
+	public void finalize() { // destruktori
 		try { // oli sama yhteys koko sovelluksen ajan
 			conn.close(); // vapauttaa kaikki muutkin resurssit
 		} catch (Exception e) {
