@@ -101,21 +101,26 @@ public class DataAccessObject {
 		System.out.println("Deleted products: " + deletes);
 	}
 
-	public void addProduct(Product product) throws SQLException {
+	public boolean addProduct(Product product) {
 		String addProductQuery = "insert into product (name, price, best_before, category_ID, status_ID, budget_ID) "
 				+ "values (?, ?, ?, ?, ?, ?)";
 
-		PreparedStatement stmt = conn.prepareStatement(addProductQuery);
-		stmt.setString(1, product.getName());
-		stmt.setDouble(2, product.getPrice());
-		stmt.setDate(3, Date.valueOf(product.getBestBefore()));
-		stmt.setInt(4, getCategoryIdByName(product));
-		stmt.setInt(5, product.getStatusId());
-		stmt.setInt(6, product.getBudgetId());
+		try {
+			PreparedStatement stmt = conn.prepareStatement(addProductQuery);
+			stmt.setString(1, product.getName());
+			stmt.setDouble(2, product.getPrice());
+			stmt.setDate(3, Date.valueOf(product.getBestBefore()));
+			stmt.setInt(4, getCategoryIdByName(product));
+			stmt.setInt(5, product.getStatusId());
+			stmt.setInt(6, product.getBudgetId());
 
-		System.out.println(addProductQuery);
-		int added = stmt.executeUpdate();
-		System.out.println("Added: " + added);
+			System.out.println(addProductQuery);
+			int added = stmt.executeUpdate();
+			System.out.println("Added: " + added);
+			return true;
+		} catch (SQLException e) {
+			return false;
+		}
 	}
 
 	private int getStatusIdByName(String statusName) throws SQLException {
@@ -150,16 +155,17 @@ public class DataAccessObject {
 		Budget budget = null;
 		String getCurrentBudgetQuery = "select * from budget where start_date<=? and end_date>=?";
 		PreparedStatement stmt = conn.prepareStatement(getCurrentBudgetQuery);
-		
+
 		stmt.setDate(1, Date.valueOf(date));
 		stmt.setDate(2, Date.valueOf(date));
-		
+
 		System.out.println(stmt);
-		
+
 		ResultSet rs = stmt.executeQuery();
-		if(rs.next()) {
+		if (rs.next()) {
 			budget = new Budget(rs.getInt("budget_ID"), rs.getDouble("planned_budget"), rs.getDouble("spent_budget"),
-					LocalDate.parse(rs.getDate("start_date").toString()), LocalDate.parse(rs.getDate("end_date").toString()));
+					LocalDate.parse(rs.getDate("start_date").toString()),
+					LocalDate.parse(rs.getDate("end_date").toString()));
 		}
 		return budget;
 	}
@@ -180,10 +186,10 @@ public class DataAccessObject {
 	public List<Product> getProducts(String status) throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
 		String getProductsQuery = "select * from product where status_ID=?";
-		
+
 		PreparedStatement stmt = conn.prepareStatement(getProductsQuery);
 		stmt.setInt(1, getStatusIdByName(status));
-		
+
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
 			Product product = model.createProduct(rs.getInt("product_ID"), rs.getString("name"), rs.getDouble("price"),
@@ -194,42 +200,79 @@ public class DataAccessObject {
 		}
 		return products;
 	}
-	
+
+	public Product getProduct(int id) throws SQLException {
+		String getProductsQuery = "select * from product where product_ID=?";
+		Product product = null;
+
+		PreparedStatement stmt = conn.prepareStatement(getProductsQuery);
+		stmt.setInt(1, id);
+
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			product = model.createProduct(rs.getInt("product_ID"), rs.getString("name"), rs.getDouble("price"),
+					LocalDate.parse(rs.getDate("best_before").toString()), getCategoryByName(rs.getInt("product_ID")),
+					rs.getInt("budget_ID"), rs.getInt("status_ID"));
+		}
+		return product;
+	}
+
 	public List<String> getCategories() throws SQLException {
 		ArrayList<String> categories = new ArrayList<String>();
 		String getCategoriesString = "select type from category";
-		
+
 		PreparedStatement stmt = conn.prepareStatement(getCategoriesString);
-		
+
 		ResultSet rs = stmt.executeQuery();
-		while(rs.next()) {
+		while (rs.next()) {
 			categories.add(rs.getString("type"));
 		}
 		return categories;
 	}
-	
+
 	public void checkBestBefore() throws SQLException {
 		String checkBestBeforeQuery = "update product set status_ID=? where status_ID=? and best_before<?";
-		
+
 		PreparedStatement stmt = conn.prepareStatement(checkBestBeforeQuery);
 		stmt.setInt(1, getStatusIdByName("expired"));
 		stmt.setInt(2, getStatusIdByName("fridge"));
 		stmt.setDate(3, Date.valueOf(LocalDate.now()));
-		
+
 		int updates = stmt.executeUpdate();
 		System.out.println("updated: " + updates);
 	}
-	
+
 	public void updateBudget(Budget newBudget) throws SQLException {
 		String updateBudgetQuery = "update budget set planned_budget=?, spent_budget=?, start_date=?, end_date=? where budget_ID=?";
-		
+
 		PreparedStatement stmt = conn.prepareStatement(updateBudgetQuery);
 		stmt.setDouble(1, newBudget.getPlannedBudget());
 		stmt.setDouble(2, newBudget.getSpentBudget());
 		stmt.setDate(3, Date.valueOf(newBudget.getStartDate()));
 		stmt.setDate(4, Date.valueOf(newBudget.getEndDate()));
 		stmt.setInt(5, newBudget.getId());
-		
+
 		stmt.executeUpdate();
+	}
+
+	public boolean checkBudgets(LocalDate startDate, LocalDate endDAte) throws SQLException {
+		String checkBuget = "select * from budget where start_date <= AND end_date >= ?"
+				+ "OR start_date <= ? AND end_date >= ?;";
+
+		PreparedStatement stmt = conn.prepareStatement(checkBuget);
+		stmt.setDate(1, Date.valueOf(startDate));
+		stmt.setDate(2, Date.valueOf(startDate));
+		stmt.setDate(3, Date.valueOf(startDate));
+		stmt.setDate(4, Date.valueOf(startDate));
+
+		int found = 0;
+		found = stmt.executeUpdate();
+
+		if (found != 0) {
+			return false;
+		} else {
+			return true;
+		}
+
 	}
 }
