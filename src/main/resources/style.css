@@ -231,3 +231,26 @@
 #main-anchorpane-add-edit-budget-gui {
 	-fx-background-color: #ffffff;
 }
+
+.budget-information-headings {
+	-fx-font-color: #000000;
+	-fx-font-weight: bold;
+}
+
+#label-products-during-budget {
+	-fx-font-color: #000000;
+	-fx-font-weight: bold;
+	-fx-font-size: 14px;
+}
+
+#label-budget-information {
+	-fx-font-color: #000000;
+	-fx-font-weight: bold;
+	-fx-font-size: 14px;
+}
+
+#label-status-of-products {
+	-fx-font-color: #000000;
+	-fx-font-weight: bold;
+	-fx-font-size: 14px;
+}
