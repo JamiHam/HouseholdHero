@@ -31,7 +31,7 @@ public class Product {
 		
 		this.model = model;
 		
-		setUpButton();
+		setUpEditButton();
 		setUpImageView();
 	}
 	
@@ -39,7 +39,7 @@ public class Product {
 		model.editProduct(this);
 	}
 	
-	private void setUpButton() {
+	private void setUpEditButton() {
 		editButton = new Button("");
 		editButton.getStyleClass().add("product-edit-button");
 		editButton.setOnAction(e -> {
@@ -49,6 +49,10 @@ public class Product {
 				e1.printStackTrace();
 			}
 		});
+	}
+	
+	private void setUpWasteButton() {
+		
 	}
 	
 	private void setUpImageView() {
