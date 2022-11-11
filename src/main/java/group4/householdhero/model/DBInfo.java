@@ -7,10 +7,10 @@ public class DBInfo {
 	}
 	
 	public String getUsername() {
-		return "root";
+		return "iina";
 	}
 	
 	public String getPassword() {
-		return "loG!209%Ihl";
+		return "alpacca10";
 	}
 }
