@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
 public class BudgetController {
@@ -33,7 +34,7 @@ public class BudgetController {
 	@FXML private TextField spentBudgetTextField;
 	*/
 	
-	@FXML private ChoiceBox<String> budgetChoiceBox;
+	@FXML private ChoiceBox<Budget> budgetChoiceBox;
 	@FXML private Label startDateLabel;
 	@FXML private Label endDateLabel;
 	@FXML private Label plannedBudgetLabel;
@@ -48,7 +49,7 @@ public class BudgetController {
 	@FXML private TableColumn<Product, ImageView> productsIconColumn;
 	@FXML private TableColumn<Product, Double> productsPriceColumn;
 	@FXML private TableColumn<Product, LocalDate> productsBestBeforeColumn;
-	@FXML private TableColumn<Product, String> productsStatusColumn;
+	@FXML private TableColumn<Product, Integer> productsStatusColumn;
 	@FXML private TableColumn<Product, Button> productsEditColumn;
 	
 	@FXML
@@ -58,18 +59,11 @@ public class BudgetController {
 		
 		// Choice Box
 		// Type arguments for Choice Box: String or LocalDate
-        List<String> list = new ArrayList<String>();
-        list.add("Budget Period 1");
-        list.add("Budget Period 2");
-        list.add("Budget Period 3");
-        ObservableList obList = FXCollections.observableList(list);
-        budgetChoiceBox.setItems(obList);
-        budgetChoiceBox.setValue("Budget Period 1");
+        getBudgets();
 		
-		startDateLabel.setText((budget.getStartDate()).toString());
-		endDateLabel.setText((budget.getEndDate()).toString());
-		plannedBudgetLabel.setText(Double.toString(budget.getPlannedBudget()));
-		spentBudgetLabel.setText(Double.toString(budget.getSpentBudget()));
+		setBudgetInformation();
+		
+		initializeColumns();
 		
 		// Still missing remaining budget
 		
@@ -84,6 +78,15 @@ public class BudgetController {
 
 	}
 	
+	
+	
+	@FXML
+	private void changeSelectedBudget() throws SQLException {
+		budget = budgetChoiceBox.getValue();
+		setBudgetInformation();
+		setProducts();
+	}
+	
 	@FXML
 	private void switchToFridge() throws IOException {
 		controller.showFridge();
@@ -92,5 +95,35 @@ public class BudgetController {
 	@FXML
 	private void editBudget() throws SQLException, IOException {
 		controller.showBudgetWindow(true, budget);
+	}
+	
+	private void setBudgetInformation() {
+		startDateLabel.setText((budget.getStartDate()).toString());
+		endDateLabel.setText((budget.getEndDate()).toString());
+		plannedBudgetLabel.setText(Double.toString(budget.getPlannedBudget()));
+		spentBudgetLabel.setText(Double.toString(budget.getSpentBudget()));
+		remainingBudgetLabel.setText(Double.toString(budget.getPlannedBudget() - budget.getSpentBudget()));
+	}
+	
+	private void setPieChart() {
+		
+	}
+	
+	private void getBudgets() throws SQLException {
+		budgetChoiceBox.getItems().addAll(controller.getAllBudgets());
+	}
+	
+	private void setProducts() throws SQLException {
+		productsDuringBudgetTable.setItems(FXCollections.observableArrayList(controller.getProductsByBudget(budget.getId())));
+	}
+	
+	private void initializeColumns() {
+		productsNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
+		productsCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("category"));
+		productsIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
+		productsPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
+		productsBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
+		productsStatusColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("statusId"));
+		//productsEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
 	}
 }

@@ -36,7 +36,7 @@ public class Model implements IModel {
     }
 	
 	public List<Budget> getAllBudgets() throws SQLException {
-		return null;
+		return dao.getAllBudgets();
 	}
 	
 	
@@ -52,6 +52,10 @@ public class Model implements IModel {
 	
 	public List<Product> getProducts(String status) throws SQLException {
 		return dao.getProducts(status);
+	}
+	
+	public List<Product> getProductsByBudget(int budgetId) throws SQLException {
+		return dao.getProductsByBudget(budgetId);
 	}
 	
 	public void changeProductStatus(Product product, String status) throws SQLException {

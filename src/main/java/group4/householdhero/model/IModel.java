@@ -19,6 +19,7 @@ public interface IModel {
 	public Product createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException;
 	public void addProductToDatabase(Product product) throws SQLException;
 	public List<Product> getProducts(String status) throws SQLException;
+	public List<Product> getProductsByBudget(int budgetId) throws SQLException;
 	public void changeProductStatus(Product product, String status) throws SQLException;
 	public void updateProduct(Product product) throws SQLException;
 	public void deleteProduct(Product product) throws SQLException;

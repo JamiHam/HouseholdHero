@@ -56,4 +56,8 @@ public class Budget {
 	public void setEndDate(LocalDate endDate) {
 		this.endDate = endDate;
 	}
+	
+	public String toString() {
+		return startDate + " - " + endDate;
+	}
 }
