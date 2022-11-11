@@ -219,9 +219,9 @@ public class DataAccessObject {
 
 	public List<String> getCategories() throws SQLException {
 		ArrayList<String> categories = new ArrayList<String>();
-		String getCategoriesString = "select type from category";
+		String getCategoriesQuery = "select type from category";
 
-		PreparedStatement stmt = conn.prepareStatement(getCategoriesString);
+		PreparedStatement stmt = conn.prepareStatement(getCategoriesQuery);
 
 		ResultSet rs = stmt.executeQuery();
 		while (rs.next()) {
@@ -256,10 +256,10 @@ public class DataAccessObject {
 	}
 
 	public boolean checkBudgets(LocalDate startDate, LocalDate endDAte) throws SQLException {
-		String checkBuget = "select * from budget where start_date <= AND end_date >= ?"
+		String checkBudgetString = "select * from budget where start_date <= AND end_date >= ?"
 				+ "OR start_date <= ? AND end_date >= ?;";
 
-		PreparedStatement stmt = conn.prepareStatement(checkBuget);
+		PreparedStatement stmt = conn.prepareStatement(checkBudgetString);
 		stmt.setDate(1, Date.valueOf(startDate));
 		stmt.setDate(2, Date.valueOf(startDate));
 		stmt.setDate(3, Date.valueOf(startDate));
@@ -273,6 +273,22 @@ public class DataAccessObject {
 		} else {
 			return true;
 		}
+
+	}
+	
+	public List<Budget> getAllBudgets() throws SQLException {
+		ArrayList<Budget> budgets = new ArrayList<>();
+		String getBudgetsString = "select type from category";
+
+		PreparedStatement stmt = conn.prepareStatement(getBudgetsString);
+
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			Budget budget = model.createBudget(rs.getInt("budget_ID"), rs.getDouble("planned_budget"), rs.getDouble("spent_budget"), 
+					LocalDate.parse(rs.getDate("start_date").toString()), LocalDate.parse(rs.getDate("end_date").toString()));
+			budgets.add(budget);
+		}
+		return budgets;
 
 	}
 }
