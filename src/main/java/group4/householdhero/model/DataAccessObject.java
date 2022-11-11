@@ -200,6 +200,24 @@ public class DataAccessObject {
 		}
 		return products;
 	}
+	
+	public List<Product> getProductsByBudget(int budgetID) throws SQLException {
+		ArrayList<Product> products = new ArrayList<Product>();
+		String getProductsQuery = "select * from product where budget_ID=?";
+
+		PreparedStatement stmt = conn.prepareStatement(getProductsQuery);
+		stmt.setInt(1, budgetID);
+
+		ResultSet rs = stmt.executeQuery();
+		while (rs.next()) {
+			Product product = model.createProduct(rs.getInt("product_ID"), rs.getString("name"), rs.getDouble("price"),
+					LocalDate.parse(rs.getDate("best_before").toString()), getCategoryByName(rs.getInt("product_ID")),
+					rs.getInt("budget_ID"), rs.getInt("status_ID"));
+			products.add(product);
+			System.out.println("Found: " + product.getBestBefore());
+		}
+		return products;
+	}
 
 	public Product getProduct(int id) throws SQLException {
 		String getProductsQuery = "select * from product where product_ID=?";
@@ -278,7 +296,7 @@ public class DataAccessObject {
 	
 	public List<Budget> getAllBudgets() throws SQLException {
 		ArrayList<Budget> budgets = new ArrayList<>();
-		String getBudgetsString = "select type from category";
+		String getBudgetsString = "select * from budget";
 
 		PreparedStatement stmt = conn.prepareStatement(getBudgetsString);
 
@@ -289,6 +307,5 @@ public class DataAccessObject {
 			budgets.add(budget);
 		}
 		return budgets;
-
 	}
 }
