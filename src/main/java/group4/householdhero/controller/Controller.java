@@ -31,7 +31,7 @@ public class Controller implements IController {
     }
 	
 	public List<Budget> getAllBudgets() throws SQLException {
-		return null;
+		return model.getAllBudgets();
 	}
 	
 	
@@ -47,6 +47,10 @@ public class Controller implements IController {
 	
 	public List<Product> getProducts(String status) throws SQLException {
 		return model.getProducts(status);
+	}
+	
+	public List<Product> getProductsByBudget(int budgetId) throws SQLException {
+		return model.getProductsByBudget(budgetId);
 	}
 	
 	public void changeProductStatus(Product product, String status) throws SQLException {

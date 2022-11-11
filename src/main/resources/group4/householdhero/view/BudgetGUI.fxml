@@ -48,7 +48,7 @@
       </AnchorPane>
       <HBox layoutX="253.0" prefHeight="50.0" prefWidth="750.0">
          <children>
-            <ChoiceBox fx:id="budgetChoiceBox" prefWidth="150.0">
+            <ChoiceBox fx:id="budgetChoiceBox" onAction="#changeSelectedBudget" prefWidth="150.0">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>

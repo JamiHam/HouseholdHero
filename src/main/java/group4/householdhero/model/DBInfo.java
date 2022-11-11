@@ -1,5 +1,6 @@
 package group4.householdhero.model;
 
+
 public class DBInfo {
 
 	public String getDatabase() {
@@ -7,10 +8,10 @@ public class DBInfo {
 	}
 	
 	public String getUsername() {
-		return "iina";
+		return "root";
 	}
 	
 	public String getPassword() {
-		return "alpacca10";
+		return "root";
 	}
 }
