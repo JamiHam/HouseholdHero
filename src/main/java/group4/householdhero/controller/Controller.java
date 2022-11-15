@@ -34,6 +34,10 @@ public class Controller implements IController {
 		return model.getAllBudgets();
 	}
 	
+	public boolean checkBudgets(LocalDate startDate, LocalDate endDate) throws SQLException {
+		return model.checkBudgets(startDate, endDate);
+	}
+	
 	
 	
 	public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException {

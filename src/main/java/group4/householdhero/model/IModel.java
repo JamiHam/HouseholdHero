@@ -15,6 +15,7 @@ public interface IModel {
 	public void addBudgetToDatabase(Budget budget) throws SQLException;
 	public Budget getBudget(LocalDate date) throws SQLException;
 	public List<Budget> getAllBudgets() throws SQLException;
+	public boolean checkBudgets(LocalDate startDate, LocalDate endDate) throws SQLException;
 	
 	public Product createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException;
 	public void addProductToDatabase(Product product) throws SQLException;

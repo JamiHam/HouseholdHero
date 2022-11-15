@@ -32,16 +32,21 @@ public class AddEditBudgetController {
 			LocalDate endDate = endDatePicker.getValue();
 			double plannedBudget = Double.parseDouble(plannedBudgetTextField.getText());
 			
-			if (editing) {
-				budget.setStartDate(startDate);
-				budget.setEndDate(endDate);
-				budget.setPlannedBudget(plannedBudget);
-				controller.updateBudget(budget);
+			if (controller.checkBudgets(startDate, endDate)) {
+				if (editing) {
+					budget.setStartDate(startDate);
+					budget.setEndDate(endDate);
+					budget.setPlannedBudget(plannedBudget);
+					controller.updateBudget(budget);
+				} else {
+					controller.createBudget(0, plannedBudget, 0, startDate, endDate);
+				}
+				closeWindow();
 			} else {
-				controller.createBudget(0, plannedBudget, 0, startDate, endDate);
+				setErrorMessage("Date range overlaps with an existing budget. Please choose another one");
+				showError(true);
 			}
 			
-			closeWindow();
 		} else {
 			showError(true);
 		}

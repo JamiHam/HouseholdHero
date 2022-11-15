@@ -95,7 +95,16 @@ public class App extends Application {
 				System.exit(0);
 			});
 		}
-    	stage.showAndWait();
+		stage.setOnHidden(e -> {
+			try {
+				fridgeController.checkCurrentBudget();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		});
+    	stage.show();
     }
     
     private static Pair<FXMLLoader, Stage> setupWindow(String fxml) throws IOException {
