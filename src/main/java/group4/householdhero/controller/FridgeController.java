@@ -65,7 +65,7 @@ public class FridgeController {
     	controller.showProductWindow(true, product);
     }
     
-    private void checkCurrentBudget() throws IOException, SQLException {
+    public void checkCurrentBudget() throws IOException, SQLException {
     	if (controller.getBudget(LocalDate.now()) == null) {
     		controller.showBudgetWindow(false, null);
     	}

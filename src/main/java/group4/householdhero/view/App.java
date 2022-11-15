@@ -3,6 +3,8 @@ package group4.householdhero.view;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import group4.householdhero.controller.AddEditBudgetController;
 import group4.householdhero.controller.AddEditProductController;
@@ -93,7 +95,16 @@ public class App extends Application {
 				System.exit(0);
 			});
 		}
-    	stage.showAndWait();
+		stage.setOnHidden(e -> {
+			try {
+				fridgeController.checkCurrentBudget();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+		});
+    	stage.show();
     }
     
     private static Pair<FXMLLoader, Stage> setupWindow(String fxml) throws IOException {
@@ -126,6 +137,17 @@ public class App extends Application {
     	
     	model.setController(controller);
     	controller.setModel(model);
+    	
+		String lang = "fi";
+		String country = "FI";
+
+		Locale locale = new Locale(lang, country);
+		
+		ResourceBundle res = ResourceBundle.getBundle("TextProperties", locale);
+
+		String str = res.getString("wish");
+
+		System.out.println(str);
     	
         launch();
     }

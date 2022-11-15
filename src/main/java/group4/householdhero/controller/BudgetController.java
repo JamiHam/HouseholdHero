@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import group4.householdhero.model.Budget;
@@ -26,6 +27,10 @@ import javafx.scene.image.ImageView;
 public class BudgetController {
 	private IController controller;
 	private Budget budget;
+	protected ArrayList<Product> productList;
+	protected double fridgeTotalCost;
+	protected double usedTotalCost;
+	protected double wasteTotalCost;
 	
 	/*
 	@FXML private DatePicker startDatePicker;
@@ -65,16 +70,13 @@ public class BudgetController {
 		
 		initializeColumns();
 		
+		setProducts();
+		
 		// Still missing remaining budget
 		
 		// Example pie chart for testing purposes
-        ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                new PieChart.Data("Fridge", 20),
-                new PieChart.Data("Used", 30),
-                new PieChart.Data("Expired", 10),
-                new PieChart.Data("Waste", 40));
-        pieChart.setData(pieChartData);
+        calculateStatusPrices();
+        setPieChart();
 
 	}
 	
@@ -85,6 +87,8 @@ public class BudgetController {
 		budget = budgetChoiceBox.getValue();
 		setBudgetInformation();
 		setProducts();
+		calculateStatusPrices();
+		setPieChart();
 	}
 	
 	@FXML
@@ -105,8 +109,36 @@ public class BudgetController {
 		remainingBudgetLabel.setText(Double.toString(budget.getPlannedBudget() - budget.getSpentBudget()));
 	}
 	
-	private void setPieChart() {
+	protected void calculateStatusPrices() {
+		fridgeTotalCost = 0;
+		usedTotalCost = 0;
+		wasteTotalCost = 0;
 		
+		for (Product product : productList) {
+			switch (product.getStatusId()) {
+			case 1:
+				fridgeTotalCost += product.getPrice();
+				break;
+			case 2:
+				usedTotalCost += product.getPrice();
+				break;
+			case 3:
+				fridgeTotalCost += product.getPrice();
+				break;
+			case 4:
+				wasteTotalCost += product.getPrice();
+				break;
+			}
+		}
+	}
+	
+	private void setPieChart() {
+		ObservableList<PieChart.Data> pieChartData =
+                FXCollections.observableArrayList(
+                new PieChart.Data("Fridge", fridgeTotalCost),
+                new PieChart.Data("Used", usedTotalCost),
+                new PieChart.Data("Waste", wasteTotalCost));
+        pieChart.setData(pieChartData);
 	}
 	
 	private void getBudgets() throws SQLException {
@@ -114,7 +146,8 @@ public class BudgetController {
 	}
 	
 	private void setProducts() throws SQLException {
-		productsDuringBudgetTable.setItems(FXCollections.observableArrayList(controller.getProductsByBudget(budget.getId())));
+		productList = (ArrayList<Product>) controller.getProductsByBudget(budget.getId());
+		productsDuringBudgetTable.setItems(FXCollections.observableArrayList(productList));
 	}
 	
 	private void initializeColumns() {

@@ -39,6 +39,11 @@ public class Model implements IModel {
 		return dao.getAllBudgets();
 	}
 	
+	public boolean checkBudgets(LocalDate startDate, LocalDate endDate) throws SQLException {
+		//return dao.checkBudgets(startDate, endDate);
+		return true;
+	}
+	
 	
 
 	public Product createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
