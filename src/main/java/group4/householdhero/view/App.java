@@ -3,6 +3,8 @@ package group4.householdhero.view;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import group4.householdhero.controller.AddEditBudgetController;
 import group4.householdhero.controller.AddEditProductController;
@@ -126,6 +128,17 @@ public class App extends Application {
     	
     	model.setController(controller);
     	controller.setModel(model);
+    	
+		String lang = "fi";
+		String country = "FI";
+
+		Locale locale = new Locale(lang, country);
+		
+		ResourceBundle res = ResourceBundle.getBundle("TextProperties", locale);
+
+		String str = res.getString("wish");
+
+		System.out.println(str);
     	
         launch();
     }

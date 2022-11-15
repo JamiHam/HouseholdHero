@@ -8,10 +8,10 @@ public class DBInfo {
 	}
 	
 	public String getUsername() {
-		return "root";
+		return "iina";
 	}
 	
 	public String getPassword() {
-		return "root";
+		return "alpacca10";
 	}
 }
