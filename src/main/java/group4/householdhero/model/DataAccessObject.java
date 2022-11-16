@@ -11,18 +11,19 @@ public class DataAccessObject {
 	DBInfo db = new DBInfo();
 	private Connection conn;
 	private Model model = new Model();
-
+	
 	public DataAccessObject(Model model) {
 		connect();
 		this.model = model;
 	}
 
 	public void connect() {
-		final String URL = "jdbc:mariadb://localhost/" + db.getDatabase();
-		final String USERNAME = db.getUsername();
-		final String PWD = db.getPassword();
+		final String URL = "jdbc:mariadb://10.114.32.4:3306/HouseholdHero";
+		final String USERNAME = "user";
+		final String PWD = "password";
 		try {
 			conn = DriverManager.getConnection(URL + "?user=" + USERNAME + "&password=" + PWD);
+			System.out.println("Database connection created");
 		} catch (SQLException e) {
 			do {
 				System.err.println("Viesti: " + e.getMessage());
@@ -32,6 +33,8 @@ public class DataAccessObject {
 			System.exit(-1); // lopetus heti virheen vuoksi
 		}
 	}
+	
+
 
 	@Override
 	public void finalize() { // destruktori
@@ -44,7 +47,7 @@ public class DataAccessObject {
 
 	private int getCategoryIdByName(Product product) throws SQLException {
 		int id = 0;
-		String getCategoryIdByNameQuery = "select category_ID from category where type = ?";
+		String getCategoryIdByNameQuery = "select category_ID from Category where type = ?";
 
 		PreparedStatement stmt = conn.prepareStatement(getCategoryIdByNameQuery);
 		stmt.setString(1, product.getCategory());
@@ -58,8 +61,8 @@ public class DataAccessObject {
 
 	private String getCategoryByName(int productID) throws SQLException {
 		String type = null;
-		String getCategoryByNameQuery = "select type from category "
-				+ "inner join product on category.category_ID = product.category_ID where product.product_ID = ?";
+		String getCategoryByNameQuery = "select type from Category "
+				+ "inner join Product on Category.category_ID = Product.category_ID where Product.product_ID = ?";
 
 		PreparedStatement stmt = conn.prepareStatement(getCategoryByNameQuery);
 		stmt.setInt(1, productID);
@@ -76,7 +79,7 @@ public class DataAccessObject {
 		// Päivittää kaikki productin fieldit (paitsi budjetin ja statuksen) id:n
 		// perusteella.
 
-		String updateProductQuery = "update product set name=?, price=?, best_before=?, budget_ID=? where product_ID=?";
+		String updateProductQuery = "update Product set name=?, price=?, best_before=?, budget_ID=? where product_ID=?";
 
 		PreparedStatement stmt = conn.prepareStatement(updateProductQuery);
 		stmt.setString(1, product.getName());
@@ -90,8 +93,9 @@ public class DataAccessObject {
 		System.out.println("Amount of updated products: " + updates);
 	}
 
+	
 	public void deleteProduct(Product product) throws SQLException {
-		String deleteProductQuery = "delete from product where product_ID=?";
+		String deleteProductQuery = "delete from Product where product_ID=?";
 
 		PreparedStatement stmt = conn.prepareStatement(deleteProductQuery);
 		stmt.setInt(1, product.getId());
@@ -101,9 +105,11 @@ public class DataAccessObject {
 		System.out.println("Deleted products: " + deletes);
 	}
 
+	
 	public boolean addProduct(Product product) {
-		String addProductQuery = "insert into product (name, price, best_before, category_ID, status_ID, budget_ID) "
+		String addProductQuery = "insert into Product (name, price, best_before, category_ID, status_ID, budget_ID) "
 				+ "values (?, ?, ?, ?, ?, ?)";
+		System.out.println("Adding new product");
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(addProductQuery);
@@ -117,15 +123,17 @@ public class DataAccessObject {
 			System.out.println(addProductQuery);
 			int added = stmt.executeUpdate();
 			System.out.println("Added: " + added);
+			System.out.println(product.getName());
 			return true;
 		} catch (SQLException e) {
 			return false;
 		}
 	}
+	
 
 	private int getStatusIdByName(String statusName) throws SQLException {
 		int id = 0;
-		String getIdByNameQuery = "select status_ID from status where status = ?";
+		String getIdByNameQuery = "select status_ID from Status where status = ?";
 
 		PreparedStatement stmt = conn.prepareStatement(getIdByNameQuery);
 		stmt.setString(1, statusName);
@@ -138,7 +146,7 @@ public class DataAccessObject {
 	}
 
 	public void updateStatus(Product product, String status) throws SQLException {
-		String updateStatusQuery = "update product set status_ID=? where product_ID=?";
+		String updateStatusQuery = "update Product set status_ID=? where product_ID=?";
 
 		PreparedStatement stmt = conn.prepareStatement(updateStatusQuery);
 		stmt.setInt(1, getStatusIdByName(status));
@@ -153,7 +161,7 @@ public class DataAccessObject {
 		// Palauttaa aktiivisen budjetin. Palauttaa null jos budjettia ei ole.
 		// (LocalDate.now() = nykyinen päivämäärä)
 		Budget budget = null;
-		String getCurrentBudgetQuery = "select * from budget where start_date<=? and end_date>=?";
+		String getCurrentBudgetQuery = "select * from Budget where start_date<=? and end_date>=?";
 		PreparedStatement stmt = conn.prepareStatement(getCurrentBudgetQuery);
 
 		stmt.setDate(1, Date.valueOf(date));
@@ -169,9 +177,10 @@ public class DataAccessObject {
 		}
 		return budget;
 	}
+	
 
 	public void addBudget(Budget budget) throws SQLException {
-		String addBudgetQuery = "insert into budget (planned_budget, spent_budget, start_date, end_date) values (?, ?, ?, ?)";
+		String addBudgetQuery = "insert into Budget (planned_budget, spent_budget, start_date, end_date) values (?, ?, ?, ?)";
 
 		PreparedStatement stmt = conn.prepareStatement(addBudgetQuery);
 		stmt.setDouble(1, budget.getPlannedBudget());
@@ -185,7 +194,7 @@ public class DataAccessObject {
 
 	public List<Product> getProducts(String status) throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
-		String getProductsQuery = "select * from product where status_ID=?";
+		String getProductsQuery = "select * from Product where status_ID=?";
 
 		PreparedStatement stmt = conn.prepareStatement(getProductsQuery);
 		stmt.setInt(1, getStatusIdByName(status));
@@ -203,7 +212,7 @@ public class DataAccessObject {
 	
 	public List<Product> getProductsByBudget(int budgetID) throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
-		String getProductsQuery = "select * from product where budget_ID=?";
+		String getProductsQuery = "select * from Product where budget_ID=?";
 
 		PreparedStatement stmt = conn.prepareStatement(getProductsQuery);
 		stmt.setInt(1, budgetID);
@@ -220,7 +229,7 @@ public class DataAccessObject {
 	}
 
 	public Product getProduct(int id) throws SQLException {
-		String getProductsQuery = "select * from product where product_ID=?";
+		String getProductsQuery = "select * from Product where product_ID=?";
 		Product product = null;
 
 		PreparedStatement stmt = conn.prepareStatement(getProductsQuery);
@@ -237,7 +246,7 @@ public class DataAccessObject {
 
 	public List<String> getCategories() throws SQLException {
 		ArrayList<String> categories = new ArrayList<String>();
-		String getCategoriesQuery = "select type from category";
+		String getCategoriesQuery = "select type from Category";
 
 		PreparedStatement stmt = conn.prepareStatement(getCategoriesQuery);
 
@@ -249,7 +258,7 @@ public class DataAccessObject {
 	}
 
 	public void checkBestBefore() throws SQLException {
-		String checkBestBeforeQuery = "update product set status_ID=? where status_ID=? and best_before<?";
+		String checkBestBeforeQuery = "update Product set status_ID=? where status_ID=? and best_before<?";
 
 		PreparedStatement stmt = conn.prepareStatement(checkBestBeforeQuery);
 		stmt.setInt(1, getStatusIdByName("expired"));
@@ -261,7 +270,7 @@ public class DataAccessObject {
 	}
 
 	public void updateBudget(Budget newBudget) throws SQLException {
-		String updateBudgetQuery = "update budget set planned_budget=?, spent_budget=?, start_date=?, end_date=? where budget_ID=?";
+		String updateBudgetQuery = "update Budget set planned_budget=?, spent_budget=?, start_date=?, end_date=? where budget_ID=?";
 
 		PreparedStatement stmt = conn.prepareStatement(updateBudgetQuery);
 		stmt.setDouble(1, newBudget.getPlannedBudget());
@@ -274,7 +283,7 @@ public class DataAccessObject {
 	}
 
 	public boolean checkBudgets(LocalDate startDate, LocalDate endDate) throws SQLException {
-		String checkBudgetString = "select * from budget where start_date <= AND end_date >= ?"
+		String checkBudgetString = "select * from Budget where start_date <= AND end_date >= ?"
 				+ "OR start_date <= ? AND end_date >= ?;";
 
 		PreparedStatement stmt = conn.prepareStatement(checkBudgetString);
@@ -296,7 +305,7 @@ public class DataAccessObject {
 	
 	public List<Budget> getAllBudgets() throws SQLException {
 		ArrayList<Budget> budgets = new ArrayList<>();
-		String getBudgetsString = "select * from budget";
+		String getBudgetsString = "select * from Budget";
 
 		PreparedStatement stmt = conn.prepareStatement(getBudgetsString);
 
