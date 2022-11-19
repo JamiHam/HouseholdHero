@@ -53,7 +53,12 @@ public class App extends Application {
     }
     
     private static FXMLLoader getFXMLLoader(String fxml) throws IOException {
-    	FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
+    	// Create Locale and ResourceBundle
+    	Locale locale = new Locale("ga_IE");
+    	ResourceBundle bundle = ResourceBundle.getBundle("TextProperties", locale);
+    	
+    	// Get layout from FXML file and set the bundle to be used
+    	FXMLLoader loader = new FXMLLoader(App.class.getResource((fxml + ".fxml")), bundle);
     	return loader;
     }
     
@@ -137,17 +142,6 @@ public class App extends Application {
     	
     	model.setController(controller);
     	controller.setModel(model);
-    	
-		String lang = "fi";
-		String country = "FI";
-
-		Locale locale = new Locale(lang, country);
-		
-		ResourceBundle res = ResourceBundle.getBundle("TextProperties", locale);
-
-		String str = res.getString("wish");
-
-		System.out.println(str);
     	
         launch();
     }

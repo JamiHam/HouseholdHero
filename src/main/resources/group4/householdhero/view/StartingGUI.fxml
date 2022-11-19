@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -20,16 +21,18 @@
                   <Image url="@../../../householdhero-logo-white-fridge.png" />
                </image>
             </ImageView>
-            <VBox layoutX="2.0" layoutY="201.0" spacing="5">
+            <ChoiceBox fx:id="languageChoiceBox" layoutX="22.0" layoutY="185.0" prefWidth="210.0" />
+            <VBox layoutX="2.0" layoutY="288.0" spacing="5">
                <children>
-                  <Button id="button-fridge" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" text="Fridge" textAlignment="CENTER">
+                  <Button id="button-fridge" mnemonicParsing="false" prefHeight="40.0" prefWidth="210.0" text="%fridge.button.text" textAlignment="CENTER">
                      <font>
                         <Font size="14.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="20.0" />
-                     </VBox.margin></Button>
-                  <Button id="button-budget" mnemonicParsing="false" onAction="#switchToBudget" prefHeight="40.0" prefWidth="210.0" text="Budget" textAlignment="CENTER">
+                     </VBox.margin>
+                  </Button>
+                  <Button id="button-budget" mnemonicParsing="false" onAction="#switchToBudget" prefHeight="40.0" prefWidth="210.0" text="%budget.button.text" textAlignment="CENTER">
                      <VBox.margin>
                         <Insets left="20.0" top="3.0" />
                      </VBox.margin>
@@ -38,43 +41,43 @@
                      </font></Button>
                </children>
             </VBox>
-            <Button id="button-add-product" layoutX="71.0" layoutY="394.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="110.0" text="Add Product" />
+            <Button id="button-add-product" layoutX="72.0" layoutY="423.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="110.0" text="%add.product.button.text" />
          </children>
       </AnchorPane>
-      <VBox layoutX="253.0" prefHeight="340.0" prefWidth="750.0">
+      <VBox layoutX="253.0" layoutY="14.0" prefHeight="340.0" prefWidth="750.0">
          <children>
-            <Label id="label-products-in-fridge" alignment="CENTER" prefHeight="30.0" prefWidth="750.0" text="Products In Fridge">
+            <Label id="label-products-in-fridge" alignment="CENTER" prefHeight="30.0" prefWidth="750.0" text="%products.in.fridge.text">
                <VBox.margin>
                   <Insets bottom="5.0" top="10.0" />
                </VBox.margin>
             </Label>
             <TableView id="products-in-fridge" fx:id="fridgeTable" prefHeight="300.0" prefWidth="740.0">
               <columns>
-                <TableColumn fx:id="fridgeNameColumn" prefWidth="200.0" text="Name" />
-                <TableColumn fx:id="fridgeCategoryColumn" prefWidth="200.0" text="Category" />
+                <TableColumn fx:id="fridgeNameColumn" prefWidth="200.0" text="%name.text" />
+                <TableColumn fx:id="fridgeCategoryColumn" prefWidth="200.0" text="%category.text" />
                   <TableColumn fx:id="fridgeIconColumn" prefWidth="50.0" />
-                  <TableColumn fx:id="fridgePriceColumn" prefWidth="90.0" text="Price" />
-                  <TableColumn fx:id="fridgeBestBeforeColumn" prefWidth="100.0" text="Best Before" />
-                  <TableColumn fx:id="fridgeEditColumn" prefWidth="90.0" text="Edit" />
+                  <TableColumn fx:id="fridgePriceColumn" prefWidth="90.0" text="%price.text" />
+                  <TableColumn fx:id="fridgeBestBeforeColumn" prefWidth="100.0" text="%best.before.text" />
+                  <TableColumn fx:id="fridgeEditColumn" prefWidth="90.0" text="%edit.text" />
               </columns>
             </TableView>
          </children>
       </VBox>
       <VBox id="vbox-expired-products-in-fridge" fx:id="expiredVBox" layoutX="253.0" layoutY="357.0" prefHeight="200.0" prefWidth="750.0">
          <children>
-            <Label id="label-expired-products-in-fridge" alignment="CENTER" prefHeight="30.0" prefWidth="750.0" text="Expired Products In Fridge">
+            <Label id="label-expired-products-in-fridge" alignment="CENTER" prefHeight="30.0" prefWidth="750.0" text="%expired.products.in.fridge.text">
                <VBox.margin>
                   <Insets bottom="5.0" top="10.0" />
                </VBox.margin>
             </Label>
             <TableView id="expired-products-in-fridge" fx:id="expiredTable" prefHeight="170.0" prefWidth="740.0">
               <columns>
-                <TableColumn fx:id="expiredNameColumn" prefWidth="200.0" text="Name" />
-                <TableColumn fx:id="expiredCategoryColumn" prefWidth="200.0" text="Category" />
+                <TableColumn fx:id="expiredNameColumn" prefWidth="200.0" text="%name.text" />
+                <TableColumn fx:id="expiredCategoryColumn" prefWidth="200.0" text="%category.text" />
                   <TableColumn fx:id="expiredIconColumn" prefWidth="50.0" />
-                  <TableColumn fx:id="expiredPriceColumn" prefWidth="90.0" text="Price" />
-                  <TableColumn fx:id="expiredBestBeforeColumn" prefWidth="100.0" text="Best Before" />
-                  <TableColumn fx:id="expiredEditColumn" prefWidth="90.0" text="Put To Waste" />
+                  <TableColumn fx:id="expiredPriceColumn" prefWidth="90.0" text="%price.text" />
+                  <TableColumn fx:id="expiredBestBeforeColumn" prefWidth="100.0" text="%best.before.text" />
+                  <TableColumn fx:id="expiredEditColumn" prefWidth="90.0" text="%put.to.waste.text" />
               </columns>
             </TableView>
          </children>

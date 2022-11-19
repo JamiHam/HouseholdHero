@@ -17,7 +17,7 @@
    <children>
       <AnchorPane id="top-anchorpane-add-edit-product-gui" prefHeight="130.0" prefWidth="500.0">
          <children>
-            <Label layoutX="221.0" layoutY="55.0" text="Product">
+            <Label layoutX="221.0" layoutY="55.0" text="%product.text">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
@@ -43,13 +43,13 @@
                   <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Name" GridPane.halignment="CENTER" />
+                  <Label text="%name.text" GridPane.halignment="CENTER" />
                   <TextField fx:id="nameTextField" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Label text="Category" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
+                  <Label text="%category.text" GridPane.halignment="CENTER" GridPane.rowIndex="2" />
                   <ChoiceBox fx:id="categoryChoiceBox" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
-                  <Label text="Price" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                  <Label text="%price.text" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                   <TextField fx:id="priceTextField" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="5" />
-                  <Label text="Best Before Date" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
+                  <Label text="%best.before.date.text" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
                   <DatePicker fx:id="bestBeforeDatePicker" prefWidth="200.0" GridPane.halignment="CENTER" GridPane.rowIndex="7" />
                   <Label fx:id="errorLabel" text="Label" GridPane.halignment="CENTER" GridPane.rowIndex="8" />
                </children>
@@ -58,18 +58,18 @@
       </VBox>
       <VBox layoutX="190.0" layoutY="420.0" prefHeight="180.0" prefWidth="120.0">
          <children>
-            <Button id="product-save-delete-used-waste-buttons" fx:id="saveButton" mnemonicParsing="false" onAction="#save" prefWidth="120.0" text="Save" />
-            <Button id="product-save-delete-used-waste-buttons" fx:id="deleteButton" mnemonicParsing="false" onAction="#delete" prefWidth="120.0" text="Delete">
+            <Button id="product-save-delete-used-waste-buttons" fx:id="saveButton" mnemonicParsing="false" onAction="#save" prefWidth="120.0" text="%save.button.text" />
+            <Button id="product-save-delete-used-waste-buttons" fx:id="deleteButton" mnemonicParsing="false" onAction="#delete" prefWidth="120.0" text="%delete.button.text">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button id="product-save-delete-used-waste-buttons" fx:id="usedButton" mnemonicParsing="false" onAction="#moveToUsed" prefWidth="120.0" text="Put To Used">
+            <Button id="product-save-delete-used-waste-buttons" fx:id="usedButton" mnemonicParsing="false" onAction="#moveToUsed" prefWidth="120.0" text="%put.to.used.text">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button id="product-save-delete-used-waste-buttons" fx:id="wasteButton" mnemonicParsing="false" onAction="#moveToWaste" prefWidth="120.0" text="Put To Waste">
+            <Button id="product-save-delete-used-waste-buttons" fx:id="wasteButton" mnemonicParsing="false" onAction="#moveToWaste" prefWidth="120.0" text="%put.to.waste.text">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
