@@ -78,17 +78,17 @@ public class AddEditBudgetController {
 			Double.parseDouble(plannedBudgetTextField.getText());
 		} catch (NumberFormatException e) {
 			validity = false;
-			setErrorMessage("Planned budget must be a number");
+			setErrorMessage(App.bundle.getString("budget.validate.input.number.text"));
 		}
 		
 		if (endDatePicker.getValue() == null) {
 			validity = false;
-			setErrorMessage("Please select an end date for your budget");
+			setErrorMessage(App.bundle.getString("budget.validate.input.end.date.text"));
 		}
 		
 		if (startDatePicker.getValue() == null) {
 			validity = false;
-			setErrorMessage("Please select a start date for your budget");
+			setErrorMessage(App.bundle.getString("budget.validate.input.start.date.text"));
 		}
 		
 		return validity;

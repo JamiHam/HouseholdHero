@@ -33,6 +33,8 @@ public class App extends Application {
 	private static Model model;
 	private static FridgeController fridgeController;
 	private static BudgetController budgetController;
+	private static Locale locale;
+	public static ResourceBundle bundle;
 	
 	@Override
     public void start(Stage stage) throws IOException {
@@ -54,11 +56,12 @@ public class App extends Application {
     
     private static FXMLLoader getFXMLLoader(String fxml) throws IOException {
     	// Create Locale and ResourceBundle
-    	Locale locale = new Locale("ga_IE");
-    	ResourceBundle bundle = ResourceBundle.getBundle("TextProperties", locale);
+    	locale = new Locale("ga_IE");
+    	bundle = ResourceBundle.getBundle("TextProperties", locale);
     	
     	// Get layout from FXML file and set the bundle to be used
-    	FXMLLoader loader = new FXMLLoader(App.class.getResource((fxml + ".fxml")), bundle);
+    	FXMLLoader loader = new FXMLLoader(App.class.getResource((fxml + ".fxml")));
+    	loader.setResources(bundle);
     	return loader;
     }
     
