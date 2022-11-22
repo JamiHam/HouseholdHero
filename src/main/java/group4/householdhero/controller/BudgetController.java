@@ -32,13 +32,6 @@ public class BudgetController {
 	protected double usedTotalCost;
 	protected double wasteTotalCost;
 	
-	/*
-	@FXML private DatePicker startDatePicker;
-	@FXML private DatePicker endDatePicker;
-	@FXML private TextField plannedBudgetTextField;
-	@FXML private TextField spentBudgetTextField;
-	*/
-	
 	@FXML private ChoiceBox<Budget> budgetChoiceBox;
 	@FXML private Label startDateLabel;
 	@FXML private Label endDateLabel;
@@ -62,8 +55,6 @@ public class BudgetController {
 		controller = App.getController();
 		budget = controller.getBudget(LocalDate.now());
 		
-		// Choice Box
-		// Type arguments for Choice Box: String or LocalDate
         getBudgets();
 		
 		setBudgetInformation();
@@ -72,9 +63,6 @@ public class BudgetController {
 		
 		setProducts();
 		
-		// Still missing remaining budget
-		
-		// Example pie chart for testing purposes
         calculateStatusPrices();
         setPieChart();
 
@@ -135,9 +123,9 @@ public class BudgetController {
 	private void setPieChart() {
 		ObservableList<PieChart.Data> pieChartData =
                 FXCollections.observableArrayList(
-                new PieChart.Data("Fridge", fridgeTotalCost),
-                new PieChart.Data("Used", usedTotalCost),
-                new PieChart.Data("Waste", wasteTotalCost));
+                new PieChart.Data(App.bundle.getString("budget.distribution.fridge.text"), fridgeTotalCost),
+                new PieChart.Data(App.bundle.getString("budget.distribution.used.text"), usedTotalCost),
+                new PieChart.Data(App.bundle.getString("budget.distribution.waste.text"), wasteTotalCost));
         pieChart.setData(pieChartData);
 	}
 	

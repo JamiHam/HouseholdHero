@@ -110,24 +110,24 @@ public class AddEditProductController {
 		
 		if (bestBeforeDatePicker.getValue() == null) {
 			validity = false;
-			setErrorMessage("Please select a best before date");
+			setErrorMessage(App.bundle.getString("product.validate.input.best.before.text"));
 		}
 		
 		try {
 			Double.parseDouble(priceTextField.getText());
 		} catch (NumberFormatException e) {
 			validity = false;
-			setErrorMessage("The price must be a number");
+			setErrorMessage(App.bundle.getString("product.validate.input.price.text"));
 		}
 		
 		if (categoryChoiceBox.getValue() == null) {
 			validity = false;
-			setErrorMessage("Please select a category");
+			setErrorMessage(App.bundle.getString("product.validate.input.category.text"));
 		}
 		
 		if (nameTextField.getText().isEmpty()) {
 			validity = false;
-			setErrorMessage("Please enter a product name");
+			setErrorMessage(App.bundle.getString("product.validate.input.product.text"));
 		}
 		
 		return validity;
