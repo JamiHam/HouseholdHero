@@ -8,7 +8,6 @@ import java.util.List;
 
 public class DataAccessObject {
 
-	DBInfo db = new DBInfo();
 	private Connection conn;
 	private Model model = new Model();
 	
@@ -241,6 +240,7 @@ public class DataAccessObject {
 					LocalDate.parse(rs.getDate("best_before").toString()), getCategoryByName(rs.getInt("product_ID")),
 					rs.getInt("budget_ID"), rs.getInt("status_ID"));
 		}
+		System.out.println("\nTuotenimi\n"+product.getName());
 		return product;
 	}
 

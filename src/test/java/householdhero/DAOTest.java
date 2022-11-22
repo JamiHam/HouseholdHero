@@ -27,9 +27,7 @@ import group4.householdhero.model.Product;
 public class DAOTest {
 	
 	Model model = mock(Model.class);
-	//private Mock controller
-	//model.setController(controller);
-	DataAccessObject dao;
+	DataAccessObject dao = mock(DataAccessObject.class);
 	private int id = 1;
 	private String name = "Maito";
 	private double price = 3.50;
@@ -43,7 +41,7 @@ public class DAOTest {
 
 	@BeforeEach
 	public void getConnection() {
-		dao = new DataAccessObject(model);
+		//dao = new DataAccessObject(model);
 		System.out.println("Getting connection");
 		dao.connect();
 		when(dummy.getId()).thenReturn(id);
