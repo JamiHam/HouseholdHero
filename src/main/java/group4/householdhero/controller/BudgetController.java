@@ -79,7 +79,7 @@ public class BudgetController {
 	}
 	
 	@FXML
-	private void changeSelectedLanguage() {
+	private void changeSelectedLanguage() throws IOException {
 		if (languageChoiceBox.getValue() == App.bundle.getString("english.choice.text")) {
 			App.setLocaleEnglish();
 			System.out.println("Locale English");
