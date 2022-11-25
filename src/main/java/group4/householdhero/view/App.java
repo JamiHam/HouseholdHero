@@ -93,17 +93,19 @@ public class App extends Application {
     	}
     }
     
-    public static void showFridge() throws IOException {
+    public static boolean showFridge() throws IOException {
     	FXMLLoader loader = setRoot("StartingGUI");
     	fridgeController = loader.getController();
+    	return true;
     }
     
-    public static void showBudget() throws IOException {
+    public static boolean showBudget() throws IOException {
     	FXMLLoader loader = setRoot("BudgetGUI");
     	budgetController = loader.getController();
+    	return true;
     }
     
-    public static void showProductWindow(boolean editing, Product product) throws IOException, SQLException {
+    public static boolean showProductWindow(boolean editing, Product product) throws IOException, SQLException {
     	Pair<FXMLLoader, Stage> pair = setupWindow("AddEditProductGUI");
     	FXMLLoader loader = pair.getKey();
     	Stage stage = pair.getValue();
@@ -111,15 +113,16 @@ public class App extends Application {
     	loader.<AddEditProductController>getController().initialize(editing, product);
     	stage.setOnHidden(e -> {
     		try {
-				fridgeController.updateTables();
+				fridgeController.updateFridgeContents();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
     	});
     	stage.show();
+    	return true;
     }
     
-    public static void showBudgetWindow(boolean editing, Budget budget) throws IOException {
+    public static boolean showBudgetWindow(boolean editing, Budget budget) throws IOException {
     	Pair<FXMLLoader, Stage> pair = setupWindow("AddEditBudgetGUI");
     	FXMLLoader loader = pair.getKey();
     	Stage stage = pair.getValue();
@@ -141,6 +144,7 @@ public class App extends Application {
 			}
 		});
     	stage.show();
+    	return true;
     }
     
     private static Pair<FXMLLoader, Stage> setupWindow(String fxml) throws IOException {

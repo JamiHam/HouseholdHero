@@ -44,7 +44,6 @@ CREATE TABLE Product
 INSERT INTO Status (status)
 VALUES ('fridge'),
   ('used'),
-  ('expired'),
   ('waste');
 
 INSERT INTO Category (type)

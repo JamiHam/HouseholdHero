@@ -15,6 +15,7 @@ public class Product {
 	private String category;
 	private int budgetId;
 	private int statusId;
+	private String expiration;
 	
 	private Model model;
 	private Button editButton;
@@ -32,7 +33,7 @@ public class Product {
 		this.model = model;
 		
 		setUpEditButton();
-		setUpImageView();
+		setUpCategoryImageView();
 	}
 	
 	public void editProduct() throws IOException, SQLException {
@@ -55,7 +56,7 @@ public class Product {
 		
 	}
 	
-	private void setUpImageView() {
+	private void setUpCategoryImageView() {
 		categoryImageView = new ImageView();
 		String className = category.replace(" ", "-");
 		categoryImageView.getStyleClass().add(className);
@@ -123,5 +124,13 @@ public class Product {
 	
 	public ImageView getCategoryImageView() {
 		return categoryImageView;
+	}
+	
+	public void setExpiration(String expiration) {
+		this.expiration = expiration;
+	}
+	
+	public String getExpiration() {
+		return expiration;
 	}
 }
