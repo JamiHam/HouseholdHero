@@ -35,10 +35,12 @@ public class App extends Application {
 	private static BudgetController budgetController;
 	private static Locale locale;
 	public static ResourceBundle bundle;
+	private static String currentFXML;
 	
 	@Override
     public void start(Stage stage) throws IOException {
         setTitleAndIcon(stage);
+        setLocaleEnglish();
     	
     	FXMLLoader loader = getFXMLLoader("StartingGUI");
         scene = new Scene(loader.load(), 1000, 600);
@@ -61,22 +63,34 @@ public class App extends Application {
     	//locale = new Locale("en_IE");
     	
     	//setLocaleGaeilge();
-    	setLocaleEnglish();
     	
-    	bundle = ResourceBundle.getBundle("TextProperties", locale);
     	
     	// Get layout from FXML file and set the bundle to be used
+    	currentFXML = fxml;
     	FXMLLoader loader = new FXMLLoader(App.class.getResource((fxml + ".fxml")));
     	loader.setResources(bundle);
     	return loader;
     }
     
-    public static void setLocaleEnglish() {
+    public static void setLocaleEnglish() throws IOException {
     	locale = new Locale("en_IE");
+    	bundle = ResourceBundle.getBundle("TextProperties", locale);
+    	reloadView();
     }
     
-    public static void setLocaleGaeilge() {
+    public static void setLocaleGaeilge() throws IOException {
     	locale = new Locale("ga_IE");
+    	bundle = ResourceBundle.getBundle("TextProperties", locale);
+    	reloadView();
+    }
+    
+    private static void reloadView() throws IOException {
+    	if (currentFXML == "StartingGUI") {
+    		showFridge();
+    	}
+    	if (currentFXML == "BudgetGUI") {
+    		showBudget();
+    	}
     }
     
     public static void showFridge() throws IOException {
