@@ -56,13 +56,27 @@ public class App extends Application {
     
     private static FXMLLoader getFXMLLoader(String fxml) throws IOException {
     	// Create Locale and ResourceBundle
-    	locale = new Locale("ga_IE");
+    	
+    	//locale = new Locale("ga_IE");
+    	//locale = new Locale("en_IE");
+    	
+    	//setLocaleGaeilge();
+    	setLocaleEnglish();
+    	
     	bundle = ResourceBundle.getBundle("TextProperties", locale);
     	
     	// Get layout from FXML file and set the bundle to be used
     	FXMLLoader loader = new FXMLLoader(App.class.getResource((fxml + ".fxml")));
     	loader.setResources(bundle);
     	return loader;
+    }
+    
+    public static void setLocaleEnglish() {
+    	locale = new Locale("en_IE");
+    }
+    
+    public static void setLocaleGaeilge() {
+    	locale = new Locale("ga_IE");
     }
     
     public static void showFridge() throws IOException {
