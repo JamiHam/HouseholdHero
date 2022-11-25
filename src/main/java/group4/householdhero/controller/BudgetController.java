@@ -6,6 +6,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import group4.householdhero.model.Budget;
 import group4.householdhero.model.Product;
@@ -32,6 +33,8 @@ public class BudgetController {
 	protected double usedTotalCost;
 	protected double wasteTotalCost;
 	
+	@FXML private ChoiceBox<String> languageChoiceBox;
+	
 	@FXML private ChoiceBox<Budget> budgetChoiceBox;
 	@FXML private Label startDateLabel;
 	@FXML private Label endDateLabel;
@@ -55,6 +58,8 @@ public class BudgetController {
 		controller = App.getController();
 		budget = controller.getBudget(LocalDate.now());
 		
+		setLanguageChoiceBox();
+		
         getBudgets();
 		
 		setBudgetInformation();
@@ -68,7 +73,20 @@ public class BudgetController {
 
 	}
 	
+	private void setLanguageChoiceBox() {
+		languageChoiceBox.getItems().add(App.bundle.getString("english.choice.text"));
+		languageChoiceBox.getItems().add(App.bundle.getString("gaeilge.choice.text"));
+	}
 	
+	@FXML
+	private void changeSelectedLanguage() {
+		if (languageChoiceBox.getValue() == App.bundle.getString("english.choice.text")) {
+			App.setLocaleEnglish();
+			System.out.println("Locale English");
+		} if (languageChoiceBox.getValue() == App.bundle.getString("gaeilge.choice.text")) {
+			App.setLocaleGaeilge();
+		}
+	}
 	
 	@FXML
 	private void changeSelectedBudget() throws SQLException {

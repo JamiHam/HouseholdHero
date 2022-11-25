@@ -44,7 +44,7 @@
                      </font></Button>
                </children>
             </VBox>
-            <ChoiceBox fx:id="languageChoiceBox" layoutX="22.0" layoutY="185.0" prefWidth="210.0" />
+            <ChoiceBox fx:id="languageChoiceBox" onAction="#changeSelectedLanguage" layoutX="22.0" layoutY="185.0" prefWidth="210.0" />
          </children>
       </AnchorPane>
       <HBox layoutX="253.0" prefHeight="50.0" prefWidth="750.0">
