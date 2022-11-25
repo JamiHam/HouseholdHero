@@ -26,8 +26,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 
 public class BudgetController {
-	private IController controller;
-	private Budget budget;
+	protected IController controller;
+	protected Budget budget;
 	protected ArrayList<Product> productList;
 	protected double fridgeTotalCost;
 	protected double usedTotalCost;
@@ -36,7 +36,7 @@ public class BudgetController {
 	@FXML private ChoiceBox<String> languageChoiceBox;
 	
 	@FXML private ChoiceBox<Budget> budgetChoiceBox;
-	@FXML private Label startDateLabel;
+	@FXML protected Label startDateLabel;
 	@FXML private Label endDateLabel;
 	@FXML private Label plannedBudgetLabel;
 	@FXML private Label spentBudgetLabel;
@@ -82,7 +82,6 @@ public class BudgetController {
 	private void changeSelectedLanguage() throws IOException {
 		if (languageChoiceBox.getValue() == App.bundle.getString("english.choice.text")) {
 			App.setLocaleEnglish();
-			System.out.println("Locale English");
 		} if (languageChoiceBox.getValue() == App.bundle.getString("gaeilge.choice.text")) {
 			App.setLocaleGaeilge();
 		}
@@ -98,16 +97,16 @@ public class BudgetController {
 	}
 	
 	@FXML
-	private void switchToFridge() throws IOException {
-		controller.showFridge();
+	protected boolean switchToFridge() throws IOException {
+		return controller.showFridge();
 	}
 	
 	@FXML
-	private void editBudget() throws SQLException, IOException {
-		controller.showBudgetWindow(true, budget);
+	protected boolean editBudget() throws SQLException, IOException {
+		return controller.showBudgetWindow(true, budget);
 	}
 	
-	private void setBudgetInformation() {
+	protected void setBudgetInformation() {
 		startDateLabel.setText((budget.getStartDate()).toString());
 		endDateLabel.setText((budget.getEndDate()).toString());
 		plannedBudgetLabel.setText(Double.toString(budget.getPlannedBudget()));
@@ -129,9 +128,6 @@ public class BudgetController {
 				usedTotalCost += product.getPrice();
 				break;
 			case 3:
-				fridgeTotalCost += product.getPrice();
-				break;
-			case 4:
 				wasteTotalCost += product.getPrice();
 				break;
 			}

@@ -4,17 +4,40 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import org.junit.jupiter.api.TestInstance;
+import org.junit.jupiter.api.TestInstance.Lifecycle;
 
 import group4.householdhero.controller.BudgetController;
 import group4.householdhero.controller.Controller;
 import group4.householdhero.model.Product;
 
+@TestInstance(Lifecycle.PER_CLASS)
 public class BudgetControllerTest extends BudgetController {
+	
+	@BeforeAll
+	public void setController() {
+		controller = mock(Controller.class);
+	}
+	
+	@Test
+	public void switchToFridgeTest() throws IOException {
+		when(controller.showFridge()).thenReturn(true);
+		
+		assertEquals(true, switchToFridge(), "Switching to fridge failed.");
+	}
+	
+	@Test
+	public void editBudgetTest() throws IOException, SQLException {
+		when(controller.showBudgetWindow(true, budget)).thenReturn(true);
+		
+		assertEquals(true, editBudget(), "Opening editing window failed.");
+	}
 	
 	@Test
 	public void calculateStatusPricesTest() {

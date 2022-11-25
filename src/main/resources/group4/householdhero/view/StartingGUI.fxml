@@ -59,6 +59,7 @@
                   <TableColumn fx:id="fridgePriceColumn" prefWidth="90.0" text="%price.text" />
                   <TableColumn fx:id="fridgeBestBeforeColumn" prefWidth="100.0" text="%best.before.text" />
                   <TableColumn fx:id="fridgeEditColumn" prefWidth="90.0" text="%edit.text" />
+                  <TableColumn fx:id="fridgeExpirationColumn" prefWidth="75.0" text="Column X" />
               </columns>
             </TableView>
          </children>

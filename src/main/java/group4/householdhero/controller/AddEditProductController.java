@@ -14,7 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class AddEditProductController {
-	private IController controller;
+	protected IController controller;
 	private boolean editing;
 	private Product product;
 	private Budget budget;

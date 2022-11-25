@@ -29,8 +29,8 @@ public interface IController {
 	
 	public List<String> getCategories() throws SQLException;
 	
-	public void showBudget() throws IOException;
-	public void showFridge() throws IOException;
-	public void showProductWindow(boolean editing, Product product) throws IOException, SQLException;
-	public void showBudgetWindow(boolean editing, Budget budget) throws IOException, SQLException;
+	public boolean showBudget() throws IOException;
+	public boolean showFridge() throws IOException;
+	public boolean showProductWindow(boolean editing, Product product) throws IOException, SQLException;
+	public boolean showBudgetWindow(boolean editing, Budget budget) throws IOException, SQLException;
 }

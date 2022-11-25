@@ -81,19 +81,19 @@ public class Controller implements IController {
 	
 	
 	
-	public void showBudget() throws IOException {
-		App.showBudget();
+	public boolean showBudget() throws IOException {
+		return App.showBudget();
 	}
 	
-	public void showFridge() throws IOException {
-		App.showFridge();
+	public boolean showFridge() throws IOException {
+		return App.showFridge();
 	}
 	
-	public void showProductWindow(boolean editing, Product product) throws IOException, SQLException {
-		App.showProductWindow(editing, product);
+	public boolean showProductWindow(boolean editing, Product product) throws IOException, SQLException {
+		return App.showProductWindow(editing, product);
 	}
 	
-	public void showBudgetWindow(boolean editing, Budget budget) throws IOException, SQLException {
-		App.showBudgetWindow(editing, budget);
+	public boolean showBudgetWindow(boolean editing, Budget budget) throws IOException, SQLException {
+		return App.showBudgetWindow(editing, budget);
 	}
 }
