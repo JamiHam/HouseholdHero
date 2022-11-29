@@ -1,5 +1,6 @@
 package group4.householdhero.controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
@@ -7,6 +8,7 @@ import group4.householdhero.model.Budget;
 import group4.householdhero.view.App;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -17,6 +19,8 @@ public class AddEditBudgetController {
 	private boolean editing;
 	private Budget budget;
 	
+	@FXML private ChoiceBox<String> languageChoiceBox;
+	
 	@FXML private DatePicker startDatePicker;
 	@FXML private DatePicker endDatePicker;
 	@FXML private TextField plannedBudgetTextField;
@@ -24,6 +28,20 @@ public class AddEditBudgetController {
 	
 	@FXML private Button saveButton;
 	@FXML private Button deleteButton;
+	
+	private void setLanguageChoiceBox() {
+		languageChoiceBox.getItems().add(App.bundle.getString("english.choice.text"));
+		languageChoiceBox.getItems().add(App.bundle.getString("gaeilge.choice.text"));
+	}
+	
+	@FXML
+	private void changeSelectedLanguage() throws IOException {
+		if (languageChoiceBox.getValue() == App.bundle.getString("english.choice.text")) {
+			App.setLocaleEnglish();
+		} if (languageChoiceBox.getValue() == App.bundle.getString("gaeilge.choice.text")) {
+			App.setLocaleGaeilge();
+		}
+	}
 	
 	@FXML
 	private void save() throws SQLException {
@@ -98,6 +116,9 @@ public class AddEditBudgetController {
 		this.controller = App.getController();
 		this.budget = budget;
 		this.editing = editing;
+		
+		setLanguageChoiceBox();
+		
 		showError(false);
 
 		if (editing) {

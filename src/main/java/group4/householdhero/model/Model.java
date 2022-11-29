@@ -83,7 +83,13 @@ public class Model implements IModel {
 		controller.editProduct(product);
 	}
 	
+	public void putToUsed(Product product) throws IOException, SQLException {
+		controller.putToUsed(product);
+	}
 	
+	public void putToWaste(Product product) throws IOException, SQLException {
+		controller.putToWaste(product);
+	}
 
 	public List<String> getCategories() throws SQLException {
 		return dao.getCategories();

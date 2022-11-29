@@ -43,7 +43,7 @@ public class App extends Application {
         setLocaleEnglish();
     	
     	FXMLLoader loader = getFXMLLoader("StartingGUI");
-        scene = new Scene(loader.load(), 1000, 600);
+        scene = new Scene(loader.load(), 1100, 700);
         fridgeController = loader.getController();
         
         stage.setScene(scene);

@@ -19,7 +19,10 @@ public class Product {
 	
 	private Model model;
 	private Button editButton;
+	private Button putToUsedButton;
+	private Button putToWasteButton;
 	private ImageView categoryImageView;
+	private ImageView statusImageView;
 	
 	public Product(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId, Model model) {
 		this.id = id;
@@ -33,7 +36,10 @@ public class Product {
 		this.model = model;
 		
 		setUpEditButton();
+		setUpUsedButton();
+		setUpWasteButton();
 		setUpCategoryImageView();
+		setUpStatusImageView();
 	}
 	
 	public void editProduct() throws IOException, SQLException {
@@ -52,14 +58,46 @@ public class Product {
 		});
 	}
 	
+	public void moveToUsed() throws IOException, SQLException {
+		model.putToUsed(this);
+	}
+	
+	private void setUpUsedButton() {
+		putToUsedButton = new Button("");
+		putToUsedButton.getStyleClass().add("product-put-to-used-button");
+		putToUsedButton.setOnAction(e -> {
+			try {
+				moveToUsed();
+			} catch (IOException | SQLException e1) {
+				e1.printStackTrace();
+			}
+		});
+	}
+	
+	public void moveToWaste() throws IOException, SQLException {
+		model.putToWaste(this);
+	}
+	
 	private void setUpWasteButton() {
-		
+		putToWasteButton = new Button("");
+		putToWasteButton.getStyleClass().add("product-put-to-waste-button");
+		putToWasteButton.setOnAction(e -> {
+			try {
+				moveToWaste();
+			} catch (IOException | SQLException e1) {
+				e1.printStackTrace();
+			}
+		});
 	}
 	
 	private void setUpCategoryImageView() {
 		categoryImageView = new ImageView();
 		String className = category.replace(" ", "-");
 		categoryImageView.getStyleClass().add(className);
+	}
+	
+	private void setUpStatusImageView() {
+		statusImageView = new ImageView();
 	}
 
 	public int getId() {
@@ -122,8 +160,20 @@ public class Product {
 		return editButton;
 	}
 	
+	public Button getPutToUsedButton() {
+		return putToUsedButton;
+	}
+	
+	public Button getPutToWasteButton() {
+		return putToWasteButton;
+	}
+	
 	public ImageView getCategoryImageView() {
 		return categoryImageView;
+	}
+	
+	public ImageView getStatusImageView() {
+		return statusImageView;
 	}
 	
 	public void setExpiration(String expiration) {
