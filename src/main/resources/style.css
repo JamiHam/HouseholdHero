@@ -36,7 +36,7 @@
 	-fx-background-color: #1ec6cf;
 }
 
-#button-add-product {
+#button-add-product-edit-budget {
 	-fx-background-color: transparent;
 	-fx-border: 1px;
 	-fx-border-color: #000000;
@@ -45,7 +45,7 @@
 	-fx-font-size: 14px;
 }
 
-#button-add-product:hover {
+#button-add-product-edit-budget:hover {
 	-fx-background-color: #1ec6cf;
 }
 
@@ -61,6 +61,21 @@
 }
 
 .product-edit-button:hover {
+	-fx-background-color: #1ec6cf;
+}
+
+.product-put-to-used-button {
+	-fx-background-color: #ffffff;
+	-fx-border-color: #000000;
+	-fx-border-width: 1px;
+	-fx-padding: 2px 10px 2px 10px;
+	-fx-background-image: url("put-to-used-icon-black.png");
+	-fx-background-repeat: no-repeat;
+	-fx-background-size: 20 20;
+	-fx-background-position: center;
+}
+
+.product-put-to-used-button:hover {
 	-fx-background-color: #1ec6cf;
 }
 
@@ -172,6 +187,21 @@
 
 .vegetables {
 	-fx-image: url("category-icon-vegetables-40.png");
+}
+
+/*
+ * status icons
+ */
+.good-to-go {
+	-fx-image: url("good-to-go-icon-green.png");
+}
+
+.soon-to-expire {
+	-fx-image: url("soon-to-expire-icon-yellow.png");
+}
+
+.expired {
+	-fx-image: url("expired-icon-red.png");
 }
 
 #product-save-delete-used-waste-buttons, #budget-save-delete-buttons {

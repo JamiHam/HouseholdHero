@@ -10,16 +10,23 @@ import group4.householdhero.view.App;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class FridgeController {
 	protected static IController controller;
+	private Product product;
 	
 	@FXML private VBox expiredVBox;
+	
+	@FXML private ChoiceBox<String> languageChoiceBox;
+	@FXML private Button putToUsedButton;
+	@FXML private Button putToWasteButton;
 	
 	@FXML private TableView<Product> fridgeTable;
 	@FXML private TableColumn<Product, String> fridgeNameColumn;
@@ -27,23 +34,33 @@ public class FridgeController {
 	@FXML private TableColumn<Product, ImageView> fridgeIconColumn;
 	@FXML private TableColumn<Product, Double> fridgePriceColumn;
 	@FXML private TableColumn<Product, LocalDate> fridgeBestBeforeColumn;
-	@FXML private TableColumn<Product, Button> fridgeEditColumn;
 	@FXML private TableColumn<Product, String> fridgeExpirationColumn;
-	
-	/*@FXML private TableView<Product> expiredTable;
-	@FXML private TableColumn<Product, String> expiredNameColumn;
-	@FXML private TableColumn<Product, Integer> expiredCategoryColumn;
-	@FXML private TableColumn<Product, ImageView> expiredIconColumn;
-	@FXML private TableColumn<Product, Double> expiredPriceColumn;
-	@FXML private TableColumn<Product, LocalDate> expiredBestBeforeColumn;
-	@FXML private TableColumn<Product, Button> expiredEditColumn;*/
+	@FXML private TableColumn<Product, Button> fridgeEditColumn;
+	@FXML private TableColumn<Product, Button> fridgePutToUsedColumn;
+	@FXML private TableColumn<Product, Button> fridgePutToWasteColumn;
 	
 	@FXML
 	private void initialize() throws IOException, SQLException {
 		controller = App.getController();
 		checkCurrentBudget();
+		
+		setLanguageChoiceBox();
 		initializeColumns();
 		updateFridgeContents();
+	}
+	
+	private void setLanguageChoiceBox() {
+		languageChoiceBox.getItems().add(App.bundle.getString("english.choice.text"));
+		languageChoiceBox.getItems().add(App.bundle.getString("gaeilge.choice.text"));
+	}
+	
+	@FXML
+	private void changeSelectedLanguage() throws IOException {
+		if (languageChoiceBox.getValue() == App.bundle.getString("english.choice.text")) {
+			App.setLocaleEnglish();
+		} if (languageChoiceBox.getValue() == App.bundle.getString("gaeilge.choice.text")) {
+			App.setLocaleGaeilge();
+		}
 	}
 	
     @FXML
@@ -60,6 +77,18 @@ public class FridgeController {
     	return controller.showProductWindow(true, product);
     }
     
+    @FXML
+	static void putToUsed(Product product) throws IOException, SQLException {
+		controller.changeProductStatus(product, "used");
+		App.showFridge();
+	}
+	
+    @FXML
+	static void putToWaste(Product product) throws IOException, SQLException {
+		controller.changeProductStatus(product, "waste");
+		App.showFridge();
+	}
+    
     public boolean checkCurrentBudget() throws IOException, SQLException {
     	if (controller.getBudget(LocalDate.now()) == null) {
     		controller.showBudgetWindow(false, null);
@@ -74,15 +103,10 @@ public class FridgeController {
 		fridgeIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
 		fridgePriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 		fridgeBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
-		fridgeEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
 		fridgeExpirationColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("expiration"));
-		
-		/*expiredNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-		expiredCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("category"));
-		expiredIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
-		expiredPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
-		expiredBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
-		expiredEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));*/
+		fridgeEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
+		fridgePutToUsedColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("putToUsedButton"));
+		fridgePutToWasteColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("putToWasteButton"));
     }
     
     public void updateFridgeContents() throws SQLException {
@@ -90,16 +114,6 @@ public class FridgeController {
     	checkBestBefore(products);
     	fridgeTable.setItems(FXCollections.observableArrayList(products));
     }
-    
-    /*private void updateExpiredContents() throws SQLException {
-    	List<Product> list = controller.getProducts("expired");
-    	if (list.isEmpty()) {
-    		expiredVBox.setVisible(false);
-    	} else {
-    		expiredVBox.setVisible(true);
-    		expiredTable.setItems(FXCollections.observableArrayList(list));
-    	}
-    }*/
     
     private List<Product> checkBestBefore(List<Product> products) throws SQLException {
     	for (Product product : products) {

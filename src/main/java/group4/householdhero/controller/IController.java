@@ -26,6 +26,8 @@ public interface IController {
 	public void deleteProduct(Product product) throws SQLException;
 	public void checkBestBefore() throws SQLException;
 	public void editProduct(Product product) throws IOException, SQLException;
+	public void putToUsed(Product product) throws IOException, SQLException;
+	public void putToWaste(Product product) throws IOException, SQLException;
 	
 	public List<String> getCategories() throws SQLException;
 	

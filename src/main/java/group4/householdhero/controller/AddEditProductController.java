@@ -1,5 +1,6 @@
 package group4.householdhero.controller;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import group4.householdhero.model.Budget;
@@ -19,6 +20,8 @@ public class AddEditProductController {
 	private Product product;
 	private Budget budget;
 	
+	@FXML private ChoiceBox<String> languageChoiceBox;
+	
 	@FXML private TextField nameTextField;
 	@FXML private TextField priceTextField;
 	@FXML private ChoiceBox<String> categoryChoiceBox;
@@ -26,9 +29,23 @@ public class AddEditProductController {
 	@FXML private Label errorLabel;
 	
 	@FXML private Button saveButton;
-	@FXML private Button usedButton;
+	@FXML private Button usedButton; // poistetaan tästä näkymästä
 	@FXML private Button deleteButton;
-	@FXML private Button wasteButton;
+	@FXML private Button wasteButton; // poistetaan tästä näkymästä
+	
+	private void setLanguageChoiceBox() {
+		languageChoiceBox.getItems().add(App.bundle.getString("english.choice.text"));
+		languageChoiceBox.getItems().add(App.bundle.getString("gaeilge.choice.text"));
+	}
+	
+	@FXML
+	private void changeSelectedLanguage() throws IOException {
+		if (languageChoiceBox.getValue() == App.bundle.getString("english.choice.text")) {
+			App.setLocaleEnglish();
+		} if (languageChoiceBox.getValue() == App.bundle.getString("gaeilge.choice.text")) {
+			App.setLocaleGaeilge();
+		}
+	}
 	
 	@FXML
 	private void save() throws SQLException {
@@ -68,6 +85,7 @@ public class AddEditProductController {
 		controller.updateBudget(budget);
 	}
 	
+	// Poistetaan metodi tästä näkymästä
 	@FXML
 	private void moveToUsed() throws SQLException {
 		controller.changeProductStatus(product, "used");
@@ -82,6 +100,7 @@ public class AddEditProductController {
 		closeWindow();
 	}
 	
+	// Poistetaan metodi tästä näkymästä
 	@FXML
 	private void moveToWaste() throws SQLException {
 		controller.changeProductStatus(product, "waste");
@@ -138,6 +157,8 @@ public class AddEditProductController {
 		this.editing = editing;
 		this.product = product;
 		budget = controller.getBudget(LocalDate.now());
+		
+		setLanguageChoiceBox();
 		
 		getCategories();
 		showError(false);
