@@ -43,24 +43,24 @@
             </VBox>
             <VBox layoutY="440.0" prefHeight="50.0" prefWidth="250.0">
                <children>
-                  <Button id="button-add-product-edit-budget" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="150.0" text="%add.product.button.text" />
+                  <Button id="button-add-product-edit-budget" mnemonicParsing="false" onAction="#addProduct" prefHeight="30.0" prefWidth="170.0" text="%add.product.button.text" />
                </children>
                <padding>
-                  <Insets left="50.0" />
+                  <Insets left="40.0" />
                </padding>
             </VBox>
          </children>
       </AnchorPane>
       <HBox layoutX="253.0" prefHeight="50.0" prefWidth="850.0">
          <children>
-            <Label id="label-products-in-fridge" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="%choose.language.text">
+            <Label id="label-products-in-fridge" alignment="CENTER" prefHeight="30.0" prefWidth="170.0" text="%choose.language.text">
                <HBox.margin>
-                  <Insets left="430.0" top="20.0" />
+                  <Insets left="485.0" top="20.0" />
                </HBox.margin>
             </Label>
             <ChoiceBox fx:id="languageChoiceBox" onAction="#changeSelectedLanguage" prefWidth="170.0">
                <HBox.margin>
-                  <Insets left="25.0" top="20.0" />
+                  <Insets top="20.0" />
                </HBox.margin></ChoiceBox>
          </children>
       </HBox>
