@@ -80,8 +80,8 @@
                   <TableColumn fx:id="fridgeBestBeforeColumn" prefWidth="120.0" text="%best.before.text" />
                   <TableColumn fx:id="fridgeExpirationColumn" prefWidth="75.0" text="%status.text" />
                   <TableColumn fx:id="fridgeEditColumn" prefWidth="90.0" text="%edit.text" />
-                  <TableColumn fx:id="fridgeEditColumn1" prefWidth="110.0" text="%put.to.used.text" />
-                  <TableColumn fx:id="fridgeEditColumn11" prefWidth="90.0" text="%put.to.waste.text" />
+                  <TableColumn fx:id="fridgePutToUsedColumn" prefWidth="110.0" text="%put.to.used.text" />
+                  <TableColumn fx:id="fridgePutToWasteColumn" prefWidth="90.0" text="%put.to.waste.text" />
               </columns>
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />

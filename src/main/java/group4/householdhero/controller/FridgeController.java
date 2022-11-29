@@ -39,14 +39,6 @@ public class FridgeController {
 	@FXML private TableColumn<Product, Button> fridgePutToUsedColumn;
 	@FXML private TableColumn<Product, Button> fridgePutToWasteColumn;
 	
-	/*@FXML private TableView<Product> expiredTable;
-	@FXML private TableColumn<Product, String> expiredNameColumn;
-	@FXML private TableColumn<Product, Integer> expiredCategoryColumn;
-	@FXML private TableColumn<Product, ImageView> expiredIconColumn;
-	@FXML private TableColumn<Product, Double> expiredPriceColumn;
-	@FXML private TableColumn<Product, LocalDate> expiredBestBeforeColumn;
-	@FXML private TableColumn<Product, Button> expiredEditColumn;*/
-	
 	@FXML
 	private void initialize() throws IOException, SQLException {
 		controller = App.getController();
@@ -88,11 +80,13 @@ public class FridgeController {
     @FXML
 	static void putToUsed(Product product) throws IOException, SQLException {
 		controller.changeProductStatus(product, "used");
+		App.showFridge();
 	}
 	
     @FXML
 	static void putToWaste(Product product) throws IOException, SQLException {
 		controller.changeProductStatus(product, "waste");
+		App.showFridge();
 	}
     
     public boolean checkCurrentBudget() throws IOException, SQLException {
@@ -111,18 +105,8 @@ public class FridgeController {
 		fridgeBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
 		fridgeExpirationColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("expiration"));
 		fridgeEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
-		
-		// Nämä eivät toimi vielä
-		//fridgePutToUsedColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("putToUsedButton"));
-		//fridgePutToWasteColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("putToWasteButton"));
-		
-		
-		/*expiredNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-		expiredCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("category"));
-		expiredIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
-		expiredPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
-		expiredBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
-		expiredEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));*/
+		fridgePutToUsedColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("putToUsedButton"));
+		fridgePutToWasteColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("putToWasteButton"));
     }
     
     public void updateFridgeContents() throws SQLException {
@@ -130,16 +114,6 @@ public class FridgeController {
     	checkBestBefore(products);
     	fridgeTable.setItems(FXCollections.observableArrayList(products));
     }
-    
-    /*private void updateExpiredContents() throws SQLException {
-    	List<Product> list = controller.getProducts("expired");
-    	if (list.isEmpty()) {
-    		expiredVBox.setVisible(false);
-    	} else {
-    		expiredVBox.setVisible(true);
-    		expiredTable.setItems(FXCollections.observableArrayList(list));
-    	}
-    }*/
     
     private List<Product> checkBestBefore(List<Product> products) throws SQLException {
     	for (Product product : products) {
