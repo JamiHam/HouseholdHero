@@ -79,16 +79,6 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Button>
-            <Button id="product-save-delete-used-waste-buttons" fx:id="usedButton" mnemonicParsing="false" onAction="#moveToUsed" prefWidth="120.0" text="%put.to.used.text">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
-            <Button id="product-save-delete-used-waste-buttons" fx:id="wasteButton" mnemonicParsing="false" onAction="#moveToWaste" prefWidth="120.0" text="%put.to.waste.text">
-               <VBox.margin>
-                  <Insets top="20.0" />
-               </VBox.margin>
-            </Button>
          </children>
       </VBox>
    </children>

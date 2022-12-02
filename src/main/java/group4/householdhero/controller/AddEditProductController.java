@@ -29,9 +29,7 @@ public class AddEditProductController {
 	@FXML private Label errorLabel;
 	
 	@FXML private Button saveButton;
-	@FXML private Button usedButton; // poistetaan tästä näkymästä
 	@FXML private Button deleteButton;
-	@FXML private Button wasteButton; // poistetaan tästä näkymästä
 	
 	private void setLanguageChoiceBox() {
 		languageChoiceBox.getItems().add(App.bundle.getString("english.choice.text"));
@@ -85,25 +83,11 @@ public class AddEditProductController {
 		controller.updateBudget(budget);
 	}
 	
-	// Poistetaan metodi tästä näkymästä
-	@FXML
-	private void moveToUsed() throws SQLException {
-		controller.changeProductStatus(product, "used");
-		closeWindow();
-	}
-	
 	@FXML
 	private void delete() throws SQLException {
 		controller.deleteProduct(product);
 		budget.setSpentBudget(budget.getSpentBudget() - product.getPrice());
 		controller.updateBudget(budget);
-		closeWindow();
-	}
-	
-	// Poistetaan metodi tästä näkymästä
-	@FXML
-	private void moveToWaste() throws SQLException {
-		controller.changeProductStatus(product, "waste");
 		closeWindow();
 	}
 	
@@ -164,17 +148,13 @@ public class AddEditProductController {
 		showError(false);
 		
 		if (editing) {
-			usedButton.setVisible(true);
 			deleteButton.setVisible(true);
-			wasteButton.setVisible(true);
 			nameTextField.setText(product.getName());
 			categoryChoiceBox.setValue(product.getCategory());
 			priceTextField.setText(Double.toString(product.getPrice()));
 			bestBeforeDatePicker.setValue(product.getBestBefore());
 		} else {
-			usedButton.setVisible(false);
 			deleteButton.setVisible(false);
-			wasteButton.setVisible(false);
 		}
 	}
 }
