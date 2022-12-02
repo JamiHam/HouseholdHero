@@ -34,7 +34,8 @@ public class FridgeController {
 	@FXML private TableColumn<Product, ImageView> fridgeIconColumn;
 	@FXML private TableColumn<Product, Double> fridgePriceColumn;
 	@FXML private TableColumn<Product, LocalDate> fridgeBestBeforeColumn;
-	@FXML private TableColumn<Product, String> fridgeExpirationColumn;
+	//@FXML private TableColumn<Product, String> fridgeExpirationColumn; // expiration status as String
+	@FXML private TableColumn<Product, ImageView> fridgeExpirationColumn; // expiration status as ImageView
 	@FXML private TableColumn<Product, Button> fridgeEditColumn;
 	@FXML private TableColumn<Product, Button> fridgePutToUsedColumn;
 	@FXML private TableColumn<Product, Button> fridgePutToWasteColumn;
@@ -103,7 +104,8 @@ public class FridgeController {
 		fridgeIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
 		fridgePriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 		fridgeBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
-		fridgeExpirationColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("expiration"));
+		//fridgeExpirationColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("expiration")); // expiration status as String
+		fridgeExpirationColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("statusImageView")); // expiration status as ImageView
 		fridgeEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
 		fridgePutToUsedColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("putToUsedButton"));
 		fridgePutToWasteColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("putToWasteButton"));

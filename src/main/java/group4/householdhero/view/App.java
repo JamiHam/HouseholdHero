@@ -57,14 +57,6 @@ public class App extends Application {
     }
     
     private static FXMLLoader getFXMLLoader(String fxml) throws IOException {
-    	// Create Locale and ResourceBundle
-    	
-    	//locale = new Locale("ga_IE");
-    	//locale = new Locale("en_IE");
-    	
-    	//setLocaleGaeilge();
-    	
-    	
     	// Get layout from FXML file and set the bundle to be used
     	currentFXML = fxml;
     	FXMLLoader loader = new FXMLLoader(App.class.getResource((fxml + ".fxml")));

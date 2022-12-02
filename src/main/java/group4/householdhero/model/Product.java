@@ -58,7 +58,7 @@ public class Product {
 		});
 	}
 	
-	public void moveToUsed() throws IOException, SQLException {
+	public void putToUsed() throws IOException, SQLException {
 		model.putToUsed(this);
 	}
 	
@@ -67,14 +67,14 @@ public class Product {
 		putToUsedButton.getStyleClass().add("product-put-to-used-button");
 		putToUsedButton.setOnAction(e -> {
 			try {
-				moveToUsed();
+				putToUsed();
 			} catch (IOException | SQLException e1) {
 				e1.printStackTrace();
 			}
 		});
 	}
 	
-	public void moveToWaste() throws IOException, SQLException {
+	public void putToWaste() throws IOException, SQLException {
 		model.putToWaste(this);
 	}
 	
@@ -83,7 +83,7 @@ public class Product {
 		putToWasteButton.getStyleClass().add("product-put-to-waste-button");
 		putToWasteButton.setOnAction(e -> {
 			try {
-				moveToWaste();
+				putToWaste();
 			} catch (IOException | SQLException e1) {
 				e1.printStackTrace();
 			}
