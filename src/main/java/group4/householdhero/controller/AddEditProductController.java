@@ -20,8 +20,6 @@ public class AddEditProductController {
 	private Product product;
 	private Budget budget;
 	
-	@FXML private ChoiceBox<String> languageChoiceBox;
-	
 	@FXML private TextField nameTextField;
 	@FXML private TextField priceTextField;
 	@FXML private ChoiceBox<String> categoryChoiceBox;
@@ -30,20 +28,6 @@ public class AddEditProductController {
 	
 	@FXML private Button saveButton;
 	@FXML private Button deleteButton;
-	
-	private void setLanguageChoiceBox() {
-		languageChoiceBox.getItems().add(App.bundle.getString("english.choice.text"));
-		languageChoiceBox.getItems().add(App.bundle.getString("gaeilge.choice.text"));
-	}
-	
-	@FXML
-	private void changeSelectedLanguage() throws IOException {
-		if (languageChoiceBox.getValue() == App.bundle.getString("english.choice.text")) {
-			App.setLocaleEnglish();
-		} if (languageChoiceBox.getValue() == App.bundle.getString("gaeilge.choice.text")) {
-			App.setLocaleGaeilge();
-		}
-	}
 	
 	@FXML
 	private void save() throws SQLException {
@@ -141,8 +125,6 @@ public class AddEditProductController {
 		this.editing = editing;
 		this.product = product;
 		budget = controller.getBudget(LocalDate.now());
-		
-		setLanguageChoiceBox();
 		
 		getCategories();
 		showError(false);

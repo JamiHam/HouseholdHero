@@ -9,7 +9,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -25,20 +24,6 @@
             </Label>
          </children>
       </AnchorPane>
-      <HBox prefHeight="50.0" prefWidth="550.0">
-         <children>
-            <Label id="label-products-in-fridge" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="%choose.language.text">
-               <HBox.margin>
-                  <Insets left="130.0" top="20.0" />
-               </HBox.margin>
-            </Label>
-            <ChoiceBox fx:id="languageChoiceBox" onAction="#changeSelectedLanguage" prefWidth="170.0">
-               <HBox.margin>
-                  <Insets left="25.0" top="20.0" />
-               </HBox.margin>
-            </ChoiceBox>
-         </children>
-      </HBox>
       <VBox alignment="CENTER" layoutX="175.0" layoutY="197.0" prefHeight="305.0" prefWidth="200.0">
          <children>
             <GridPane prefHeight="306.0" prefWidth="200.0">
