@@ -24,10 +24,17 @@ import group4.householdhero.model.DataAccessObject;
 import group4.householdhero.model.Model;
 import group4.householdhero.model.Product;
 
-public class DAOTest {
+public class DAOTest extends DataAccessObject{
+
+
+	static Model modeli = mock(Model.class);
+	public DAOTest(Model model) {
+		super(modeli);
+		// TODO Auto-generated constructor stub
+	}
+
 	
-	Model model = mock(Model.class);
-	DataAccessObject dao = mock(DataAccessObject.class);
+	
 	private int id = 1;
 	private String name = "Maito";
 	private double price = 3.50;
@@ -43,7 +50,7 @@ public class DAOTest {
 	public void getConnection() {
 		//dao = new DataAccessObject(model);
 		System.out.println("Getting connection");
-		dao.connect();
+		connect();
 		when(dummy.getId()).thenReturn(id);
 		when(dummy.getName()).thenReturn(name);
 		when(dummy.getPrice()).thenReturn(price);
@@ -52,14 +59,14 @@ public class DAOTest {
 		when(dummy.getBudgetId()).thenReturn(budgetid);
 		when(dummy.getStatusId()).thenReturn(statusid);
 		System.out.println("Adding dummy item");
-		dao.addProduct(dummy);
+		addProduct(dummy);
 	}
 	
 	@AfterEach
 	public void testEndConnection() throws SQLException {
 		System.out.println("Deleting dummy item");
-		dao.deleteProduct(dummy);
-		dao.finalize();
+		deleteProduct(dummy);
+		finalize();
 	}
 	
 	/*@Test
@@ -72,8 +79,8 @@ public class DAOTest {
 	@DisplayName("Adding products")
 	public void testAdd() throws SQLException {
 		System.out.println("Getting product");
-		Product dummyProduct = dao.getProduct(1);
-		System.out.println(dao.getProduct(1));
+		Product dummyProduct = getProduct(1);
+		System.out.println(getProduct(1));
 		assertEquals(id, dummyProduct.getId(), "getProduct(): Products id incorrect.");
 		assertEquals(name, dummyProduct.getName(), "getProduct(): Products name incorrect.");
 		assertEquals(category, dummyProduct.getCategory(), "getProduct(): Products category incorrect.");
