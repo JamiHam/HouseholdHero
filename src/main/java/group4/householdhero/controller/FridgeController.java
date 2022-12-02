@@ -121,7 +121,7 @@ public class FridgeController {
     	for (Product product : products) {
     		if (product.getBestBefore().isBefore(LocalDate.now())) {
     			product.setExpiration("expired");
-    		} else if (product.getBestBefore().isBefore(LocalDate.now().plusDays(1))) {
+    		} else if (product.getBestBefore().isBefore(LocalDate.now().plusDays(2))) {
     			product.setExpiration("soon to expire");
     		} else {
     			product.setExpiration("good to go");
