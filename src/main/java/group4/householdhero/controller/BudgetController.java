@@ -50,7 +50,7 @@ public class BudgetController {
 	@FXML private TableColumn<Product, ImageView> productsIconColumn;
 	@FXML private TableColumn<Product, Double> productsPriceColumn;
 	@FXML private TableColumn<Product, LocalDate> productsBestBeforeColumn;
-	@FXML private TableColumn<Product, Integer> productsStatusColumn;
+	@FXML private TableColumn<Product, String> productsStatusColumn;
 	@FXML private TableColumn<Product, Button> productsEditColumn;
 	
 	@FXML
@@ -158,7 +158,7 @@ public class BudgetController {
 		productsIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
 		productsPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 		productsBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
-		productsStatusColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("statusId"));
+		productsStatusColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("status"));
 		//productsEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
 	}
 }

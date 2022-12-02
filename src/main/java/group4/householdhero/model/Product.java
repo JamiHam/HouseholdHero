@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 
+import group4.householdhero.view.App;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 
@@ -150,6 +151,10 @@ public class Product {
 
 	public int getStatusId() {
 		return statusId;
+	}
+	
+	public String getStatus() {
+		return App.bundle.getString("product.status.text." + statusId);
 	}
 
 	public void setStatusId(int statusId) {
