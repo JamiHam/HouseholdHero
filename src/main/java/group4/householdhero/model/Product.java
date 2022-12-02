@@ -178,6 +178,8 @@ public class Product {
 	
 	public void setExpiration(String expiration) {
 		this.expiration = expiration;
+		String className = expiration.replace(" ", "-");
+		statusImageView.getStyleClass().add(className);
 	}
 	
 	public String getExpiration() {
