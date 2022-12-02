@@ -78,14 +78,15 @@ public class DataAccessObject {
 		// Päivittää kaikki productin fieldit (paitsi budjetin ja statuksen) id:n
 		// perusteella.
 
-		String updateProductQuery = "update Product set name=?, price=?, best_before=?, budget_ID=? where product_ID=?";
+		String updateProductQuery = "update Product set name=?, price=?, best_before=?, budget_ID=?, category_ID=? where product_ID=?";
 
 		PreparedStatement stmt = conn.prepareStatement(updateProductQuery);
 		stmt.setString(1, product.getName());
 		stmt.setDouble(2, product.getPrice());
 		stmt.setDate(3, Date.valueOf(product.getBestBefore()));
 		stmt.setInt(4, product.getBudgetId());
-		stmt.setInt(5, product.getId());
+		stmt.setInt(5, getCategoryIdByName(product));
+		stmt.setInt(6, product.getId());
 
 		System.out.println(updateProductQuery);
 		int updates = stmt.executeUpdate();

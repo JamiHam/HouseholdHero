@@ -2,28 +2,44 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="main-anchorpane-add-edit-budget-gui" minHeight="600.0" minWidth="500.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.controller.AddEditBudgetController">
+<AnchorPane id="main-anchorpane-add-edit-budget-gui" minHeight="700.0" minWidth="550.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/null" xmlns:fx="http://javafx.com/fxml/1" fx:controller="group4.householdhero.controller.AddEditBudgetController">
    <children>
-      <AnchorPane id="top-anchorpane-add-edit-budget-gui" prefHeight="130.0" prefWidth="500.0">
+      <AnchorPane id="top-anchorpane-add-edit-budget-gui" prefHeight="180.0" prefWidth="550.0">
          <children>
-            <Label layoutX="195.0" layoutY="45.0" text="%budget.for.food.text">
+            <Label layoutX="201.0" layoutY="100.0" text="%budget.for.food.text">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
+            <HBox prefHeight="50.0" prefWidth="550.0">
+               <children>
+                  <Label id="label-products-in-fridge" alignment="CENTER" prefHeight="30.0" prefWidth="200.0" text="%choose.language.text">
+                     <HBox.margin>
+                        <Insets left="130.0" top="20.0" />
+                     </HBox.margin>
+                  </Label>
+                  <ChoiceBox fx:id="languageChoiceBox" onAction="#changeSelectedLanguage" prefWidth="170.0">
+                     <HBox.margin>
+                        <Insets left="25.0" top="20.0" />
+                     </HBox.margin>
+                  </ChoiceBox>
+               </children>
+            </HBox>
          </children>
       </AnchorPane>
-      <VBox layoutX="125.0" layoutY="237.0" prefHeight="125.0" prefWidth="250.0">
+      <VBox layoutX="150.0" layoutY="270.0" prefHeight="125.0" prefWidth="250.0">
          <children>
             <GridPane>
               <columnConstraints>
@@ -60,7 +76,7 @@
             </GridPane>
          </children>
       </VBox>
-      <VBox layoutX="190.0" layoutY="449.0" prefHeight="150.0" prefWidth="120.0">
+      <VBox layoutX="215.0" layoutY="470.0" prefHeight="150.0" prefWidth="120.0">
          <children>
             <Button id="budget-save-delete-buttons" fx:id="saveButton" mnemonicParsing="false" onAction="#save" prefWidth="120.0" text="%save.button.text" />
             <Button id="budget-save-delete-buttons" fx:id="deleteButton" mnemonicParsing="false" prefWidth="120.0" text="%delete.button.text" visible="false">

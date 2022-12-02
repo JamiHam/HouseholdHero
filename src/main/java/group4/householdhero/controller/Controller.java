@@ -73,7 +73,14 @@ public class Controller implements IController {
 		FridgeController.editProduct(product);
 	}
 	
+	public void putToUsed(Product product) throws IOException, SQLException {
+		FridgeController.putToUsed(product);
+	}
 	
+	@Override
+	public void putToWaste(Product product) throws IOException, SQLException {
+		FridgeController.putToWaste(product);
+	}
 
 	public List<String> getCategories() throws SQLException {
 		return model.getCategories();
@@ -96,4 +103,5 @@ public class Controller implements IController {
 	public boolean showBudgetWindow(boolean editing, Budget budget) throws IOException, SQLException {
 		return App.showBudgetWindow(editing, budget);
 	}
+
 }
