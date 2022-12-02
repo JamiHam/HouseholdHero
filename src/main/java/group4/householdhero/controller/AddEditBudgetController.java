@@ -19,8 +19,6 @@ public class AddEditBudgetController {
 	private boolean editing;
 	private Budget budget;
 	
-	@FXML private ChoiceBox<String> languageChoiceBox;
-	
 	@FXML private DatePicker startDatePicker;
 	@FXML private DatePicker endDatePicker;
 	@FXML private TextField plannedBudgetTextField;
@@ -28,20 +26,6 @@ public class AddEditBudgetController {
 	
 	@FXML private Button saveButton;
 	@FXML private Button deleteButton;
-	
-	private void setLanguageChoiceBox() {
-		languageChoiceBox.getItems().add(App.bundle.getString("english.choice.text"));
-		languageChoiceBox.getItems().add(App.bundle.getString("gaeilge.choice.text"));
-	}
-	
-	@FXML
-	private void changeSelectedLanguage() throws IOException {
-		if (languageChoiceBox.getValue() == App.bundle.getString("english.choice.text")) {
-			App.setLocaleEnglish();
-		} if (languageChoiceBox.getValue() == App.bundle.getString("gaeilge.choice.text")) {
-			App.setLocaleGaeilge();
-		}
-	}
 	
 	@FXML
 	private void save() throws SQLException {
@@ -116,8 +100,6 @@ public class AddEditBudgetController {
 		this.controller = App.getController();
 		this.budget = budget;
 		this.editing = editing;
-		
-		setLanguageChoiceBox();
 		
 		showError(false);
 
