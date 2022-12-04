@@ -87,7 +87,7 @@ public class BudgetControllerTest extends BudgetController {
 		assertEquals(6.5, wasteTotalCost, "Waste cost was incorrect");
 	}
 	
-	@Test
+	/*@Test
 	public void setBudgetInformationTest() {
 		startDateLabel = new Label();
 		endDateLabel = new Label();
@@ -108,5 +108,5 @@ public class BudgetControllerTest extends BudgetController {
 		assertEquals("100.0", plannedBudgetLabel.getText(), "Planned budget was incorrect");
 		assertEquals("25.0", spentBudgetLabel.getText(), "Spent budget was incorrect");
 		assertEquals("75.0", remainingBudgetLabel.getText(), "Remaining budget was incorrect");
-	}
+	}*/
 }
