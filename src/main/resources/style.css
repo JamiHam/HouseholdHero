@@ -54,7 +54,7 @@
 	-fx-border-color: #000000;
 	-fx-border-width: 1px;
 	-fx-padding: 2px 10px 2px 10px;
-	-fx-background-image: url("edit-icon.png");
+	-fx-background-image: url("img/edit-icon.png");
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: 20 20;
 	-fx-background-position: center;
@@ -69,7 +69,7 @@
 	-fx-border-color: #000000;
 	-fx-border-width: 1px;
 	-fx-padding: 2px 10px 2px 10px;
-	-fx-background-image: url("put-to-used-icon.png");
+	-fx-background-image: url("img/put-to-used-icon.png");
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: 20 20;
 	-fx-background-position: center;
@@ -84,7 +84,7 @@
 	-fx-border-color: #000000;
 	-fx-border-width: 1px;
 	-fx-padding: 2px 10px 2px 10px;
-	-fx-background-image: url("delete-icon.png");
+	-fx-background-image: url("img/delete-icon.png");
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: 20 20;
 	-fx-background-position: center;
@@ -98,110 +98,110 @@
  * category icons
  */
 .baked-goods {
-	-fx-image: url("category-icon-baked-goods-40.png");
+	-fx-image: url("img/category-icon-baked-goods-40.png");
 }
 
 .bread {
-	-fx-image: url("category-icon-bread-40.png");
+	-fx-image: url("img/category-icon-bread-40.png");
 }
 
 .candy {
-	-fx-image: url("category-icon-candy-40.png");
+	-fx-image: url("img/category-icon-candy-40.png");
 }
 
 .canned-goods {
-	-fx-image: url("category-icon-canned-goods-40.png");
+	-fx-image: url("img/category-icon-canned-goods-40.png");
 }
 
 .condiments {
-	-fx-image: url("category-icon-condiments-40.png");
+	-fx-image: url("img/category-icon-condiments-40.png");
 }
 
 .dairy {
-	-fx-image: url("category-icon-dairy-40.png");
+	-fx-image: url("img/category-icon-dairy-40.png");
 }
 
 .eggs {
-	-fx-image: url("category-icon-eggs-40.png");
+	-fx-image: url("img/category-icon-eggs-40.png");
 }
 
 .fats-and-oils {
-	-fx-image: url("category-icon-fats-and-oils-40.png");
+	-fx-image: url("img/category-icon-fats-and-oils-40.png");
 }
 
 .fish {
-	-fx-image: url("category-icon-fish-40.png");
+	-fx-image: url("img/category-icon-fish-40.png");
 }
 
 .fruits-and-berries {
-	-fx-image: url("category-icon-fruits-and-berries-40.png");
+	-fx-image: url("img/category-icon-fruits-and-berries-40.png");
 }
 
 .juice {
-	-fx-image: url("category-icon-juice-40.png");
+	-fx-image: url("img/category-icon-juice-40.png");
 }
 
 .meat {
-	-fx-image: url("category-icon-meat-40.png");
+	-fx-image: url("img/category-icon-meat-40.png");
 }
 
 .nuts-and-seeds {
-	-fx-image: url("category-icon-nuts-and-seeds-40.png");
+	-fx-image: url("img/category-icon-nuts-and-seeds-40.png");
 }
 
 .other-drinks {
-	-fx-image: url("category-icon-other-drinks-40.png");
+	-fx-image: url("img/category-icon-other-drinks-40.png");
 }
 
 .other-food {
-	-fx-image: url("category-icon-other-food-40.png");
+	-fx-image: url("img/category-icon-other-food-40.png");
 }
 
 .plant-based-dairy-alternatives {
-	-fx-image: url("category-icon-plant-based-dairy-alternatives-40.png");
+	-fx-image: url("img/category-icon-plant-based-dairy-alternatives-40.png");
 }
 
 .plant-based-protein {
-	-fx-image: url("category-icon-plant-based-protein-40.png");
+	-fx-image: url("img/category-icon-plant-based-protein-40.png");
 }
 
 .poultry {
-	-fx-image: url("category-icon-poultry-40.png");
+	-fx-image: url("img/category-icon-poultry-40.png");
 }
 
 .rice-and-pasta {
-	-fx-image: url("category-icon-rice-and-pasta-40.png");
+	-fx-image: url("img/category-icon-rice-and-pasta-40.png");
 }
 
 .shellfish {
-	-fx-image: url("category-icon-shellfish-40.png");
+	-fx-image: url("img/category-icon-shellfish-40.png");
 }
 
 .soft-drinks {
-	-fx-image: url("category-icon-soft-drinks-40.png");
+	-fx-image: url("img/category-icon-soft-drinks-40.png");
 }
 
 .sugars-and-honey {
-	-fx-image: url("category-icon-sugars-and-honey-40.png");
+	-fx-image: url("img/category-icon-sugars-and-honey-40.png");
 }
 
 .vegetables {
-	-fx-image: url("category-icon-vegetables-40.png");
+	-fx-image: url("img/category-icon-vegetables-40.png");
 }
 
 /*
  * status icons
  */
 .good-to-go {
-	-fx-image: url("status-good-to-go-icon.png");
+	-fx-image: url("img/status-good-to-go-icon.png");
 }
 
 .soon-to-expire {
-	-fx-image: url("status-soon-to-expire-icon.png");
+	-fx-image: url("img/status-soon-to-expire-icon.png");
 }
 
 .expired {
-	-fx-image: url("status-expired-icon.png");
+	-fx-image: url("img/status-expired-icon.png");
 }
 
 #product-save-delete-used-waste-buttons, #budget-save-delete-buttons {
