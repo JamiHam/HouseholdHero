@@ -1,7 +1,10 @@
 package group4.householdhero.view;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -152,10 +155,10 @@ public class App extends Application {
     	return new Pair<FXMLLoader, Stage> (loader, stage);
     }
     
-    private static void setTitleAndIcon(Stage stage) {
+    private static void setTitleAndIcon(Stage stage) throws FileNotFoundException {
 		stage.setTitle("HouseholdHero");
-
-    	Image icon = new Image(String.valueOf(new File("householdhero-icon-white-fridge.png")));
+		
+		Image icon = new Image("householdhero-icon-white-fridge.png");
     	stage.getIcons().add(icon);
 	}
     
