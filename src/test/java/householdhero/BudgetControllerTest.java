@@ -60,11 +60,11 @@ public class BudgetControllerTest extends BudgetController {
 		
 		Product product5 = mock(Product.class);
 		when(product5.getPrice()).thenReturn(3.0);
-		when(product5.getStatusId()).thenReturn(4);
+		when(product5.getStatusId()).thenReturn(3);
 		
 		Product product6 = mock(Product.class);
 		when(product6.getPrice()).thenReturn(3.5);
-		when(product6.getStatusId()).thenReturn(4);
+		when(product6.getStatusId()).thenReturn(3);
 		
 		
 		productList.add(product1);
