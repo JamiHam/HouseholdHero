@@ -28,7 +28,7 @@ public class BudgetControllerTest extends BudgetController {
 	@BeforeAll
 	public void setController() {
 		controller = mock(Controller.class);
-		panel = new JFXPanel();
+		//panel = new JFXPanel();
 	}
 	
 	@Test
