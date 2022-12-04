@@ -4,7 +4,6 @@ module group4.householdhero {
 	requires javafx.graphics;
 	requires javafx.base;
 	requires java.sql;
-	requires javafx.swing;
 	
 	opens group4.householdhero.model to javafx.fxml;
     opens group4.householdhero.view to javafx.fxml;
