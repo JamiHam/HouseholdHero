@@ -19,17 +19,14 @@ import group4.householdhero.controller.Controller;
 import group4.householdhero.model.Budget;
 import group4.householdhero.model.Product;
 import javafx.application.Platform;
-import javafx.embed.swing.JFXPanel;
 import javafx.scene.control.Label;
 
 @TestInstance(Lifecycle.PER_CLASS)
 public class BudgetControllerTest extends BudgetController {
-	//JFXPanel panel;
 	
 	@BeforeAll
 	public void setController() {
 		controller = mock(Controller.class);
-		//panel = new JFXPanel();
 	}
 	
 	@BeforeAll

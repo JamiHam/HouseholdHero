@@ -37,11 +37,6 @@
 		    <version>4.9.0</version>
 		    <scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.openjfx</groupId>
-		    <artifactId>javafx-swing</artifactId>
-		    <version>13</version>
-		</dependency>
     </dependencies>
     <build>
         <plugins>
@@ -56,7 +51,7 @@
             <plugin>
                 <groupId>org.openjfx</groupId>
                 <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.6</version>
+                <version>0.0.8</version>
                 <executions>
                     <execution>
                         <!-- Default configuration for running -->
