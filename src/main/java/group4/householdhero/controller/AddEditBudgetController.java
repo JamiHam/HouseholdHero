@@ -27,6 +27,10 @@ public class AddEditBudgetController {
 	@FXML private Button saveButton;
 	@FXML private Button deleteButton;
 	
+	/**
+	 * Saves current budget to database
+	 * @throws SQLException
+	 */
 	@FXML
 	private void save() throws SQLException {
 		if(validateInputs()) {
@@ -35,6 +39,7 @@ public class AddEditBudgetController {
 			double plannedBudget = Double.parseDouble(plannedBudgetTextField.getText());
 			
 			if (controller.checkBudgets(startDate, endDate)) {
+				System.out.println(controller.checkBudgets(startDate, endDate));
 				if (editing) {
 					budget.setStartDate(startDate);
 					budget.setEndDate(endDate);
@@ -54,25 +59,43 @@ public class AddEditBudgetController {
 		}
 	}
 	
-	//Will be completed in OTP2
+	/**
+	 * Deletes current budget from database
+	 * @throws SQLException
+	 */
 	@FXML
 	private void deleteBudget() throws SQLException {
-		//controller.deleteBudget();
+		controller.deleteBudget(budget);
 	}
 	
+	/**
+	 * Closes the editing window
+	 */
 	private void closeWindow() {
 		Stage stage = (Stage) saveButton.getScene().getWindow();
 		stage.close();
 	}
 	
+	/**
+	 * Sets error message to given string
+	 * @param message
+	 */
 	private void setErrorMessage(String message) {
 		errorLabel.setText(message);
 	}
 	
+	/**
+	 * Makes error message visible
+	 * @param error
+	 */
 	private void showError(boolean error) {
 		errorLabel.setVisible(error);
 	}
 	
+	/**
+	 * Validates the user's inputs
+	 * @return
+	 */
 	private boolean validateInputs() {
 		boolean validity = true;
 		
@@ -96,6 +119,11 @@ public class AddEditBudgetController {
 		return validity;
 	}
 	
+	/**
+	 * Initializes the window in either adding or editing mode
+	 * @param editing
+	 * @param budget
+	 */
 	public void initialize(boolean editing, Budget budget) {
 		this.controller = App.getController();
 		this.budget = budget;

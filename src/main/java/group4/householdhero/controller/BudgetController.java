@@ -73,11 +73,18 @@ public class BudgetController {
 
 	}
 	
+	/**
+	 * Adds language options to choice box
+	 */
 	protected void setLanguageChoiceBox() {
 		languageChoiceBox.getItems().add(App.bundle.getString("english.choice.text"));
 		languageChoiceBox.getItems().add(App.bundle.getString("gaeilge.choice.text"));
 	}
 	
+	/**
+	 * Changes the selected language
+	 * @throws IOException
+	 */
 	@FXML
 	private void changeSelectedLanguage() throws IOException {
 		if (languageChoiceBox.getValue() == App.bundle.getString("english.choice.text")) {
@@ -87,6 +94,10 @@ public class BudgetController {
 		}
 	}
 	
+	/**
+	 * Changes the selected budget
+	 * @throws SQLException
+	 */
 	@FXML
 	private void changeSelectedBudget() throws SQLException {
 		budget = budgetChoiceBox.getValue();
@@ -96,16 +107,30 @@ public class BudgetController {
 		setPieChart();
 	}
 	
+	/**
+	 * Changes to fridge-view
+	 * @return
+	 * @throws IOException
+	 */
 	@FXML
 	protected boolean switchToFridge() throws IOException {
 		return controller.showFridge();
 	}
 	
+	/**
+	 * Opens the budget editing window
+	 * @return
+	 * @throws SQLException
+	 * @throws IOException
+	 */
 	@FXML
 	protected boolean editBudget() throws SQLException, IOException {
 		return controller.showBudgetWindow(true, budget);
 	}
 	
+	/**
+	 * Sets selected budget's information to labels
+	 */
 	protected void setBudgetInformation() {
 		startDateLabel.setText((budget.getStartDate()).toString());
 		endDateLabel.setText((budget.getEndDate()).toString());
@@ -114,6 +139,9 @@ public class BudgetController {
 		remainingBudgetLabel.setText(Double.toString(budget.getPlannedBudget() - budget.getSpentBudget()));
 	}
 	
+	/**
+	 * Calculates the total price of each status in the current budget
+	 */
 	protected void calculateStatusPrices() {
 		fridgeTotalCost = 0;
 		usedTotalCost = 0;
@@ -134,24 +162,40 @@ public class BudgetController {
 		}
 	}
 	
+	/**
+	 * Sets status prices to pie chart
+	 */
 	private void setPieChart() {
 		ObservableList<PieChart.Data> pieChartData =
-                FXCollections.observableArrayList(
-                new PieChart.Data(App.bundle.getString("budget.distribution.fridge.text"), fridgeTotalCost),
-                new PieChart.Data(App.bundle.getString("budget.distribution.used.text"), usedTotalCost),
-                new PieChart.Data(App.bundle.getString("budget.distribution.waste.text"), wasteTotalCost));
+			FXCollections.observableArrayList(
+            new PieChart.Data(App.bundle.getString("budget.distribution.fridge.text"), fridgeTotalCost),
+            new PieChart.Data(App.bundle.getString("budget.distribution.used.text"), usedTotalCost),
+            new PieChart.Data(App.bundle.getString("budget.distribution.waste.text"), wasteTotalCost),
+			new PieChart.Data("Placeholder(Unused)", budget.getPlannedBudget() - budget.getSpentBudget()));
+			
         pieChart.setData(pieChartData);
 	}
 	
+	/**
+	 * Gets all budgets from database and sets them to budget choice box
+	 * @throws SQLException
+	 */
 	private void getBudgets() throws SQLException {
 		budgetChoiceBox.getItems().addAll(controller.getAllBudgets());
 	}
 	
+	/**
+	 * Gets all products in the selected budget and adds them to the product table
+	 * @throws SQLException
+	 */
 	private void setProducts() throws SQLException {
 		productList = (ArrayList<Product>) controller.getProductsByBudget(budget.getId());
 		productsDuringBudgetTable.setItems(FXCollections.observableArrayList(productList));
 	}
 	
+	/**
+	 * Initializes table columns
+	 */
 	private void initializeColumns() {
 		productsNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 		productsCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("category"));
@@ -159,6 +203,5 @@ public class BudgetController {
 		productsPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 		productsBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
 		productsStatusColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("status"));
-		//productsEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
 	}
 }
