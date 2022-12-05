@@ -8,16 +8,16 @@ import java.util.List;
 
 public class DataAccessObject {
 
-	private Connection conn;
+	protected Connection conn;
 	private Model model = new Model();
 	
-	public DataAccessObject(Model model) {
-		connect();
+	public DataAccessObject(Model model, String database) {
+		connect(database);
 		this.model = model;
 	}
 
-	public void connect() {
-		final String URL = "jdbc:mariadb://10.114.32.4:3306/HouseholdHero";
+	public void connect(String database) {
+		final String URL = "jdbc:mariadb://10.114.32.4:3306/" + database;
 		final String USERNAME = "user";
 		final String PWD = "password";
 		try {
@@ -107,18 +107,19 @@ public class DataAccessObject {
 
 	
 	public boolean addProduct(Product product) {
-		String addProductQuery = "insert into Product (name, price, best_before, category_ID, status_ID, budget_ID) "
-				+ "values (?, ?, ?, ?, ?, ?)";
+		String addProductQuery = "insert into Product (Product_ID, name, price, best_before, category_ID, status_ID, budget_ID) "
+				+ "values (?, ?, ?, ?, ?, ?, ?)";
 		System.out.println("Adding new product");
 
 		try {
 			PreparedStatement stmt = conn.prepareStatement(addProductQuery);
-			stmt.setString(1, product.getName());
-			stmt.setDouble(2, product.getPrice());
-			stmt.setDate(3, Date.valueOf(product.getBestBefore()));
-			stmt.setInt(4, getCategoryIdByName(product));
-			stmt.setInt(5, product.getStatusId());
-			stmt.setInt(6, product.getBudgetId());
+			stmt.setInt(1, product.getId());
+			stmt.setString(2, product.getName());
+			stmt.setDouble(3, product.getPrice());
+			stmt.setDate(4, Date.valueOf(product.getBestBefore()));
+			stmt.setInt(5, getCategoryIdByName(product));
+			stmt.setInt(6, product.getStatusId());
+			stmt.setInt(7, product.getBudgetId());
 
 			System.out.println(addProductQuery);
 			int added = stmt.executeUpdate();
@@ -126,6 +127,7 @@ public class DataAccessObject {
 			System.out.println(product.getName());
 			return true;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return false;
 		}
 	}
@@ -180,13 +182,14 @@ public class DataAccessObject {
 	
 
 	public void addBudget(Budget budget) throws SQLException {
-		String addBudgetQuery = "insert into Budget (planned_budget, spent_budget, start_date, end_date) values (?, ?, ?, ?)";
+		String addBudgetQuery = "insert into Budget (budget_ID, planned_budget, spent_budget, start_date, end_date) values (?, ?, ?, ?, ?)";
 
 		PreparedStatement stmt = conn.prepareStatement(addBudgetQuery);
-		stmt.setDouble(1, budget.getPlannedBudget());
-		stmt.setDouble(2, budget.getSpentBudget());
-		stmt.setDate(3, Date.valueOf(budget.getStartDate()));
-		stmt.setDate(4, Date.valueOf(budget.getEndDate()));
+		stmt.setInt(1, budget.getId());
+		stmt.setDouble(2, budget.getPlannedBudget());
+		stmt.setDouble(3, budget.getSpentBudget());
+		stmt.setDate(4, Date.valueOf(budget.getStartDate()));
+		stmt.setDate(5, Date.valueOf(budget.getEndDate()));
 
 		int added = stmt.executeUpdate();
 		System.out.println("Added: " + added);
@@ -317,6 +320,7 @@ public class DataAccessObject {
 		}
 		return budgets;
 	}
+<<<<<<< HEAD
 	
 	public void deleteBudget(Budget budget) throws SQLException {
 		String deleteBudgetString = "delete from Budget where budget_ID=?";
@@ -328,4 +332,11 @@ public class DataAccessObject {
 		int deletes = stmt.executeUpdate();
 		System.out.println("Deleted budgets: " + deletes);
 	}
+||||||| 85dac7a
+=======
+	
+	public Connection getConnection() {
+		return conn;
+	}
+>>>>>>> df8876f21788e8f5390a37c3bc8483ea3084af9c
 }

@@ -13,7 +13,7 @@ public class Model implements IModel {
 	
 	public void setController(IController controller) {
 		this.controller = controller;
-		dao = new DataAccessObject(this);
+		dao = new DataAccessObject(this, "HouseholdHero");
 	}
 	
 	

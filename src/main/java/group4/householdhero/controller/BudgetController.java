@@ -37,10 +37,10 @@ public class BudgetController {
 	
 	@FXML private ChoiceBox<Budget> budgetChoiceBox;
 	@FXML protected Label startDateLabel;
-	@FXML private Label endDateLabel;
-	@FXML private Label plannedBudgetLabel;
-	@FXML private Label spentBudgetLabel;
-	@FXML private Label remainingBudgetLabel;
+	@FXML protected Label endDateLabel;
+	@FXML protected Label plannedBudgetLabel;
+	@FXML protected Label spentBudgetLabel;
+	@FXML protected Label remainingBudgetLabel;
 	
 	@FXML private PieChart pieChart;
 	
@@ -73,7 +73,7 @@ public class BudgetController {
 
 	}
 	
-	private void setLanguageChoiceBox() {
+	protected void setLanguageChoiceBox() {
 		languageChoiceBox.getItems().add(App.bundle.getString("english.choice.text"));
 		languageChoiceBox.getItems().add(App.bundle.getString("gaeilge.choice.text"));
 	}
