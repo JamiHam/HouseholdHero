@@ -208,7 +208,6 @@ public class DataAccessObject {
 					LocalDate.parse(rs.getDate("best_before").toString()), getCategoryByName(rs.getInt("product_ID")),
 					rs.getInt("budget_ID"), rs.getInt("status_ID"));
 			products.add(product);
-			System.out.println("Found: " + product.getBestBefore());
 		}
 		return products;
 	}
@@ -287,8 +286,8 @@ public class DataAccessObject {
 	}
 
 	public boolean checkBudgets(LocalDate startDate, LocalDate endDate) throws SQLException {
-		String checkBudgetString = "select * from Budget where start_date <= AND end_date >= ?"
-				+ "OR start_date <= ? AND end_date >= ?;";
+		String checkBudgetString = "select * from Budget where start_date <= ? AND end_date >= ?"
+				+ "OR start_date <= ? AND end_date >= ?";
 
 		PreparedStatement stmt = conn.prepareStatement(checkBudgetString);
 		stmt.setDate(1, Date.valueOf(startDate));
@@ -320,6 +319,17 @@ public class DataAccessObject {
 			budgets.add(budget);
 		}
 		return budgets;
+	}
+	
+	public void deleteBudget(Budget budget) throws SQLException {
+		String deleteBudgetString = "delete from Budget where budget_ID=?";
+		
+		PreparedStatement stmt = conn.prepareStatement(deleteBudgetString);
+		stmt.setInt(1, budget.getId());
+		
+		System.out.println("Deleting budget (start-end): " + budget.getStartDate() + " - " + budget.getEndDate());
+		int deletes = stmt.executeUpdate();
+		System.out.println("Deleted budgets: " + deletes);
 	}
 	
 	public Connection getConnection() {
