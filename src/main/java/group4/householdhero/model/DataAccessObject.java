@@ -3,7 +3,6 @@ package group4.householdhero.model;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 public class DataAccessObject {
@@ -321,7 +320,19 @@ public class DataAccessObject {
 		return budgets;
 	}
 	
+	public void deleteProductsFromBudget(Budget budget) throws SQLException {
+		String deleteProductsFromBudgetString = "delete from Product where Budget_ID=?";
+		
+		PreparedStatement stmt = conn.prepareStatement(deleteProductsFromBudgetString);
+		stmt.setInt(1, budget.getId());
+		
+		System.out.println("Deleted products with budgetID: " + budget.getId());
+		int deletes = stmt.executeUpdate();
+		System.out.println("Deleted item count: " + deletes);
+	}
+	
 	public void deleteBudget(Budget budget) throws SQLException {
+		deleteProductsFromBudget(budget);
 		String deleteBudgetString = "delete from Budget where budget_ID=?";
 		
 		PreparedStatement stmt = conn.prepareStatement(deleteBudgetString);
@@ -329,7 +340,7 @@ public class DataAccessObject {
 		
 		System.out.println("Deleting budget (start-end): " + budget.getStartDate() + " - " + budget.getEndDate());
 		int deletes = stmt.executeUpdate();
-		System.out.println("Deleted budgets: " + deletes);
+		System.out.println("Deleted budget count: " + deletes);
 	}
 	
 	public Connection getConnection() {
