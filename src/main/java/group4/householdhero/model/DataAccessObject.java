@@ -285,18 +285,18 @@ public class DataAccessObject {
 	}
 
 	public boolean checkBudgets(LocalDate startDate, LocalDate endDate) throws SQLException {
-		String checkBudgetString = "select * from Budget where start_date <= ? AND end_date >= ?"
-				+ "OR start_date <= ? AND end_date >= ?";
+		String checkBudgetString = "select * from Budget where (start_date <= ?) and (? <= end_date) and "
+				+ "(start_date <= end_date) and (? <= ?);";
 
 		PreparedStatement stmt = conn.prepareStatement(checkBudgetString);
-		stmt.setDate(1, Date.valueOf(startDate));
+		stmt.setDate(1, Date.valueOf(endDate));
 		stmt.setDate(2, Date.valueOf(startDate));
-		stmt.setDate(3, Date.valueOf(endDate));
+		stmt.setDate(3, Date.valueOf(startDate));
 		stmt.setDate(4, Date.valueOf(endDate));
 
-		int found = 0;
-		found = stmt.executeUpdate();
-
+		System.out.println("Starting date: " + Date.valueOf(startDate) + "\nEndDate: " + Date.valueOf(endDate));
+		int found = stmt.executeUpdate();
+		System.out.println("CheckBudgets found count: " + found);
 		if (found != 0) {
 			return false;
 		} else {
@@ -331,7 +331,7 @@ public class DataAccessObject {
 		System.out.println("Deleted item count: " + deletes);
 	}
 	
-	public void deleteBudget(Budget budget) throws SQLException {
+	public boolean deleteBudget(Budget budget) throws SQLException {
 		deleteProductsFromBudget(budget);
 		String deleteBudgetString = "delete from Budget where budget_ID=?";
 		
@@ -341,6 +341,11 @@ public class DataAccessObject {
 		System.out.println("Deleting budget (start-end): " + budget.getStartDate() + " - " + budget.getEndDate());
 		int deletes = stmt.executeUpdate();
 		System.out.println("Deleted budget count: " + deletes);
+		if(deletes != 0) {
+			return true;
+		}else {
+			return false;
+		}
 	}
 	
 	public Connection getConnection() {
