@@ -320,7 +320,6 @@ public class DataAccessObject {
 		}
 		return budgets;
 	}
-<<<<<<< HEAD
 	
 	public void deleteBudget(Budget budget) throws SQLException {
 		String deleteBudgetString = "delete from Budget where budget_ID=?";
@@ -332,11 +331,8 @@ public class DataAccessObject {
 		int deletes = stmt.executeUpdate();
 		System.out.println("Deleted budgets: " + deletes);
 	}
-||||||| 85dac7a
-=======
 	
 	public Connection getConnection() {
 		return conn;
 	}
->>>>>>> df8876f21788e8f5390a37c3bc8483ea3084af9c
 }
