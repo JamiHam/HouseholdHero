@@ -40,8 +40,7 @@ public class Model implements IModel {
 	}
 	
 	public boolean checkBudgets(LocalDate startDate, LocalDate endDate) throws SQLException {
-		//return dao.checkBudgets(startDate, endDate);
-		return true;
+		return dao.checkBudgets(startDate, endDate);
 	}
 	
 	
