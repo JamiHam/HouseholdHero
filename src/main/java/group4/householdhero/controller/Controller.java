@@ -38,6 +38,10 @@ public class Controller implements IController {
 		return model.checkBudgets(startDate, endDate);
 	}
 	
+	public boolean deleteBudget(Budget budget) throws SQLException {
+		 return model.deleteBudget(budget);
+	}
+	
 	
 	
 	public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException {

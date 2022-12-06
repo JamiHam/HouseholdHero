@@ -50,11 +50,18 @@ public class FridgeController {
 		updateFridgeContents();
 	}
 	
+	/**
+	 * Sets languages to choice box
+	 */
 	private void setLanguageChoiceBox() {
 		languageChoiceBox.getItems().add(App.bundle.getString("english.choice.text"));
 		languageChoiceBox.getItems().add(App.bundle.getString("gaeilge.choice.text"));
 	}
 	
+	/**
+	 * Changes the selected language
+	 * @throws IOException
+	 */
 	@FXML
 	private void changeSelectedLanguage() throws IOException {
 		if (languageChoiceBox.getValue() == App.bundle.getString("english.choice.text")) {
@@ -64,32 +71,68 @@ public class FridgeController {
 		}
 	}
 	
+	/**
+	 * Switches to budget-view
+	 * @return
+	 * @throws IOException
+	 */
     @FXML
 	protected boolean switchToBudget() throws IOException {
         return controller.showBudget();
     }
     
+    /**
+     * Opens product window in adding mode
+     * @return
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
 	protected boolean addProduct() throws IOException, SQLException {
     	return controller.showProductWindow(false, null);
     }
     
+    /**
+     * Opens product window in editing mode
+     * @param product
+     * @return
+     * @throws IOException
+     * @throws SQLException
+     */
     public static boolean editProduct(Product product) throws IOException, SQLException {
     	return controller.showProductWindow(true, product);
     }
     
+    /**
+     * Changes product status to used
+     * @param product
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
 	static void putToUsed(Product product) throws IOException, SQLException {
 		controller.changeProductStatus(product, "used");
 		App.showFridge();
 	}
 	
+    /**
+     * Changes product status to waste
+     * @param product
+     * @throws IOException
+     * @throws SQLException
+     */
     @FXML
 	static void putToWaste(Product product) throws IOException, SQLException {
 		controller.changeProductStatus(product, "waste");
 		App.showFridge();
 	}
     
+    /**
+     * Checks if there is an active budget
+     * @return
+     * @throws IOException
+     * @throws SQLException
+     */
     public boolean checkCurrentBudget() throws IOException, SQLException {
     	if (controller.getBudget(LocalDate.now()) == null) {
     		controller.showBudgetWindow(false, null);
@@ -98,6 +141,9 @@ public class FridgeController {
     	return true;
     }
     
+    /**
+     * Initializes table columns
+     */
     private void initializeColumns() {
     	fridgeNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
 		fridgeCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("category"));
@@ -111,12 +157,22 @@ public class FridgeController {
 		fridgePutToWasteColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("putToWasteButton"));
     }
     
+    /**
+     * Gets all products in fridge from database and adds them to the table
+     * @throws SQLException
+     */
     public void updateFridgeContents() throws SQLException {
     	List<Product> products = controller.getProducts("fridge");
     	checkBestBefore(products);
     	fridgeTable.setItems(FXCollections.observableArrayList(products));
     }
     
+    /**
+     * Checks product best before date and changes their expiration status accordingly
+     * @param products
+     * @return
+     * @throws SQLException
+     */
     private List<Product> checkBestBefore(List<Product> products) throws SQLException {
     	for (Product product : products) {
     		if (product.getBestBefore().isBefore(LocalDate.now())) {

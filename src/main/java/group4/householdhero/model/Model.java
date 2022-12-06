@@ -10,6 +10,13 @@ import group4.householdhero.controller.IController;
 public class Model implements IModel {
 	private IController controller;
 	private DataAccessObject dao;
+	private ProductFactory productFactory;
+	private BudgetFactory budgetFactory;
+	
+	public Model() {
+		productFactory = new ProductFactory();
+		budgetFactory = new BudgetFactory();
+	}
 	
 	public void setController(IController controller) {
 		this.controller = controller;
@@ -19,7 +26,7 @@ public class Model implements IModel {
 	
 
 	public Budget createBudget(int id, double plannedBudget, double spentBudget, LocalDate startDate, LocalDate endDate) {
-		Budget budget = new Budget(id, plannedBudget, spentBudget, startDate, endDate);
+		Budget budget = budgetFactory.createBudget(id, plannedBudget, spentBudget, startDate, endDate);
 		return budget;
 	}
 	
@@ -43,10 +50,14 @@ public class Model implements IModel {
 		return dao.checkBudgets(startDate, endDate);
 	}
 	
+	public boolean deleteBudget(Budget budget) throws SQLException {
+		return dao.deleteBudget(budget);
+	}
+	
 	
 
 	public Product createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) {
-    	Product product = new Product(id, name, price, bestBefore, category, budgetId, statusId, this);
+    	Product product = productFactory.createProduct(id, name, price, bestBefore, category, budgetId, statusId, this);
     	return product;
     }
 	

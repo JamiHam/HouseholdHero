@@ -29,6 +29,10 @@ public class AddEditProductController {
 	@FXML private Button saveButton;
 	@FXML private Button deleteButton;
 	
+	/**
+	 * Saves the product to database
+	 * @throws SQLException
+	 */
 	@FXML
 	private void save() throws SQLException {
 		if (validateInputs()) {
@@ -48,6 +52,14 @@ public class AddEditProductController {
 		}
 	}
 	
+	/**
+	 * Updates the pre-existing product in database and adjusts the budget accordingly
+	 * @param name
+	 * @param category
+	 * @param price
+	 * @param bestBefore
+	 * @throws SQLException
+	 */
 	private void updateProduct(String name, String category, double price, LocalDate bestBefore) throws SQLException {
 		budget.setSpentBudget(budget.getSpentBudget() - product.getPrice());
 		budget.setSpentBudget(budget.getSpentBudget() + price);
@@ -61,12 +73,24 @@ public class AddEditProductController {
 		controller.updateBudget(budget);
 	}
 	
+	/**
+	 * Adds a new product to database and adjusts the budget accordingly
+	 * @param name
+	 * @param category
+	 * @param price
+	 * @param bestBefore
+	 * @throws SQLException
+	 */
 	private void createProduct(String name, String category, double price, LocalDate bestBefore) throws SQLException {
 		controller.createProduct(0, name, price, bestBefore, category, budget.getId(), 1);
 		budget.setSpentBudget(budget.getSpentBudget() + price);
 		controller.updateBudget(budget);
 	}
 	
+	/**
+	 * Deletes the product from database
+	 * @throws SQLException
+	 */
 	@FXML
 	private void delete() throws SQLException {
 		controller.deleteProduct(product);
@@ -75,23 +99,42 @@ public class AddEditProductController {
 		closeWindow();
 	}
 	
+	/**
+	 * Closes the editing window
+	 */
 	private void closeWindow() {
 		Stage stage = (Stage) saveButton.getScene().getWindow();
 		stage.close();
 	}
 	
+	/**
+	 * Sets error message to given string
+	 * @param message
+	 */
 	protected void setErrorMessage(String message) {
 		errorLabel.setText(message);
 	}
 	
+	/**
+	 * Makes error message visible
+	 * @param error
+	 */
 	private void showError(boolean error) {
 		errorLabel.setVisible(error);
 	}
 	
+	/**
+	 * Sets all categories to choice box
+	 * @throws SQLException
+	 */
 	private void getCategories() throws SQLException {
 		categoryChoiceBox.getItems().addAll(controller.getCategories());
 	}
 	
+	/**
+	 * Validates the user's inputs
+	 * @return
+	 */
 	private boolean validateInputs() {
 		boolean validity = true;
 		
@@ -120,6 +163,12 @@ public class AddEditProductController {
 		return validity;
 	}
 	
+	/**
+	 * Initializes the window in either adding or editing mode
+	 * @param editing
+	 * @param product
+	 * @throws SQLException
+	 */
 	public void initialize(boolean editing, Product product) throws SQLException {
 		this.controller = App.getController();
 		this.editing = editing;
