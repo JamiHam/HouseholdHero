@@ -51,8 +51,7 @@ public class Model implements IModel {
 	}
 	
 	public boolean deleteBudget(Budget budget) throws SQLException {
-		dao.deleteBudget(budget);
-		return true;
+		return dao.deleteBudget(budget);
 	}
 	
 	
