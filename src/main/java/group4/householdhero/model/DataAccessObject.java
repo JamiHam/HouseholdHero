@@ -295,7 +295,11 @@ public class DataAccessObject {
 		stmt.setDate(4, Date.valueOf(endDate));
 
 		System.out.println("Starting date: " + Date.valueOf(startDate) + "\nEndDate: " + Date.valueOf(endDate));
-		int found = stmt.executeUpdate();
+		ResultSet rs = stmt.executeQuery();
+		int found = 0;
+		while(rs.next()) {
+			found++;
+		}
 		System.out.println("CheckBudgets found count: " + found);
 		if (found != 0) {
 			return false;
