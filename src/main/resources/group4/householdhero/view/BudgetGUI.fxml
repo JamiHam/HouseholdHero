@@ -127,7 +127,7 @@
             </GridPane>
          </children>
       </VBox>
-      <PieChart fx:id="pieChart" layoutX="776.0" layoutY="111.0" prefHeight="300.0" prefWidth="300.0" />
+      <PieChart fx:id="pieChart" layoutX="665.0" layoutY="111.0" prefHeight="300.0" prefWidth="400.0" />
       <VBox layoutX="253.0" layoutY="420.0" prefHeight="250.0" prefWidth="850.0">
          <children>
             <Label id="label-products-during-budget" prefHeight="30.0" prefWidth="800.0" text="%products.purchased.during.budget.text">

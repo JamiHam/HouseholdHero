@@ -171,8 +171,8 @@ public class BudgetController {
             new PieChart.Data(App.bundle.getString("budget.distribution.fridge.text"), fridgeTotalCost),
             new PieChart.Data(App.bundle.getString("budget.distribution.used.text"), usedTotalCost),
             new PieChart.Data(App.bundle.getString("budget.distribution.waste.text"), wasteTotalCost),
-			new PieChart.Data("Placeholder(Unused)", budget.getPlannedBudget() - budget.getSpentBudget()));
-			
+			new PieChart.Data(App.bundle.getString("remaining.budget.text"), budget.getPlannedBudget() - budget.getSpentBudget()));
+		
         pieChart.setData(pieChartData);
 	}
 	
