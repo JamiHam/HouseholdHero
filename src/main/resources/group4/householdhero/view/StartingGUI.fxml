@@ -73,15 +73,15 @@
             </Label>
             <TableView id="products-in-fridge" fx:id="fridgeTable" prefHeight="500.0" prefWidth="800.0">
               <columns>
-                  <TableColumn fx:id="fridgeIconColumn" prefWidth="50.0" />
-                <TableColumn fx:id="fridgeNameColumn" prefWidth="100.0" text="%name.text" />
-                <TableColumn fx:id="fridgeCategoryColumn" prefWidth="100.0" text="%category.text" />
-                  <TableColumn fx:id="fridgePriceColumn" prefWidth="50.0" text="%price.text" />
+                  <TableColumn id="categoryIconColumn" fx:id="fridgeIconColumn" prefWidth="45.0" />
+                <TableColumn fx:id="fridgeNameColumn" prefWidth="95.0" text="%name.text" />
+                <TableColumn fx:id="fridgeCategoryColumn" prefWidth="125.0" text="%category.text" />
+                  <TableColumn fx:id="fridgePriceColumn" prefWidth="70.0" text="%price.text" />
                   <TableColumn fx:id="fridgeBestBeforeColumn" prefWidth="120.0" text="%best.before.text" />
-                  <TableColumn fx:id="fridgeExpirationColumn" prefWidth="75.0" text="%status.text" />
-                  <TableColumn fx:id="fridgeEditColumn" prefWidth="90.0" text="%edit.text" />
-                  <TableColumn fx:id="fridgePutToUsedColumn" prefWidth="110.0" text="%put.to.used.text" />
-                  <TableColumn fx:id="fridgePutToWasteColumn" prefWidth="90.0" text="%put.to.waste.text" />
+                  <TableColumn id="statusIconColumn" fx:id="fridgeExpirationColumn" prefWidth="45.0" text="%status.text" />
+                  <TableColumn id="editButtonColumn" fx:id="fridgeEditColumn" prefWidth="85.0" text="%edit.text" />
+                  <TableColumn id="putToUsedButtonColumn" fx:id="fridgePutToUsedColumn" prefWidth="110.0" text="%put.to.used.text" />
+                  <TableColumn id="putToWasteButtonColumn" fx:id="fridgePutToWasteColumn" prefWidth="85.0" text="%put.to.waste.text" />
               </columns>
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />

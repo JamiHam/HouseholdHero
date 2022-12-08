@@ -49,11 +49,14 @@
 	-fx-background-color: #1ec6cf;
 }
 
+/*
+ * StartingGUI: Products In Fridge table, Edit, Put To Used and Put To Waste buttons
+ */
 .product-edit-button {
-	-fx-background-color: #ffffff;
+	-fx-background-color: transparent;
 	-fx-border-color: #000000;
 	-fx-border-width: 1px;
-	-fx-padding: 2px 10px 2px 10px;
+	-fx-padding: 5px 15px 5px 15px;
 	-fx-background-image: url("img/edit-icon.png");
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: 20 20;
@@ -65,10 +68,10 @@
 }
 
 .product-put-to-used-button {
-	-fx-background-color: #ffffff;
+	-fx-background-color: transparent;
 	-fx-border-color: #000000;
 	-fx-border-width: 1px;
-	-fx-padding: 2px 10px 2px 10px;
+	-fx-padding: 5px 15px 5px 15px;
 	-fx-background-image: url("img/put-to-used-icon.png");
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: 20 20;
@@ -80,10 +83,10 @@
 }
 
 .product-put-to-waste-button {
-	-fx-background-color: #ffffff;
+	-fx-background-color: transparent;
 	-fx-border-color: #000000;
 	-fx-border-width: 1px;
-	-fx-padding: 2px 10px 2px 10px;
+	-fx-padding: 5px 15px 5px 15px;
 	-fx-background-image: url("img/delete-icon.png");
 	-fx-background-repeat: no-repeat;
 	-fx-background-size: 20 20;
@@ -92,6 +95,30 @@
 
 .product-put-to-waste-button:hover {
 	-fx-background-color: #1ec6cf;
+}
+
+/*
+ * StartingGUI: Products In Fridge table, position of category icon, status icon and Edit, Put To Used and Put To Waste buttons
+ */
+
+#categoryIconColumn {
+	-fx-alignment: BASELINE_CENTER;
+}
+
+#statusIconColumn {
+	-fx-alignment: BASELINE_CENTER;
+}
+
+#editButtonColumn {
+	-fx-alignment: BASELINE_CENTER;
+}
+
+#putToUsedButtonColumn {
+	-fx-alignment: BASELINE_CENTER;
+}
+
+#putToWasteButtonColumn {
+	-fx-alignment: BASELINE_CENTER;
 }
 
 /*
@@ -283,4 +310,116 @@
 	-fx-font-color: #000000;
 	-fx-font-weight: bold;
 	-fx-font-size: 14px;
+}
+
+/*
+ * Colors of JavaFX pie chart slices 
+ */
+.data0.chart-pie { -fx-pie-color: #719b25; } /* Fridge */
+.data1.chart-pie { -fx-pie-color: #ffde59; } /* Used */
+.data2.chart-pie { -fx-pie-color: #dc143c; } /* Waste */
+.data3.chart-pie { -fx-pie-color: #0349a8; } /* Placeholder(Unused) */
+
+/*
+ * Pie Chart legend background color
+ */
+.chart-legend { -fx-background-color: #ffffff; }
+
+/*
+ * Choice Box styles
+ */
+ 
+/* Background color of the whole context menu */
+ .choice-box .context-menu {
+ 	-fx-background-color: #ffffff;
+ }
+ 
+/* Text color of non-focused items in the list */
+.choice-box .menu-item > .label {
+	-fx-text-fill: #000000;
+}
+ 
+/* Focused item background color in the list */
+.choice-box .menu-item:focused {
+	-fx-background-color: #1ec6cf;
+}
+  
+/* Text color of focused item in the list */
+.choice-box .menu-item:focused > .label {
+	-fx-text-fill: #000000;
+}
+   
+/* Background color of the control itself */
+.choice-box {
+  -fx-background-color: #ffffff;
+  -fx-border-color: #1ec6cf;
+  -fx-border-radius: 3px;
+  -fx-mark-color: #1ec6cf; /*arrow color*/
+}
+    
+/* Selected item text color on the control itself */
+.choice-box > .label {
+	-fx-text-fill: #000000;
+}
+
+/*
+ * Table styles
+ */
+ 
+.table-view,
+.table-view .column-header,
+.table-view .column-header-background .filler,
+.table-view .corner {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #1ec6cf, #196cdd);
+    -fx-background-radius: 3px;
+    -fx-background-insets: 0 11px 0 0;
+    -fx-padding: 3px;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 5px 0px;
+}
+
+.table-row-cell:hover {
+    /*
+    -fx-border: 1px;
+	-fx-border-color: #000000;
+	-fx-border-radius: 3px;
+	*/
+}
+
+.table-row-cell:odd{
+    -fx-background-color: #93f9b911;
+}
+
+.table-row-cell:even{
+    -fx-background-color: #1dbbdd11;
+}
+
+.table-row-cell:selected {
+    -fx-background-color: #dddddd;
+    -fx-text-background-color: #000000;
+    -fx-background-radius: 3px;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color: linear-gradient(to right, #1ec6cf, #0349a8);
+}
+
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color: linear-gradient(to right, #1ec6cf, #0349a8);
 }

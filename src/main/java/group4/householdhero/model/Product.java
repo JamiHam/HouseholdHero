@@ -95,10 +95,14 @@ public class Product {
 		categoryImageView = new ImageView();
 		String className = category.replace(" ", "-");
 		categoryImageView.getStyleClass().add(className);
+		categoryImageView.setFitHeight(30);
+		categoryImageView.setFitWidth(30);
 	}
 	
 	private void setUpStatusImageView() {
 		statusImageView = new ImageView();
+		statusImageView.setFitHeight(30);
+		statusImageView.setFitWidth(30);
 	}
 
 	public int getId() {

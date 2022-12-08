@@ -78,7 +78,7 @@
             </ChoiceBox>
          </children>
       </HBox>
-      <HBox layoutX="253.0" layoutY="50.0" prefHeight="50.0" prefWidth="850.0">
+      <HBox layoutX="253.0" layoutY="50.0" prefHeight="60.0" prefWidth="850.0">
          <children>
             <Label id="label-budget-information" text="%budget.information.text">
                <HBox.margin>
@@ -92,10 +92,10 @@
             </Label>
          </children>
          <padding>
-            <Insets top="10.0" />
+            <Insets top="30.0" />
          </padding>
       </HBox>
-      <VBox layoutX="375.0" layoutY="106.0" prefHeight="125.0" prefWidth="200.0">
+      <VBox layoutX="376.0" layoutY="156.0" prefHeight="125.0" prefWidth="200.0">
          <children>
             <GridPane prefHeight="322.0" prefWidth="330.0">
                <columnConstraints>
@@ -115,8 +115,8 @@
                <children>
                   <Label styleClass="budget-information-headings" text="%start.date.text" GridPane.halignment="LEFT" />
                   <Label styleClass="budget-information-headings" text="%end.date.text" GridPane.columnIndex="1" GridPane.halignment="LEFT" />
-                  <Label styleClass="budget-information-headings" text="%planned.budget.text" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
-                  <Label styleClass="budget-information-headings" text="%spent.budget.text" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
+                  <Label styleClass="budget-information-headings" text="%planned.budget.text" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="2" />
+                  <Label styleClass="budget-information-headings" text="%spent.budget.text" GridPane.columnSpan="2" GridPane.halignment="LEFT" GridPane.rowIndex="4" />
                   <Label fx:id="startDateLabel" text="Label" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
                   <Label fx:id="endDateLabel" text="Label" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" />
                   <Label fx:id="plannedBudgetLabel" text="Label" GridPane.halignment="LEFT" GridPane.rowIndex="3" />
@@ -127,7 +127,7 @@
             </GridPane>
          </children>
       </VBox>
-      <PieChart fx:id="pieChart" layoutX="758.0" layoutY="100.0" prefHeight="300.0" prefWidth="320.0" />
+      <PieChart fx:id="pieChart" layoutX="776.0" layoutY="111.0" prefHeight="300.0" prefWidth="300.0" />
       <VBox layoutX="253.0" layoutY="420.0" prefHeight="250.0" prefWidth="850.0">
          <children>
             <Label id="label-products-during-budget" prefHeight="30.0" prefWidth="800.0" text="%products.purchased.during.budget.text">
@@ -137,11 +137,11 @@
             </Label>
             <TableView id="products-in-fridge" fx:id="productsDuringBudgetTable" prefHeight="300.0" prefWidth="800.0">
                <columns>
-                  <TableColumn fx:id="productsIconColumn" prefWidth="50.0" />
+                  <TableColumn id="categoryIconColumn" fx:id="productsIconColumn" prefWidth="45.0" />
                   <TableColumn fx:id="productsNameColumn" prefWidth="150.0" text="%name.text" />
                   <TableColumn fx:id="productsCategoryColumn" prefWidth="150.0" text="%category.text" />
-                  <TableColumn fx:id="productsPriceColumn" prefWidth="100.0" text="%price.text" />
-                  <TableColumn fx:id="productsBestBeforeColumn" prefWidth="120.0" text="%best.before.text" />
+                  <TableColumn fx:id="productsPriceColumn" prefWidth="135.0" text="%price.text" />
+                  <TableColumn fx:id="productsBestBeforeColumn" prefWidth="150.0" text="%best.before.text" />
                   <TableColumn fx:id="productsStatusColumn" prefWidth="150.0" text="%status.text" />
                </columns>
                <VBox.margin>
