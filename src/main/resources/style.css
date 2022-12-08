@@ -312,17 +312,23 @@
 	-fx-font-size: 14px;
 }
 
+#budget-information-distribution-header {
+	-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #1ec6cf, #196cdd);
+	-fx-background-radius: 3px;
+	-fx-padding: 5px;
+}
+
 /*
- * Colors of JavaFX pie chart slices 
+ * Pie Chart styles
  */
+ 
+/* Colors of Pie Chart slices  */
 .data0.chart-pie { -fx-pie-color: #719b25; } /* Fridge */
 .data1.chart-pie { -fx-pie-color: #ffde59; } /* Used */
 .data2.chart-pie { -fx-pie-color: #dc143c; } /* Waste */
-.data3.chart-pie { -fx-pie-color: #0349a8; } /* Placeholder(Unused) */
+.data3.chart-pie { -fx-pie-color: #0349a8; } /* Remaining Budget (€) */
 
-/*
- * Pie Chart legend background color
- */
+/* Pie Chart legend background color*/
 .chart-legend { -fx-background-color: #ffffff; }
 
 /*

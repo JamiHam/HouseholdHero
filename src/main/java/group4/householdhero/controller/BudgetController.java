@@ -14,6 +14,7 @@ import group4.householdhero.view.App;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.geometry.Side;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -174,6 +175,9 @@ public class BudgetController {
 			new PieChart.Data(App.bundle.getString("remaining.budget.text"), budget.getPlannedBudget() - budget.getSpentBudget()));
 		
         pieChart.setData(pieChartData);
+        pieChart.setLabelsVisible(false); // Hides the pie chart labels
+        pieChart.setLegendSide(Side.LEFT); // Sets legend on the left side of pie chart
+        pieChart.setStartAngle(90); // Sets start angle for pie chart slices
 	}
 	
 	/**

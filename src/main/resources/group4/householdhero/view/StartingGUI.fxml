@@ -55,7 +55,7 @@
          <children>
             <Label id="label-products-in-fridge" alignment="CENTER" prefHeight="30.0" prefWidth="170.0" text="%choose.language.text">
                <HBox.margin>
-                  <Insets left="485.0" top="20.0" />
+                  <Insets left="475.0" top="20.0" />
                </HBox.margin>
             </Label>
             <ChoiceBox fx:id="languageChoiceBox" onAction="#changeSelectedLanguage" prefWidth="170.0">
