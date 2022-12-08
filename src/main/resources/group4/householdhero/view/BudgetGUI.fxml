@@ -68,7 +68,7 @@
             </ChoiceBox>
             <Label id="label-products-in-fridge" alignment="CENTER" prefHeight="30.0" prefWidth="170.0" text="%choose.language.text">
                <HBox.margin>
-                  <Insets left="120.0" top="20.0" />
+                  <Insets left="110.0" top="20.0" />
                </HBox.margin>
             </Label>
             <ChoiceBox fx:id="languageChoiceBox" onAction="#changeSelectedLanguage" prefWidth="170.0">
@@ -78,24 +78,21 @@
             </ChoiceBox>
          </children>
       </HBox>
-      <HBox layoutX="253.0" layoutY="50.0" prefHeight="60.0" prefWidth="850.0">
+      <HBox id="budget-information-distribution-header" layoutX="283.0" layoutY="80.0" prefHeight="25.0" prefWidth="790.0">
          <children>
             <Label id="label-budget-information" text="%budget.information.text">
                <HBox.margin>
-                  <Insets left="120.0" top="10.0" />
+                  <Insets left="120.0" />
                </HBox.margin>
             </Label>
             <Label id="label-status-of-products" text="%budget.distribution.text">
                <HBox.margin>
-                  <Insets left="340.0" top="10.0" />
+                  <Insets left="340.0" />
                </HBox.margin>
             </Label>
          </children>
-         <padding>
-            <Insets top="30.0" />
-         </padding>
       </HBox>
-      <VBox layoutX="376.0" layoutY="156.0" prefHeight="125.0" prefWidth="200.0">
+      <VBox layoutX="359.0" layoutY="138.0" prefHeight="125.0" prefWidth="200.0">
          <children>
             <GridPane prefHeight="322.0" prefWidth="330.0">
                <columnConstraints>
@@ -127,8 +124,8 @@
             </GridPane>
          </children>
       </VBox>
-      <PieChart fx:id="pieChart" layoutX="665.0" layoutY="111.0" prefHeight="300.0" prefWidth="400.0" />
-      <VBox layoutX="253.0" layoutY="420.0" prefHeight="250.0" prefWidth="850.0">
+      <PieChart fx:id="pieChart" layoutX="665.0" layoutY="110.0" prefHeight="300.0" prefWidth="400.0" />
+      <VBox layoutX="253.0" layoutY="400.0" prefHeight="260.0" prefWidth="850.0">
          <children>
             <Label id="label-products-during-budget" prefHeight="30.0" prefWidth="800.0" text="%products.purchased.during.budget.text">
                <VBox.margin>

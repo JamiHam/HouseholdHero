@@ -50,7 +50,7 @@ public class AddEditBudgetController {
 				}
 				closeWindow();
 			} else {
-				setErrorMessage("Date range overlaps with an existing budget. Please choose another one");
+				setErrorMessage(App.bundle.getString("budget.validate.input.date.range.overlaps.text"));
 				showError(true);
 			}
 			
@@ -82,6 +82,7 @@ public class AddEditBudgetController {
 	 */
 	private void setErrorMessage(String message) {
 		errorLabel.setText(message);
+		errorLabel.setWrapText(true); // Wraps long error message texts
 	}
 	
 	/**
