@@ -90,6 +90,18 @@ public class Controller implements IController {
 		return model.getCategories();
 	}
 	
+	public List<String> getLocalizedCategories() {
+		return model.getLocalizedCategories();
+	}
+	
+	public String unlocalizeCategory(String localizedCategory) {
+		return model.unlocalizeCategory(localizedCategory);
+	}
+	
+	public List<Product> localize(List<Product> products) {
+		return model.localize(products);
+	}
+	
 	
 	
 	public boolean showBudget() throws IOException {
@@ -107,5 +119,4 @@ public class Controller implements IController {
 	public boolean showBudgetWindow(boolean editing, Budget budget) throws IOException, SQLException {
 		return App.showBudgetWindow(editing, budget);
 	}
-
 }

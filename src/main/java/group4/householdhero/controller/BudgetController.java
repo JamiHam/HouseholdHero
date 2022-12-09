@@ -78,8 +78,17 @@ public class BudgetController {
 	 * Adds language options to choice box
 	 */
 	protected void setLanguageChoiceBox() {
-		languageChoiceBox.getItems().add(App.bundle.getString("english.choice.text"));
-		languageChoiceBox.getItems().add(App.bundle.getString("gaeilge.choice.text"));
+		ObservableList<String> languages = FXCollections.observableArrayList(
+				App.bundle.getString("english.choice.text"),
+				App.bundle.getString("gaeilge.choice.text"));
+		
+		if (App.getLocale().toString().equals("en_ie")) {
+			languageChoiceBox.setValue("English");
+		} else {
+			languageChoiceBox.setValue("Gaeilge");
+		}
+
+		languageChoiceBox.setItems(languages);
 	}
 	
 	/**
@@ -185,7 +194,8 @@ public class BudgetController {
 	 * @throws SQLException
 	 */
 	private void getBudgets() throws SQLException {
-		budgetChoiceBox.getItems().addAll(controller.getAllBudgets());
+		ObservableList<Budget> budgetList = FXCollections.observableArrayList(controller.getAllBudgets());
+		budgetChoiceBox.setItems(budgetList);
 	}
 	
 	/**
@@ -194,6 +204,7 @@ public class BudgetController {
 	 */
 	private void setProducts() throws SQLException {
 		productList = (ArrayList<Product>) controller.getProductsByBudget(budget.getId());
+		controller.localize(productList);
 		productsDuringBudgetTable.setItems(FXCollections.observableArrayList(productList));
 	}
 	
