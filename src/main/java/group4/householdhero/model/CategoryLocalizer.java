@@ -37,7 +37,7 @@ public class CategoryLocalizer {
 		List<Product> localizedProducts = new ArrayList<Product>();
 		
 		for (Product product : products) {
-			product.setCategory(App.bundle.getString(product.getCategory()));
+			product.setLocalizedCategory(App.bundle.getString(product.getCategory()));
 		}
 		
 		return localizedProducts;

@@ -124,95 +124,95 @@
 /*
  * category icons
  */
-.baked-goods {
+.category-baked-goods-text {
 	-fx-image: url("img/category-icon-baked-goods-40.png");
 }
 
-.bread {
+.category-bread-text {
 	-fx-image: url("img/category-icon-bread-40.png");
 }
 
-.candy {
+.category-candy-text {
 	-fx-image: url("img/category-icon-candy-40.png");
 }
 
-.canned-goods {
+.category-canned-goods-text {
 	-fx-image: url("img/category-icon-canned-goods-40.png");
 }
 
-.condiments {
+.category-condiments-text {
 	-fx-image: url("img/category-icon-condiments-40.png");
 }
 
-.dairy {
+.category-dairy-text {
 	-fx-image: url("img/category-icon-dairy-40.png");
 }
 
-.eggs {
+.category-eggs-text {
 	-fx-image: url("img/category-icon-eggs-40.png");
 }
 
-.fats-and-oils {
+.category-fats-and-oils-text {
 	-fx-image: url("img/category-icon-fats-and-oils-40.png");
 }
 
-.fish {
+.category-fish-text {
 	-fx-image: url("img/category-icon-fish-40.png");
 }
 
-.fruits-and-berries {
+.category-fruits-and-berries-text {
 	-fx-image: url("img/category-icon-fruits-and-berries-40.png");
 }
 
-.juice {
+.category-juice-text {
 	-fx-image: url("img/category-icon-juice-40.png");
 }
 
-.meat {
+.category-meat-text {
 	-fx-image: url("img/category-icon-meat-40.png");
 }
 
-.nuts-and-seeds {
+.category-nuts-and-seeds-text {
 	-fx-image: url("img/category-icon-nuts-and-seeds-40.png");
 }
 
-.other-drinks {
+.category-other-drinks-text {
 	-fx-image: url("img/category-icon-other-drinks-40.png");
 }
 
-.other-food {
+.category-other-food-text {
 	-fx-image: url("img/category-icon-other-food-40.png");
 }
 
-.plant-based-dairy-alternatives {
+.category-plant-based-dairy-text {
 	-fx-image: url("img/category-icon-plant-based-dairy-alternatives-40.png");
 }
 
-.plant-based-protein {
+.category-plant-based-protein-text {
 	-fx-image: url("img/category-icon-plant-based-protein-40.png");
 }
 
-.poultry {
+.category-poultry-text {
 	-fx-image: url("img/category-icon-poultry-40.png");
 }
 
-.rice-and-pasta {
+.category-rice-and-pasta-text {
 	-fx-image: url("img/category-icon-rice-and-pasta-40.png");
 }
 
-.shellfish {
+.category-shellfish-text {
 	-fx-image: url("img/category-icon-shellfish-40.png");
 }
 
-.soft-drinks {
+.category-soft-drinks-text {
 	-fx-image: url("img/category-icon-soft-drinks-40.png");
 }
 
-.sugars-and-honey {
+.category-sugars-and-honey-text {
 	-fx-image: url("img/category-icon-sugars-and-honey-40.png");
 }
 
-.vegetables {
+.category-vegetables-text {
 	-fx-image: url("img/category-icon-vegetables-40.png");
 }
 

@@ -156,7 +156,7 @@ public class FridgeController {
      */
     private void initializeColumns() {
     	fridgeNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-		fridgeCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("category"));
+		fridgeCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("localizedCategory"));
 		fridgeIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
 		fridgePriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 		fridgeBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));

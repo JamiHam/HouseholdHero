@@ -14,6 +14,7 @@ public class Product {
 	private double price;
 	private LocalDate bestBefore;
 	private String category;
+	private String localizedCategory;
 	private int budgetId;
 	private int statusId;
 	private String expiration;
@@ -93,7 +94,7 @@ public class Product {
 	
 	private void setUpCategoryImageView() {
 		categoryImageView = new ImageView();
-		String className = category.replace(" ", "-");
+		String className = category.replace(".", "-");
 		categoryImageView.getStyleClass().add(className);
 		categoryImageView.setFitHeight(30);
 		categoryImageView.setFitWidth(30);
@@ -193,5 +194,13 @@ public class Product {
 	
 	public String getExpiration() {
 		return expiration;
+	}
+	
+	public void setLocalizedCategory(String category) {
+		this.localizedCategory = category;
+	}
+	
+	public String getLocalizedCategory() {
+		return localizedCategory;
 	}
 }
