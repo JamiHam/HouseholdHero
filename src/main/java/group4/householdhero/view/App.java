@@ -70,13 +70,19 @@ public class App extends Application {
     public static void setLocaleEnglish() throws IOException {
     	locale = new Locale("en_IE");
     	bundle = ResourceBundle.getBundle("TextProperties", locale);
+    	model.localizeCategories();
     	reloadView();
     }
     
     public static void setLocaleGaeilge() throws IOException {
     	locale = new Locale("ga_IE");
     	bundle = ResourceBundle.getBundle("TextProperties", locale);
+    	model.localizeCategories();
     	reloadView();
+    }
+    
+    public static Locale getLocale() {
+    	return locale;
     }
     
     private static void reloadView() throws IOException {
@@ -109,6 +115,7 @@ public class App extends Application {
     	stage.setOnHidden(e -> {
     		try {
 				fridgeController.updateFridgeContents();
+				currentFXML = "StartingGUI";
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -132,6 +139,7 @@ public class App extends Application {
 		stage.setOnHidden(e -> {
 			try {
 				fridgeController.checkCurrentBudget();
+				currentFXML = "BudgetGUI";
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
@@ -166,11 +174,12 @@ public class App extends Application {
     	return controller;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
     	model = new Model();
     	controller = new Controller();
     	
     	model.setController(controller);
+    	model.createLocalizer();
     	controller.setModel(model);
     	
         launch();

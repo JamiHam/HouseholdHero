@@ -3,9 +3,13 @@ package group4.householdhero.controller;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.List;
+
 import group4.householdhero.model.Budget;
 import group4.householdhero.model.Product;
 import group4.householdhero.view.App;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -37,7 +41,7 @@ public class AddEditProductController {
 	private void save() throws SQLException {
 		if (validateInputs()) {
 			String name = nameTextField.getText();
-			String category = categoryChoiceBox.getValue();
+			String category = controller.unlocalizeCategory(categoryChoiceBox.getValue());
 			double price = Double.parseDouble(priceTextField.getText());
 			LocalDate bestBefore = bestBeforeDatePicker.getValue();
 			
@@ -128,7 +132,9 @@ public class AddEditProductController {
 	 * @throws SQLException
 	 */
 	private void getCategories() throws SQLException {
-		categoryChoiceBox.getItems().addAll(controller.getCategories());
+		List<String> categories = controller.getLocalizedCategories();
+		System.out.println(categories);
+		categoryChoiceBox.setItems(FXCollections.observableArrayList(categories));
 	}
 	
 	/**

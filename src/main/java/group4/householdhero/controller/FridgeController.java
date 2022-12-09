@@ -8,6 +8,7 @@ import java.util.List;
 import group4.householdhero.model.Product;
 import group4.householdhero.view.App;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -54,8 +55,17 @@ public class FridgeController {
 	 * Sets languages to choice box
 	 */
 	private void setLanguageChoiceBox() {
-		languageChoiceBox.getItems().add(App.bundle.getString("english.choice.text"));
-		languageChoiceBox.getItems().add(App.bundle.getString("gaeilge.choice.text"));
+		ObservableList<String> languages = FXCollections.observableArrayList(
+				App.bundle.getString("english.choice.text"),
+				App.bundle.getString("gaeilge.choice.text"));
+		
+		if (App.getLocale().toString().equals("en_ie")) {
+			languageChoiceBox.setValue("English");
+		} else {
+			languageChoiceBox.setValue("Gaeilge");
+		}
+
+		languageChoiceBox.setItems(languages);
 	}
 	
 	/**
@@ -164,6 +174,7 @@ public class FridgeController {
     public void updateFridgeContents() throws SQLException {
     	List<Product> products = controller.getProducts("fridge");
     	checkBestBefore(products);
+    	controller.localize(products);
     	fridgeTable.setItems(FXCollections.observableArrayList(products));
     }
     

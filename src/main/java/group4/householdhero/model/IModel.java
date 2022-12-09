@@ -29,4 +29,7 @@ public interface IModel {
 	public void editProduct(Product product) throws IOException, SQLException;
 	
 	public List<String> getCategories() throws SQLException;
+	public List<String> getLocalizedCategories();
+	public String unlocalizeCategory(String localizedCategory);
+	public List<Product> localize(List<Product> products);
 }

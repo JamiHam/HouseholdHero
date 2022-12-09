@@ -8,6 +8,7 @@ import java.util.List;
 import group4.householdhero.model.Budget;
 import group4.householdhero.model.IModel;
 import group4.householdhero.model.Product;
+import javafx.collections.ObservableList;
 
 public interface IController {
 	public void setModel(IModel model);
@@ -31,6 +32,9 @@ public interface IController {
 	public void putToWaste(Product product) throws IOException, SQLException;
 	
 	public List<String> getCategories() throws SQLException;
+	public List<String> getLocalizedCategories();
+	public String unlocalizeCategory(String localizedCategory);
+	public List<Product> localize(List<Product> products);
 	
 	public boolean showBudget() throws IOException;
 	public boolean showFridge() throws IOException;

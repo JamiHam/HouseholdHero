@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import group4.householdhero.controller.IController;
 
@@ -12,6 +13,7 @@ public class Model implements IModel {
 	private DataAccessObject dao;
 	private ProductFactory productFactory;
 	private BudgetFactory budgetFactory;
+	private CategoryLocalizer categoryLocalizer;
 	
 	public Model() {
 		productFactory = new ProductFactory();
@@ -21,6 +23,10 @@ public class Model implements IModel {
 	public void setController(IController controller) {
 		this.controller = controller;
 		dao = new DataAccessObject(this, "HouseholdHero");
+	}
+	
+	public void createLocalizer() throws SQLException {
+		categoryLocalizer = new CategoryLocalizer(this);
 	}
 	
 	
@@ -104,4 +110,22 @@ public class Model implements IModel {
 	public List<String> getCategories() throws SQLException {
 		return dao.getCategories();
 	}
+	
+	public List<String> getLocalizedCategories() {
+		return categoryLocalizer.getLocalizedCategories();
+	}
+
+	public String unlocalizeCategory(String localizedCategory) {
+		return categoryLocalizer.unlocalizeCategory(localizedCategory);
+	}
+	
+	public List<Product> localize(List<Product> products) {
+		return categoryLocalizer.localize(products);
+	}
+
+	public void localizeCategories() {
+		categoryLocalizer.localizeCategories();
+	}
+	
+	
 }
