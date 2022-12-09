@@ -213,7 +213,7 @@ public class BudgetController {
 	 */
 	private void initializeColumns() {
 		productsNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-		productsCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("category"));
+		productsCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("localizedCategory"));
 		productsIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
 		productsPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 		productsBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
