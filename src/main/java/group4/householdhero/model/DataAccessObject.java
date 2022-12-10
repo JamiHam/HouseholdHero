@@ -380,7 +380,7 @@ public class DataAccessObject {
 	 */
 	public boolean checkBudgets(LocalDate startDate, LocalDate endDate) throws SQLException {
 		String checkBudgetString = "select * from Budget where (start_date <= ?) and (? <= end_date) and "
-				+ "(start_date <= end_date) and (? <= ?) and budget_ID != ?;";
+				+ "(start_date <= end_date) and (? <= ?);";
 
 		PreparedStatement stmt = conn.prepareStatement(checkBudgetString);
 		stmt.setDate(1, Date.valueOf(endDate));
