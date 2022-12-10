@@ -85,7 +85,7 @@ public class DAOTest {
 	}
 	
 	@Test
-	@DisplayName("Get products")
+	@DisplayName("Get product")
 	public void getProductTest() throws SQLException {
 		dao.addBudget(budget);
 		dao.addProduct(product);
@@ -95,94 +95,16 @@ public class DAOTest {
 	
 	@Test
 	@DisplayName("Delete product")
-	public void updateProductTest() throws SQLException {
+	public void deleteProductTest() throws SQLException {
 		dao.addBudget(budget);
 		dao.addProduct(product);
 		dao.deleteProduct(product);
-//		Product testProduct = dao.getProduct(1);
 		assertNull(dao.getProduct(1), "Failed to update product");
-	}
-	
-	
-	
-	/*static Model modeli = mock(Model.class);
-	public DAOTest(Model model) {
-		super(modeli);
-		// TODO Auto-generated constructor stub
-	}*/
-
-	
-	/*private static DataAccessObject dao;
-	private int id = 1;
-	private String name = "Maito";
-	private double price = 3.50;
-	private LocalDate bestBefore = LocalDate.parse("2017-01-13");
-	private String category = "maitotuote";
-	private int budgetid = 1;
-	private int statusid = 1;
-	Product dummy = mock(Product.class);
-	
-	@BeforeAll
-	public static void start() {
-		Model model = mock(Model.class);
-		dao = new DataAccessObject(model);
-	}
-
-	@BeforeEach
-	public void getConnection() {
-		//dao = new DataAccessObject(model);
-		System.out.println("Getting connection");
-		dao.connect();
-		when(dummy.getId()).thenReturn(id);
-		when(dummy.getName()).thenReturn(name);
-		when(dummy.getPrice()).thenReturn(price);
-		when(dummy.getBestBefore()).thenReturn(bestBefore);
-		when(dummy.getCategory()).thenReturn(category);
-		when(dummy.getBudgetId()).thenReturn(budgetid);
-		when(dummy.getStatusId()).thenReturn(statusid);
-		System.out.println("Adding dummy item");
-		dao.addProduct(dummy);
-	}
-	
-	@AfterEach
-	public void testEndConnection() throws SQLException {
-		System.out.println("Deleting dummy item");
-		dao.deleteProduct(dummy);
-		dao.finalize();
-	}
-	
-	/*@Test
-	public void testGetProductsInFridge() throws SQLException {
-		List<Product> products = dao.getProducts("fridge");
-		
-	}*/
-	
-	/*@Test
-	@DisplayName("Adding products")
-	public void testAdd() throws SQLException {
-		System.out.println("Getting product");
-		Product dummyProduct = dao.getProduct(1);
-		System.out.println(dao.getProduct(1));
-		assertEquals(id, dummyProduct.getId(), "getProduct(): Products id incorrect.");
-		assertEquals(name, dummyProduct.getName(), "getProduct(): Products name incorrect.");
-		assertEquals(category, dummyProduct.getCategory(), "getProduct(): Products category incorrect.");
-		assertEquals(price, dummyProduct.getPrice(), "getProduct(): Products price incorrect.");
-	}
-	
-	/*@Test
-	public void testAddProduct() {
-		//dao.addProduct(sql);
-	}*/
-	
-	/*@Test
-	public void testDeleteProduct() {
-		
-	}
+	}	
 	
 	@Test
-	public void testEditProduct() {
+	@DisplayName("Update product")
+	public void updateProductTest() throws SQLException {
 		
-	}*/
-	
-	
+	}
 }

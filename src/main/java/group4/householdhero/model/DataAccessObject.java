@@ -5,6 +5,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author ville
+ *
+ */
 public class DataAccessObject {
 
 	protected Connection conn;
@@ -15,10 +19,19 @@ public class DataAccessObject {
 		this.model = model;
 	}
 	
+	/**
+	 * Gives connection for tests to use
+	 * @return Connection conn
+	 */
+	
 	public Connection getConnection() {
 		return conn;
 	}
 
+	/**
+	 * Creates connection to database
+	 * @param database
+	 */
 	public void connect(String database) {
 		final String URL = "jdbc:mariadb://10.114.32.4:3306/" + database;
 		final String USERNAME = "user";
@@ -35,18 +48,13 @@ public class DataAccessObject {
 			System.exit(-1); // lopetus heti virheen vuoksi
 		}
 	}
-	
 
-
-	@Override
-	public void finalize() { // destruktori
-		try { // oli sama yhteys koko sovelluksen ajan
-			conn.close(); // vapauttaa kaikki muutkin resurssit
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
+	/**
+	 * Gets categoryID by category name from the database
+	 * @param product
+	 * @return categoryID
+	 * @throws SQLException
+	 */
 	private int getCategoryIdByName(Product product) throws SQLException {
 		int id = 0;
 		String getCategoryIdByNameQuery = "select category_ID from Category where type = ?";
@@ -61,6 +69,12 @@ public class DataAccessObject {
 		return id;
 	}
 
+	/**
+	 * Gets category name by given categoryID from database
+	 * @param productID
+	 * @return type
+	 * @throws SQLException
+	 */
 	private String getCategoryByName(int productID) throws SQLException {
 		String type = null;
 		String getCategoryByNameQuery = "select type from Category "
@@ -77,6 +91,11 @@ public class DataAccessObject {
 		return type;
 	}
 
+	/**
+	 * Updates product in the database
+	 * @param product
+	 * @throws SQLException
+	 */
 	public void updateProduct(Product product) throws SQLException {
 		// Päivittää kaikki productin fieldit (paitsi budjetin ja statuksen) id:n
 		// perusteella.
@@ -96,7 +115,11 @@ public class DataAccessObject {
 		System.out.println("Amount of updated products: " + updates);
 	}
 
-	
+	/**
+	 * Deletes product from the database
+	 * @param product
+	 * @throws SQLException
+	 */
 	public void deleteProduct(Product product) throws SQLException {
 		String deleteProductQuery = "delete from Product where product_ID=?";
 
@@ -108,7 +131,11 @@ public class DataAccessObject {
 		System.out.println("Deleted products: " + deletes);
 	}
 
-	
+	/**
+	 * Adds product in the database
+	 * @param product
+	 * @return boolean
+	 */
 	public boolean addProduct(Product product) {
 		String addProductQuery = "insert into Product (Product_ID, name, price, best_before, category_ID, status_ID, budget_ID) "
 				+ "values (?, ?, ?, ?, ?, ?, ?)";
@@ -136,6 +163,12 @@ public class DataAccessObject {
 	}
 	
 
+	/**
+	 * Looks for statusID in database by given status name in database
+	 * @param statusName
+	 * @return statusID
+	 * @throws SQLException
+	 */
 	private int getStatusIdByName(String statusName) throws SQLException {
 		int id = 0;
 		String getIdByNameQuery = "select status_ID from Status where status = ?";
@@ -149,7 +182,13 @@ public class DataAccessObject {
 		}
 		return id;
 	}
-
+	
+	/**
+	 * Updates status in the database 
+	 * @param product
+	 * @param status
+	 * @throws SQLException
+	 */
 	public void updateStatus(Product product, String status) throws SQLException {
 		String updateStatusQuery = "update Product set status_ID=? where product_ID=?";
 
@@ -162,6 +201,12 @@ public class DataAccessObject {
 		System.out.println("Updated: " + update);
 	}
 
+	/**
+	 * Gets whole budget by date from database
+	 * @param date
+	 * @return
+	 * @throws SQLException
+	 */
 	public Budget getBudgetByDate(LocalDate date) throws SQLException {
 		// Palauttaa aktiivisen budjetin. Palauttaa null jos budjettia ei ole.
 		// (LocalDate.now() = nykyinen päivämäärä)
@@ -183,7 +228,11 @@ public class DataAccessObject {
 		return budget;
 	}
 	
-
+	/**
+	 * Add new budget in the database in the database
+	 * @param budget
+	 * @throws SQLException
+	 */
 	public void addBudget(Budget budget) throws SQLException {
 		String addBudgetQuery = "insert into Budget (budget_ID, planned_budget, spent_budget, start_date, end_date) values (?, ?, ?, ?, ?)";
 
@@ -198,6 +247,12 @@ public class DataAccessObject {
 		System.out.println("Added: " + added);
 	}
 
+	/**
+	 * Gets all the products by status from the database
+	 * @param status
+	 * @return list of products
+	 * @throws SQLException
+	 */
 	public List<Product> getProducts(String status) throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
 		String getProductsQuery = "select * from Product where status_ID=?";
@@ -215,6 +270,12 @@ public class DataAccessObject {
 		return products;
 	}
 	
+	/**
+	 * Gets all products by budget from the database
+	 * @param budgetID
+	 * @return list of products
+	 * @throws SQLException
+	 */
 	public List<Product> getProductsByBudget(int budgetID) throws SQLException {
 		ArrayList<Product> products = new ArrayList<Product>();
 		String getProductsQuery = "select * from Product where budget_ID=?";
@@ -233,6 +294,12 @@ public class DataAccessObject {
 		return products;
 	}
 
+	/**
+	 * Gets one product by productID from the database
+	 * @param id
+	 * @return product
+	 * @throws SQLException
+	 */
 	public Product getProduct(int id) throws SQLException {
 		String getProductsQuery = "select * from Product where product_ID=?";
 		Product product = null;
@@ -241,15 +308,22 @@ public class DataAccessObject {
 		stmt.setInt(1, id);
 
 		ResultSet rs = stmt.executeQuery();
-		while (rs.next()) {
+		if (rs.next()) {
 			product = model.createProduct(rs.getInt("product_ID"), rs.getString("name"), rs.getDouble("price"),
 					LocalDate.parse(rs.getDate("best_before").toString()), getCategoryByName(rs.getInt("product_ID")),
 					rs.getInt("budget_ID"), rs.getInt("status_ID"));
+			System.out.println("\nTuotenimi\n"+product.getName());
+			return product;
+		} else {
+			return null;
 		}
-		System.out.println("\nTuotenimi\n"+product.getName());
-		return product;
 	}
 
+	/**
+	 * Get list of all categories from the database
+	 * @return list of categories
+	 * @throws SQLException
+	 */
 	public List<String> getCategories() throws SQLException {
 		ArrayList<String> categories = new ArrayList<String>();
 		String getCategoriesQuery = "select type from Category";
@@ -263,6 +337,10 @@ public class DataAccessObject {
 		return categories;
 	}
 
+	/**
+	 * Changes products status to expired in database
+	 * @throws SQLException
+	 */
 	public void checkBestBefore() throws SQLException {
 		String checkBestBeforeQuery = "update Product set status_ID=? where status_ID=? and best_before<?";
 
@@ -275,6 +353,11 @@ public class DataAccessObject {
 		System.out.println("updated: " + updates);
 	}
 
+	/**
+	 * Updates budget in the database
+	 * @param newBudget
+	 * @throws SQLException
+	 */
 	public void updateBudget(Budget newBudget) throws SQLException {
 		String updateBudgetQuery = "update Budget set planned_budget=?, spent_budget=?, start_date=?, end_date=? where budget_ID=?";
 
@@ -288,6 +371,13 @@ public class DataAccessObject {
 		stmt.executeUpdate();
 	}
 
+	/**
+	 * Checks budget overlaps in the database
+	 * @param startDate
+	 * @param endDate
+	 * @return boolean
+	 * @throws SQLException
+	 */
 	public boolean checkBudgets(LocalDate startDate, LocalDate endDate) throws SQLException {
 		String checkBudgetString = "select * from Budget where (start_date <= ?) and (? <= end_date) and "
 				+ "(start_date <= end_date) and (? <= ?) and budget_ID != ?;";
@@ -313,6 +403,14 @@ public class DataAccessObject {
 
 	}
 	
+	/**
+	 * Checks budget overlaps ignoring current budget in database
+	 * @param startDate
+	 * @param endDate
+	 * @param currentBudget
+	 * @return boolean
+	 * @throws SQLException
+	 */
 	public boolean checkBudgets(LocalDate startDate, LocalDate endDate, Budget currentBudget) throws SQLException {
 		String checkBudgetString = "select * from Budget where (start_date <= ?) and (? <= end_date) and "
 				+ "(start_date <= end_date) and (? <= ?) and budget_ID != ?;";
@@ -339,6 +437,11 @@ public class DataAccessObject {
 
 	}
 	
+	/**
+	 * Gets list of budgets from the database
+	 * @return list of budgets
+	 * @throws SQLException
+	 */
 	public List<Budget> getAllBudgets() throws SQLException {
 		ArrayList<Budget> budgets = new ArrayList<>();
 		String getBudgetsString = "select * from Budget";
@@ -354,6 +457,11 @@ public class DataAccessObject {
 		return budgets;
 	}
 	
+	/**
+	 * Deletes products from budget in the database
+	 * @param budget
+	 * @throws SQLException
+	 */
 	public void deleteProductsFromBudget(Budget budget) throws SQLException {
 		String deleteProductsFromBudgetString = "delete from Product where Budget_ID=?";
 		
@@ -365,6 +473,12 @@ public class DataAccessObject {
 		System.out.println("Deleted item count: " + deletes);
 	}
 	
+	/**
+	 * Deletes budget from database
+	 * @param budget
+	 * @return boolean
+	 * @throws SQLException
+	 */
 	public boolean deleteBudget(Budget budget) throws SQLException {
 		deleteProductsFromBudget(budget);
 		String deleteBudgetString = "delete from Budget where budget_ID=?";
