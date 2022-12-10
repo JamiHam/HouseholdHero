@@ -74,14 +74,14 @@
             <TableView id="products-in-fridge" fx:id="fridgeTable" prefHeight="500.0" prefWidth="800.0">
               <columns>
                   <TableColumn id="categoryIconColumn" fx:id="fridgeIconColumn" prefWidth="45.0" />
-                <TableColumn fx:id="fridgeNameColumn" prefWidth="95.0" text="%name.text" />
-                <TableColumn fx:id="fridgeCategoryColumn" prefWidth="125.0" text="%category.text" />
-                  <TableColumn fx:id="fridgePriceColumn" prefWidth="70.0" text="%price.text" />
-                  <TableColumn fx:id="fridgeBestBeforeColumn" prefWidth="120.0" text="%best.before.text" />
+                <TableColumn id="nameColumn" fx:id="fridgeNameColumn" prefWidth="105.0" text="%name.text" />
+                <TableColumn id="categoryColumn" fx:id="fridgeCategoryColumn" prefWidth="165.0" text="%category.text" />
+                  <TableColumn id="priceColumn" fx:id="fridgePriceColumn" prefWidth="70.0" text="%price.text" />
+                  <TableColumn id="bestBeforeColumn" fx:id="fridgeBestBeforeColumn" prefWidth="120.0" text="%best.before.text" />
                   <TableColumn id="statusIconColumn" fx:id="fridgeExpirationColumn" prefWidth="45.0" text="%status.text" />
-                  <TableColumn id="editButtonColumn" fx:id="fridgeEditColumn" prefWidth="85.0" text="%edit.text" />
-                  <TableColumn id="putToUsedButtonColumn" fx:id="fridgePutToUsedColumn" prefWidth="110.0" text="%put.to.used.text" />
-                  <TableColumn id="putToWasteButtonColumn" fx:id="fridgePutToWasteColumn" prefWidth="85.0" text="%put.to.waste.text" />
+                  <TableColumn id="editButtonColumn" fx:id="fridgeEditColumn" prefWidth="75.0" text="%edit.text" />
+                  <TableColumn id="putToUsedButtonColumn" fx:id="fridgePutToUsedColumn" prefWidth="75.0" text="%put.to.used.text" />
+                  <TableColumn id="putToWasteButtonColumn" fx:id="fridgePutToWasteColumn" text="%put.to.waste.text" />
               </columns>
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
