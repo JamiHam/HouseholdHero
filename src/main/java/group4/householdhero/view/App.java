@@ -1,10 +1,7 @@
 package group4.householdhero.view;
 
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -43,7 +40,6 @@ public class App extends Application {
 	@Override
     public void start(Stage stage) throws IOException {
         setTitleAndIcon(stage);
-        setLocaleEnglish();
     	
     	FXMLLoader loader = getFXMLLoader("StartingGUI");
         scene = new Scene(loader.load(), 1100, 700);
@@ -53,39 +49,37 @@ public class App extends Application {
         stage.show();
     }
     
+	/**
+	 * Sets root to selected FXML-controller and returns the FXML-loader
+	 * @param fxml
+	 * @return
+	 * @throws IOException
+	 */
     private static FXMLLoader setRoot(String fxml) throws IOException {
     	FXMLLoader loader = getFXMLLoader(fxml);
     	scene.setRoot(loader.load());
     	return loader;
     }
     
+    /**
+     * Returns the FXML-loader of a given FXML-controller
+     * @param fxml
+     * @return
+     * @throws IOException
+     */
     private static FXMLLoader getFXMLLoader(String fxml) throws IOException {
     	// Get layout from FXML file and set the bundle to be used
     	currentFXML = fxml;
     	FXMLLoader loader = new FXMLLoader(App.class.getResource((fxml + ".fxml")));
-    	loader.setResources(bundle);
+    	loader.setResources(controller.getBundle());
     	return loader;
     }
     
-    public static void setLocaleEnglish() throws IOException {
-    	locale = new Locale("en_IE");
-    	bundle = ResourceBundle.getBundle("TextProperties", locale);
-    	model.localizeCategories();
-    	reloadView();
-    }
-    
-    public static void setLocaleGaeilge() throws IOException {
-    	locale = new Locale("ga_IE");
-    	bundle = ResourceBundle.getBundle("TextProperties", locale);
-    	model.localizeCategories();
-    	reloadView();
-    }
-    
-    public static Locale getLocale() {
-    	return locale;
-    }
-    
-    private static void reloadView() throws IOException {
+    /**
+     * Reloads the current view
+     * @throws IOException
+     */
+    public static void reloadView() throws IOException {
     	if (currentFXML == "StartingGUI") {
     		showFridge();
     	}
@@ -94,18 +88,36 @@ public class App extends Application {
     	}
     }
     
+    /**
+     * Changes to fridge view
+     * @return
+     * @throws IOException
+     */
     public static boolean showFridge() throws IOException {
     	FXMLLoader loader = setRoot("StartingGUI");
     	fridgeController = loader.getController();
     	return true;
     }
     
+    /**
+     * Changes to budget view
+     * @return
+     * @throws IOException
+     */
     public static boolean showBudget() throws IOException {
     	FXMLLoader loader = setRoot("BudgetGUI");
     	budgetController = loader.getController();
     	return true;
     }
     
+    /**
+     * Opens the product editing window
+     * @param editing
+     * @param product
+     * @return
+     * @throws IOException
+     * @throws SQLException
+     */
     public static boolean showProductWindow(boolean editing, Product product) throws IOException, SQLException {
     	Pair<FXMLLoader, Stage> pair = setupWindow("AddEditProductGUI");
     	FXMLLoader loader = pair.getKey();
@@ -124,6 +136,13 @@ public class App extends Application {
     	return true;
     }
     
+    /**
+     * Opens the budget editing window
+     * @param editing
+     * @param budget
+     * @return
+     * @throws IOException
+     */
     public static boolean showBudgetWindow(boolean editing, Budget budget) throws IOException {
     	Pair<FXMLLoader, Stage> pair = setupWindow("AddEditBudgetGUI");
     	FXMLLoader loader = pair.getKey();
@@ -150,6 +169,12 @@ public class App extends Application {
     	return true;
     }
     
+    /**
+     * Sets up a new window
+     * @param fxml
+     * @return
+     * @throws IOException
+     */
     private static Pair<FXMLLoader, Stage> setupWindow(String fxml) throws IOException {
     	FXMLLoader loader = getFXMLLoader(fxml);
     	Parent root = loader.load();
@@ -163,6 +188,11 @@ public class App extends Application {
     	return new Pair<FXMLLoader, Stage> (loader, stage);
     }
     
+    /**
+     * Sets window title and icon
+     * @param stage
+     * @throws FileNotFoundException
+     */
     private static void setTitleAndIcon(Stage stage) throws FileNotFoundException {
 		stage.setTitle("HouseholdHero");
 		

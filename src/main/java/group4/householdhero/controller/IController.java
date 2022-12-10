@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import group4.householdhero.model.Budget;
 import group4.householdhero.model.IModel;
@@ -33,9 +35,15 @@ public interface IController {
 	public void putToWaste(Product product) throws IOException, SQLException;
 	
 	public List<String> getCategories() throws SQLException;
-	public List<String> getLocalizedCategories();
-	public String unlocalizeCategory(String localizedCategory);
-	public List<Product> localize(List<Product> products);
+	public List<String> getLocalisedCategories();
+	public String unlocaliseCategory(String localizedCategory);
+	public List<Product> localise(List<Product> products);
+	public void localiseCategories();
+	
+	public Locale setLocale(String language);
+	public String getLocalisedString(String string);
+	public Locale getLocale();
+	public ResourceBundle getBundle();
 	
 	public boolean showBudget() throws IOException;
 	public boolean showFridge() throws IOException;

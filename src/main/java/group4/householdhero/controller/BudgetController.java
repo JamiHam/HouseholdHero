@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Locale;
 
 import group4.householdhero.model.Budget;
+import group4.householdhero.model.Localiser;
 import group4.householdhero.model.Product;
 import group4.householdhero.view.App;
 import javafx.collections.FXCollections;
@@ -34,18 +35,22 @@ public class BudgetController {
 	protected double usedTotalCost;
 	protected double wasteTotalCost;
 	
-	@FXML private ChoiceBox<String> languageChoiceBox;
+	@FXML
+	protected ChoiceBox<String> languageChoiceBox;
 	
-	@FXML private ChoiceBox<Budget> budgetChoiceBox;
+	@FXML
+	protected ChoiceBox<Budget> budgetChoiceBox;
 	@FXML protected Label startDateLabel;
 	@FXML protected Label endDateLabel;
 	@FXML protected Label plannedBudgetLabel;
 	@FXML protected Label spentBudgetLabel;
 	@FXML protected Label remainingBudgetLabel;
 	
-	@FXML private PieChart pieChart;
+	@FXML
+	protected PieChart pieChart;
 	
-	@FXML private TableView<Product> productsDuringBudgetTable;
+	@FXML
+	protected TableView<Product> productsDuringBudgetTable;
 	@FXML private TableColumn<Product, String> productsNameColumn;
 	@FXML private TableColumn<Product, Integer> productsCategoryColumn;
 	@FXML private TableColumn<Product, ImageView> productsIconColumn;
@@ -71,7 +76,6 @@ public class BudgetController {
 		
         calculateStatusPrices();
         setPieChart();
-
 	}
 	
 	/**
@@ -79,10 +83,10 @@ public class BudgetController {
 	 */
 	protected void setLanguageChoiceBox() {
 		ObservableList<String> languages = FXCollections.observableArrayList(
-				App.bundle.getString("english.choice.text"),
-				App.bundle.getString("gaeilge.choice.text"));
+				controller.getLocalisedString("english.choice.text"),
+				controller.getLocalisedString("gaeilge.choice.text"));
 		
-		if (App.getLocale().toString().equals("en_ie")) {
+		if (controller.getLocale().toString().equals("en_ie")) {
 			languageChoiceBox.setValue("English");
 		} else {
 			languageChoiceBox.setValue("Gaeilge");
@@ -96,12 +100,16 @@ public class BudgetController {
 	 * @throws IOException
 	 */
 	@FXML
-	private void changeSelectedLanguage() throws IOException {
-		if (languageChoiceBox.getValue() == App.bundle.getString("english.choice.text")) {
-			App.setLocaleEnglish();
-		} if (languageChoiceBox.getValue() == App.bundle.getString("gaeilge.choice.text")) {
-			App.setLocaleGaeilge();
+	protected Locale changeSelectedLanguage() throws IOException {
+		Locale selectedLocale = new Locale("");
+		if (languageChoiceBox.getValue() == controller.getLocalisedString("english.choice.text")) {
+			selectedLocale = controller.setLocale("en_IE");
+			App.reloadView();
+		} else if (languageChoiceBox.getValue() == controller.getLocalisedString("gaeilge.choice.text")) {
+			selectedLocale = controller.setLocale("ga_IE");
+			App.reloadView();
 		}
+		return selectedLocale;
 	}
 	
 	/**
@@ -175,13 +183,13 @@ public class BudgetController {
 	/**
 	 * Sets status prices to pie chart
 	 */
-	private void setPieChart() {
+	protected void setPieChart() {
 		ObservableList<PieChart.Data> pieChartData =
 			FXCollections.observableArrayList(
-            new PieChart.Data(App.bundle.getString("budget.distribution.fridge.text"), fridgeTotalCost),
-            new PieChart.Data(App.bundle.getString("budget.distribution.used.text"), usedTotalCost),
-            new PieChart.Data(App.bundle.getString("budget.distribution.waste.text"), wasteTotalCost),
-			new PieChart.Data(App.bundle.getString("remaining.budget.text"), budget.getPlannedBudget() - budget.getSpentBudget()));
+            new PieChart.Data(controller.getLocalisedString("budget.distribution.fridge.text"), fridgeTotalCost),
+            new PieChart.Data(controller.getLocalisedString("budget.distribution.used.text"), usedTotalCost),
+            new PieChart.Data(controller.getLocalisedString("budget.distribution.waste.text"), wasteTotalCost),
+			new PieChart.Data(controller.getLocalisedString("remaining.budget.text"), budget.getPlannedBudget() - budget.getSpentBudget()));
 		
         pieChart.setData(pieChartData);
         pieChart.setLabelsVisible(false); // Hides the pie chart labels
@@ -193,7 +201,7 @@ public class BudgetController {
 	 * Gets all budgets from database and sets them to budget choice box
 	 * @throws SQLException
 	 */
-	private void getBudgets() throws SQLException {
+	protected void getBudgets() throws SQLException {
 		ObservableList<Budget> budgetList = FXCollections.observableArrayList(controller.getAllBudgets());
 		budgetChoiceBox.setItems(budgetList);
 	}
@@ -202,9 +210,9 @@ public class BudgetController {
 	 * Gets all products in the selected budget and adds them to the product table
 	 * @throws SQLException
 	 */
-	private void setProducts() throws SQLException {
+	protected void setProducts() throws SQLException {
 		productList = (ArrayList<Product>) controller.getProductsByBudget(budget.getId());
-		controller.localize(productList);
+		controller.localise(productList);
 		productsDuringBudgetTable.setItems(FXCollections.observableArrayList(productList));
 	}
 	

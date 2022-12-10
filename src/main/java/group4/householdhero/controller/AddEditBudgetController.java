@@ -43,7 +43,7 @@ public class AddEditBudgetController {
 		double plannedBudget = Double.parseDouble(plannedBudgetTextField.getText());
 		
 		if (editing && !controller.checkBudgets(startDate, endDate, budget) || !editing && !controller.checkBudgets(startDate, endDate)) {
-			setErrorMessage(App.bundle.getString("budget.validate.input.date.range.overlaps.text"));
+			setErrorMessage(controller.getLocalisedString("budget.validate.input.date.range.overlaps.text"));
 			showError(true);
 			return;
 		}
@@ -105,17 +105,17 @@ public class AddEditBudgetController {
 			Double.parseDouble(plannedBudgetTextField.getText());
 		} catch (NumberFormatException e) {
 			validity = false;
-			setErrorMessage(App.bundle.getString("budget.validate.input.number.text"));
+			setErrorMessage(controller.getLocalisedString("budget.validate.input.number.text"));
 		}
 		
 		if (endDatePicker.getValue() == null) {
 			validity = false;
-			setErrorMessage(App.bundle.getString("budget.validate.input.end.date.text"));
+			setErrorMessage(controller.getLocalisedString("budget.validate.input.end.date.text"));
 		}
 		
 		if (startDatePicker.getValue() == null) {
 			validity = false;
-			setErrorMessage(App.bundle.getString("budget.validate.input.start.date.text"));
+			setErrorMessage(controller.getLocalisedString("budget.validate.input.start.date.text"));
 		}
 		
 		return validity;
