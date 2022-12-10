@@ -45,7 +45,7 @@ public class AddEditProductController {
 		}
 		
 		String name = nameTextField.getText();
-		String category = controller.unlocalizeCategory(categoryChoiceBox.getValue());
+		String category = controller.unlocaliseCategory(categoryChoiceBox.getValue());
 		double price = Double.parseDouble(priceTextField.getText());
 		LocalDate bestBefore = bestBeforeDatePicker.getValue();
 		
@@ -134,7 +134,7 @@ public class AddEditProductController {
 	 * @throws SQLException
 	 */
 	private void getCategories() throws SQLException {
-		List<String> categories = controller.getLocalizedCategories();
+		List<String> categories = controller.getLocalisedCategories();
 		System.out.println(categories);
 		categoryChoiceBox.setItems(FXCollections.observableArrayList(categories));
 	}
@@ -148,24 +148,24 @@ public class AddEditProductController {
 		
 		if (bestBeforeDatePicker.getValue() == null) {
 			validity = false;
-			setErrorMessage(App.bundle.getString("product.validate.input.best.before.text"));
+			setErrorMessage(controller.getLocalisedString("product.validate.input.best.before.text"));
 		}
 		
 		try {
 			Double.parseDouble(priceTextField.getText());
 		} catch (NumberFormatException e) {
 			validity = false;
-			setErrorMessage(App.bundle.getString("product.validate.input.price.text"));
+			setErrorMessage(controller.getLocalisedString("product.validate.input.price.text"));
 		}
 		
 		if (categoryChoiceBox.getValue() == null) {
 			validity = false;
-			setErrorMessage(App.bundle.getString("product.validate.input.category.text"));
+			setErrorMessage(controller.getLocalisedString("product.validate.input.category.text"));
 		}
 		
 		if (nameTextField.getText().isEmpty()) {
 			validity = false;
-			setErrorMessage(App.bundle.getString("product.validate.input.product.text"));
+			setErrorMessage(controller.getLocalisedString("product.validate.input.product.text"));
 		}
 		
 		return validity;

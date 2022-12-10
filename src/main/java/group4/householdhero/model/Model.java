@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import group4.householdhero.controller.IController;
@@ -13,11 +14,13 @@ public class Model implements IModel {
 	private DataAccessObject dao;
 	private ProductFactory productFactory;
 	private BudgetFactory budgetFactory;
-	private CategoryLocalizer categoryLocalizer;
+	private Localiser localiser;
+	private CategoryLocaliser categoryLocalizer;
 	
 	public Model() {
 		productFactory = new ProductFactory();
 		budgetFactory = new BudgetFactory();
+		
 	}
 	
 	public void setController(IController controller) {
@@ -26,7 +29,8 @@ public class Model implements IModel {
 	}
 	
 	public void createLocalizer() throws SQLException {
-		categoryLocalizer = new CategoryLocalizer(this);
+		localiser = new Localiser();
+		categoryLocalizer = new CategoryLocaliser(this, localiser);
 	}
 	
 	
@@ -115,20 +119,41 @@ public class Model implements IModel {
 		return dao.getCategories();
 	}
 	
-	public List<String> getLocalizedCategories() {
+	public List<String> getLocalisedCategories() {
 		return categoryLocalizer.getLocalizedCategories();
 	}
 
-	public String unlocalizeCategory(String localizedCategory) {
-		return categoryLocalizer.unlocalizeCategory(localizedCategory);
+	public String unlocaliseCategory(String localizedCategory) {
+		return categoryLocalizer.unlocaliseCategory(localizedCategory);
 	}
 	
-	public List<Product> localize(List<Product> products) {
-		return categoryLocalizer.localize(products);
+	public List<Product> localise(List<Product> products) {
+		return categoryLocalizer.localise(products);
 	}
 
-	public void localizeCategories() {
+	public void localiseCategories() {
 		categoryLocalizer.localizeCategories();
+	}
+
+	
+	@Override
+	public Locale setLocale(String language) {
+		return localiser.setLocale(language);
+	}
+
+	@Override
+	public String getLocalisedString(String string) {
+		return localiser.getLocalisedString(string);
+	}
+
+	@Override
+	public Locale getLocale() {
+		return localiser.getLocale();
+	}
+
+	@Override
+	public ResourceBundle getBundle() {
+		return localiser.getBundle();
 	}
 	
 	

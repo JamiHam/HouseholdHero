@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
+import java.util.ResourceBundle;
 
 import group4.householdhero.model.*;
 import group4.householdhero.view.App;
@@ -94,16 +96,38 @@ public class Controller implements IController {
 		return model.getCategories();
 	}
 	
-	public List<String> getLocalizedCategories() {
-		return model.getLocalizedCategories();
+	public List<String> getLocalisedCategories() {
+		return model.getLocalisedCategories();
 	}
 	
-	public String unlocalizeCategory(String localizedCategory) {
-		return model.unlocalizeCategory(localizedCategory);
+	public String unlocaliseCategory(String localizedCategory) {
+		return model.unlocaliseCategory(localizedCategory);
 	}
 	
-	public List<Product> localize(List<Product> products) {
-		return model.localize(products);
+	public List<Product> localise(List<Product> products) {
+		return model.localise(products);
+	}
+	
+	public void localiseCategories() {
+		model.localiseCategories();
+	}
+	
+	
+	
+	public Locale setLocale(String language) {
+		return model.setLocale(language);
+	}
+
+	public String getLocalisedString(String string) {
+		return model.getLocalisedString(string);
+	}
+
+	public Locale getLocale() {
+		return model.getLocale();
+	}
+
+	public ResourceBundle getBundle() {
+		return model.getBundle();
 	}
 	
 	
@@ -123,4 +147,12 @@ public class Controller implements IController {
 	public boolean showBudgetWindow(boolean editing, Budget budget) throws IOException, SQLException {
 		return App.showBudgetWindow(editing, budget);
 	}
+
+
+
+	
+
+
+
+	
 }

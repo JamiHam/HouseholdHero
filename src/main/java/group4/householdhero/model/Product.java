@@ -159,7 +159,7 @@ public class Product {
 	}
 	
 	public String getStatus() {
-		return App.bundle.getString("product.status.text." + statusId);
+		return model.getLocalisedString("product.status.text." + statusId);
 	}
 
 	public void setStatusId(int statusId) {
