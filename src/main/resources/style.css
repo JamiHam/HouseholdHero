@@ -1,3 +1,7 @@
+/*
+ * BUTTON STYLES
+ */
+
 .button {
 	-fx-background-color: #1ec6cf;
 	-fx-border-radius: 3px;
@@ -98,10 +102,30 @@
 }
 
 /*
- * StartingGUI: Products In Fridge table, position of category icon, status icon and Edit, Put To Used and Put To Waste buttons
+ * STARTINGGUI AND BUDGETGUI: TABLE STYLES
+ */
+
+/*
+ * Position of columns
  */
 
 #categoryIconColumn {
+	-fx-alignment: BASELINE_CENTER;
+}
+
+#nameColumn {
+	-fx-alignment: BASELINE_CENTER;
+}
+
+#categoryColumn {
+	-fx-alignment: BASELINE_CENTER;
+}
+
+#priceColumn {
+	-fx-alignment: BASELINE_CENTER;
+}
+
+#bestBeforeColumn {
 	-fx-alignment: BASELINE_CENTER;
 }
 
@@ -121,8 +145,12 @@
 	-fx-alignment: BASELINE_CENTER;
 }
 
+#statusColumn {
+	-fx-alignment: BASELINE_CENTER;
+}
+
 /*
- * category icons
+ * CATEGORY ICONS
  */
 .category-baked-goods-text {
 	-fx-image: url("img/category-icon-baked-goods-40.png");
@@ -217,7 +245,7 @@
 }
 
 /*
- * status icons
+ * STATUS ICONS
  */
 .good-to-go {
 	-fx-image: url("img/status-good-to-go-icon.png");
@@ -231,6 +259,9 @@
 	-fx-image: url("img/status-expired-icon.png");
 }
 
+/*
+ * SAVE AND DELETE BUTTON STYLES
+ */
 #product-save-delete-used-waste-buttons, #budget-save-delete-buttons {
 	-fx-font-size: 12px;
 }
@@ -239,6 +270,9 @@
 	-fx-font-size: 12px;
 }
 
+/*
+ * STARTINGGUI: BACKGROUND STYLES
+ */
 #left-anchorpane-starting-gui {
 	-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #1ec6cf, #0349a8);
 }
@@ -247,6 +281,9 @@
 	-fx-background-color: #ffffff;
 }
 
+/*
+ * LABEL STYLES
+ */
 #label-products-in-fridge {
 	-fx-font-color: #000000;
 	-fx-font-weight: bold;
@@ -273,6 +310,9 @@
 	-fx-font-size: 14px;
 }
 
+/*
+ * ADDEDITPRODUCTGUI: BACKGROUND STYLES
+ */
 #top-anchorpane-add-edit-product-gui {
 	-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #1ec6cf, #0349a8);
 }
@@ -281,6 +321,9 @@
 	-fx-background-color: #ffffff;
 }
 
+/*
+ * ADDEDITBUDGETGUI: BACKGROUND STYLES
+ */
 #top-anchorpane-add-edit-budget-gui {
 	-fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #1ec6cf, #0349a8);
 }
@@ -289,6 +332,9 @@
 	-fx-background-color: #ffffff;
 }
 
+/*
+ * BUDGETGUI: LABEL STYLES
+ */
 .budget-information-headings {
 	-fx-font-color: #000000;
 	-fx-font-weight: bold;
@@ -319,7 +365,7 @@
 }
 
 /*
- * Pie Chart styles
+ * PIE CHART STYLES
  */
  
 /* Colors of Pie Chart slices  */
@@ -332,7 +378,7 @@
 .chart-legend { -fx-background-color: #ffffff; }
 
 /*
- * Choice Box styles
+ * CHOICE BOX STYLES
  */
  
 /* Background color of the whole context menu */
@@ -369,7 +415,7 @@
 }
 
 /*
- * Table styles
+ * TABLE STYLES
  */
  
 .table-view,

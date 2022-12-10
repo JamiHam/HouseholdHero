@@ -135,11 +135,11 @@
             <TableView id="products-in-fridge" fx:id="productsDuringBudgetTable" prefHeight="300.0" prefWidth="800.0">
                <columns>
                   <TableColumn id="categoryIconColumn" fx:id="productsIconColumn" prefWidth="45.0" />
-                  <TableColumn fx:id="productsNameColumn" prefWidth="150.0" text="%name.text" />
-                  <TableColumn fx:id="productsCategoryColumn" prefWidth="150.0" text="%category.text" />
-                  <TableColumn fx:id="productsPriceColumn" prefWidth="135.0" text="%price.text" />
-                  <TableColumn fx:id="productsBestBeforeColumn" prefWidth="150.0" text="%best.before.text" />
-                  <TableColumn fx:id="productsStatusColumn" prefWidth="150.0" text="%status.text" />
+                  <TableColumn id="nameColumn" fx:id="productsNameColumn" prefWidth="150.0" text="%name.text" />
+                  <TableColumn id="categoryColumn" fx:id="productsCategoryColumn" prefWidth="165.0" text="%category.text" />
+                  <TableColumn id="priceColumn" fx:id="productsPriceColumn" prefWidth="120.0" text="%price.text" />
+                  <TableColumn id="bestBeforeColumn" fx:id="productsBestBeforeColumn" prefWidth="150.0" text="%best.before.text" />
+                  <TableColumn id="statusColumn" fx:id="productsStatusColumn" prefWidth="150.0" text="%status.text" />
                </columns>
                <VBox.margin>
                   <Insets left="25.0" right="25.0" />
