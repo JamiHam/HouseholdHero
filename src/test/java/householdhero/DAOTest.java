@@ -1,7 +1,8 @@
 package householdhero;
 
 
-import static org.junit.jupiter.api.Assertions.assertEquals; 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
@@ -62,31 +63,47 @@ public class DAOTest {
 		when(product.getBudgetId()).thenReturn(budgetId);
 		when(product.getStatusId()).thenReturn(statusId);
 	}
+
 	
-	@Test
-	public void addProductTest() throws SQLException {
+	@BeforeEach
+	public void getConnection() throws SQLException {
 		connection = dao.getConnection();
 		connection.setAutoCommit(false);
-		
+	}
+	
+	@AfterEach
+	public void rollback() throws SQLException {
+		connection.rollback();
+	}
+	
+	@Test
+	@DisplayName("Adding products")
+	public void addProductTest() throws SQLException {
 		dao.addBudget(budget);
 		boolean success = dao.addProduct(product);
 		assertEquals(true, success, "Failed to add product");
-		
-		connection.rollback();
 	}
 	
 	@Test
+	@DisplayName("Get products")
 	public void getProductTest() throws SQLException {
-		connection = dao.getConnection();
-		connection.setAutoCommit(false);
-		
 		dao.addBudget(budget);
 		dao.addProduct(product);
 		Product testProduct = dao.getProduct(1);
-		assertEquals("Maito", testProduct.getName(), "Vituiks meni");
-		
-		connection.rollback();
+		assertEquals("Maito", testProduct.getName(), "Failed to get products");
 	}
+	
+	@Test
+	@DisplayName("Delete product")
+	public void updateProductTest() throws SQLException {
+		dao.addBudget(budget);
+		dao.addProduct(product);
+		dao.deleteProduct(product);
+//		Product testProduct = dao.getProduct(1);
+		assertNull(dao.getProduct(1), "Failed to update product");
+	}
+	
+	
 	
 	/*static Model modeli = mock(Model.class);
 	public DAOTest(Model model) {
