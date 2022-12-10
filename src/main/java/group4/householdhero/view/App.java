@@ -36,12 +36,14 @@ public class App extends Application {
 	private static Locale locale;
 	public static ResourceBundle bundle;
 	private static String currentFXML;
+	private static Budget selectedBudget;
 	
 	@Override
     public void start(Stage stage) throws IOException {
         setTitleAndIcon(stage);
     	
-    	FXMLLoader loader = getFXMLLoader("StartingGUI");
+        currentFXML = "StartingGUI";
+    	FXMLLoader loader = getFXMLLoader(currentFXML);
         scene = new Scene(loader.load(), 1100, 700);
         fridgeController = loader.getController();
         
@@ -69,7 +71,7 @@ public class App extends Application {
      */
     private static FXMLLoader getFXMLLoader(String fxml) throws IOException {
     	// Get layout from FXML file and set the bundle to be used
-    	currentFXML = fxml;
+    	//currentFXML = fxml;
     	FXMLLoader loader = new FXMLLoader(App.class.getResource((fxml + ".fxml")));
     	loader.setResources(controller.getBundle());
     	return loader;
@@ -94,7 +96,8 @@ public class App extends Application {
      * @throws IOException
      */
     public static boolean showFridge() throws IOException {
-    	FXMLLoader loader = setRoot("StartingGUI");
+    	currentFXML = "StartingGUI";
+    	FXMLLoader loader = setRoot(currentFXML);
     	fridgeController = loader.getController();
     	return true;
     }
@@ -105,7 +108,8 @@ public class App extends Application {
      * @throws IOException
      */
     public static boolean showBudget() throws IOException {
-    	FXMLLoader loader = setRoot("BudgetGUI");
+    	currentFXML = "BudgetGUI";
+    	FXMLLoader loader = setRoot(currentFXML);
     	budgetController = loader.getController();
     	return true;
     }
@@ -127,7 +131,6 @@ public class App extends Application {
     	stage.setOnHidden(e -> {
     		try {
 				fridgeController.updateFridgeContents();
-				currentFXML = "StartingGUI";
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			}
@@ -158,7 +161,7 @@ public class App extends Application {
 		stage.setOnHidden(e -> {
 			try {
 				fridgeController.checkCurrentBudget();
-				currentFXML = "BudgetGUI";
+				reloadView();
 			} catch (SQLException e1) {
 				e1.printStackTrace();
 			} catch (IOException e1) {
@@ -213,5 +216,13 @@ public class App extends Application {
     	controller.setModel(model);
     	
         launch();
+    }
+    
+    public static Budget getSelectedBudget() {
+    	return selectedBudget;
+    }
+    
+    public static void setSelectedBudget(Budget budget) {
+    	selectedBudget = budget;
     }
 }

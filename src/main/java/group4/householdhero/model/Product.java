@@ -14,7 +14,7 @@ public class Product {
 	private double price;
 	private LocalDate bestBefore;
 	private String category;
-	private String localizedCategory;
+	private String localisedCategory;
 	private int budgetId;
 	private int statusId;
 	private String expiration;
@@ -196,11 +196,11 @@ public class Product {
 		return expiration;
 	}
 	
-	public void setLocalizedCategory(String category) {
-		this.localizedCategory = category;
+	public void setLocalisedCategory(String category) {
+		this.localisedCategory = category;
 	}
 	
-	public String getLocalizedCategory() {
-		return localizedCategory;
+	public String getLocalisedCategory() {
+		return localisedCategory;
 	}
 }
