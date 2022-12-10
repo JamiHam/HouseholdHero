@@ -14,6 +14,10 @@ public class DataAccessObject {
 		connect(database);
 		this.model = model;
 	}
+	
+	public Connection getConnection() {
+		return conn;
+	}
 
 	public void connect(String database) {
 		final String URL = "jdbc:mariadb://10.114.32.4:3306/" + database;
@@ -286,13 +290,39 @@ public class DataAccessObject {
 
 	public boolean checkBudgets(LocalDate startDate, LocalDate endDate) throws SQLException {
 		String checkBudgetString = "select * from Budget where (start_date <= ?) and (? <= end_date) and "
-				+ "(start_date <= end_date) and (? <= ?);";
+				+ "(start_date <= end_date) and (? <= ?) and budget_ID != ?;";
 
 		PreparedStatement stmt = conn.prepareStatement(checkBudgetString);
 		stmt.setDate(1, Date.valueOf(endDate));
 		stmt.setDate(2, Date.valueOf(startDate));
 		stmt.setDate(3, Date.valueOf(startDate));
 		stmt.setDate(4, Date.valueOf(endDate));
+
+		System.out.println("Starting date: " + Date.valueOf(startDate) + "\nEndDate: " + Date.valueOf(endDate));
+		ResultSet rs = stmt.executeQuery();
+		int found = 0;
+		while(rs.next()) {
+			found++;
+		}
+		System.out.println("CheckBudgets found count: " + found);
+		if (found != 0) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
+	
+	public boolean checkBudgets(LocalDate startDate, LocalDate endDate, Budget currentBudget) throws SQLException {
+		String checkBudgetString = "select * from Budget where (start_date <= ?) and (? <= end_date) and "
+				+ "(start_date <= end_date) and (? <= ?) and budget_ID != ?;";
+
+		PreparedStatement stmt = conn.prepareStatement(checkBudgetString);
+		stmt.setDate(1, Date.valueOf(endDate));
+		stmt.setDate(2, Date.valueOf(startDate));
+		stmt.setDate(3, Date.valueOf(startDate));
+		stmt.setDate(4, Date.valueOf(endDate));
+		stmt.setInt(5, currentBudget.getId());
 
 		System.out.println("Starting date: " + Date.valueOf(startDate) + "\nEndDate: " + Date.valueOf(endDate));
 		ResultSet rs = stmt.executeQuery();
@@ -352,7 +382,5 @@ public class DataAccessObject {
 		}
 	}
 	
-	public Connection getConnection() {
-		return conn;
-	}
+
 }
