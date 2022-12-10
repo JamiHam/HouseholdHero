@@ -135,7 +135,6 @@ public class AddEditProductController {
 	 */
 	private void getCategories() throws SQLException {
 		List<String> categories = controller.getLocalisedCategories();
-		System.out.println(categories);
 		categoryChoiceBox.setItems(FXCollections.observableArrayList(categories));
 	}
 	
@@ -189,7 +188,7 @@ public class AddEditProductController {
 		if (editing) {
 			deleteButton.setVisible(true);
 			nameTextField.setText(product.getName());
-			categoryChoiceBox.setValue(product.getCategory());
+			categoryChoiceBox.setValue(product.getLocalisedCategory());
 			priceTextField.setText(Double.toString(product.getPrice()));
 			bestBeforeDatePicker.setValue(product.getBestBefore());
 		} else {

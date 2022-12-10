@@ -62,7 +62,13 @@ public class BudgetController {
 	@FXML
 	private void initialize() throws SQLException {
 		controller = App.getController();
-		budget = controller.getBudget(LocalDate.now());
+		
+		if (App.getSelectedBudget() == null) {
+			budget = controller.getBudget(LocalDate.now());
+			App.setSelectedBudget(budget);
+		}
+		
+		budget = App.getSelectedBudget();
 		
 		setLanguageChoiceBox();
 		
@@ -119,6 +125,7 @@ public class BudgetController {
 	@FXML
 	private void changeSelectedBudget() throws SQLException {
 		budget = budgetChoiceBox.getValue();
+		App.setSelectedBudget(budget);
 		setBudgetInformation();
 		setProducts();
 		calculateStatusPrices();
@@ -221,7 +228,7 @@ public class BudgetController {
 	 */
 	private void initializeColumns() {
 		productsNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-		productsCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("localizedCategory"));
+		productsCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("localisedCategory"));
 		productsIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
 		productsPriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 		productsBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));

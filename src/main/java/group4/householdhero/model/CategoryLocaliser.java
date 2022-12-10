@@ -49,7 +49,7 @@ public class CategoryLocaliser {
 		List<Product> localizedProducts = new ArrayList<Product>();
 		
 		for (Product product : products) {
-			product.setLocalizedCategory(localiser.getLocalisedString(product.getCategory()));
+			product.setLocalisedCategory(localiser.getLocalisedString(product.getCategory()));
 		}
 		
 		return localizedProducts;
