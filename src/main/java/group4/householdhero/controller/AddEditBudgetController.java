@@ -33,30 +33,31 @@ public class AddEditBudgetController {
 	 */
 	@FXML
 	private void save() throws SQLException {
-		if(validateInputs()) {
-			LocalDate startDate = startDatePicker.getValue();
-			LocalDate endDate = endDatePicker.getValue();
-			double plannedBudget = Double.parseDouble(plannedBudgetTextField.getText());
-			
-			if (controller.checkBudgets(startDate, endDate)) {
-				System.out.println(controller.checkBudgets(startDate, endDate));
-				if (editing) {
-					budget.setStartDate(startDate);
-					budget.setEndDate(endDate);
-					budget.setPlannedBudget(plannedBudget);
-					controller.updateBudget(budget);
-				} else {
-					controller.createBudget(0, plannedBudget, 0, startDate, endDate);
-				}
-				closeWindow();
-			} else {
-				setErrorMessage(App.bundle.getString("budget.validate.input.date.range.overlaps.text"));
-				showError(true);
-			}
-			
-		} else {
+		if(!inputsValid()) {
 			showError(true);
+			return;
 		}
+			
+		LocalDate startDate = startDatePicker.getValue();
+		LocalDate endDate = endDatePicker.getValue();
+		double plannedBudget = Double.parseDouble(plannedBudgetTextField.getText());
+		
+		if (editing && !controller.checkBudgets(startDate, endDate, budget) || !editing && !controller.checkBudgets(startDate, endDate)) {
+			setErrorMessage(App.bundle.getString("budget.validate.input.date.range.overlaps.text"));
+			showError(true);
+			return;
+		}
+		
+		if (editing) {
+			budget.setStartDate(startDate);
+			budget.setEndDate(endDate);
+			budget.setPlannedBudget(plannedBudget);
+			controller.updateBudget(budget);
+		} else {
+			controller.createBudget(0, plannedBudget, 0, startDate, endDate);
+		}
+		
+		closeWindow();
 	}
 	
 	/**
@@ -97,7 +98,7 @@ public class AddEditBudgetController {
 	 * Validates the user's inputs
 	 * @return
 	 */
-	private boolean validateInputs() {
+	private boolean inputsValid() {
 		boolean validity = true;
 		
 		try {

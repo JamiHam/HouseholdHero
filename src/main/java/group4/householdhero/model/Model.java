@@ -56,6 +56,10 @@ public class Model implements IModel {
 		return dao.checkBudgets(startDate, endDate);
 	}
 	
+	public boolean checkBudgets(LocalDate startDate, LocalDate endDate, Budget budget) throws SQLException {
+		return dao.checkBudgets(startDate, endDate, budget);
+	}
+	
 	public boolean deleteBudget(Budget budget) throws SQLException {
 		return dao.deleteBudget(budget);
 	}

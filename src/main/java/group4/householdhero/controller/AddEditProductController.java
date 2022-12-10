@@ -39,21 +39,23 @@ public class AddEditProductController {
 	 */
 	@FXML
 	private void save() throws SQLException {
-		if (validateInputs()) {
-			String name = nameTextField.getText();
-			String category = controller.unlocalizeCategory(categoryChoiceBox.getValue());
-			double price = Double.parseDouble(priceTextField.getText());
-			LocalDate bestBefore = bestBeforeDatePicker.getValue();
-			
-			if (editing) {
-				updateProduct(name, category, price, bestBefore);
-			} else {
-				createProduct(name, category, price, bestBefore);
-			}
-			closeWindow();
-		} else {
+		if (!inputsValid()) {
 			showError(true);
+			return;
 		}
+		
+		String name = nameTextField.getText();
+		String category = controller.unlocalizeCategory(categoryChoiceBox.getValue());
+		double price = Double.parseDouble(priceTextField.getText());
+		LocalDate bestBefore = bestBeforeDatePicker.getValue();
+		
+		if (editing) {
+			updateProduct(name, category, price, bestBefore);
+		} else {
+			createProduct(name, category, price, bestBefore);
+		}
+		
+		closeWindow();
 	}
 	
 	/**
@@ -141,7 +143,7 @@ public class AddEditProductController {
 	 * Validates the user's inputs
 	 * @return
 	 */
-	private boolean validateInputs() {
+	private boolean inputsValid() {
 		boolean validity = true;
 		
 		if (bestBeforeDatePicker.getValue() == null) {

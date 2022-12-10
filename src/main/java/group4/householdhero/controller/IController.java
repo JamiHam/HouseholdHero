@@ -18,6 +18,7 @@ public interface IController {
 	public Budget getBudget(LocalDate date) throws SQLException;
 	public List<Budget> getAllBudgets() throws SQLException;
 	public boolean checkBudgets(LocalDate startDate, LocalDate endDate) throws SQLException;
+	public boolean checkBudgets(LocalDate startDate, LocalDate endDate, Budget budget) throws SQLException;
 	public boolean deleteBudget(Budget budget) throws SQLException;
 	
 	public void createProduct(int id, String name, double price, LocalDate bestBefore, String category, int budgetId, int statusId) throws SQLException;
