@@ -428,7 +428,7 @@
 .table-view .column-header-background{
     -fx-background-color: linear-gradient(from 25% 25% to 100% 100%, #1ec6cf, #196cdd);
     -fx-background-radius: 3px;
-    -fx-background-insets: 0 11px 0 0;
+    -fx-background-insets: 0 1px 0 0;
     -fx-padding: 3px;
 }
 
