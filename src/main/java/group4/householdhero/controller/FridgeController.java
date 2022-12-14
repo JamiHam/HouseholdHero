@@ -5,6 +5,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+import group4.householdhero.model.CategoryLocaliser;
+import group4.householdhero.model.Localiser;
 import group4.householdhero.model.Product;
 import group4.householdhero.view.App;
 import javafx.collections.FXCollections;
@@ -56,10 +58,10 @@ public class FridgeController {
 	 */
 	private void setLanguageChoiceBox() {
 		ObservableList<String> languages = FXCollections.observableArrayList(
-				App.bundle.getString("english.choice.text"),
-				App.bundle.getString("gaeilge.choice.text"));
+				controller.getLocalisedString("english.choice.text"),
+				controller.getLocalisedString("gaeilge.choice.text"));
 		
-		if (App.getLocale().toString().equals("en_ie")) {
+		if (controller.getLocale().toString().equals("en_ie")) {
 			languageChoiceBox.setValue("English");
 		} else {
 			languageChoiceBox.setValue("Gaeilge");
@@ -74,11 +76,14 @@ public class FridgeController {
 	 */
 	@FXML
 	private void changeSelectedLanguage() throws IOException {
-		if (languageChoiceBox.getValue() == App.bundle.getString("english.choice.text")) {
-			App.setLocaleEnglish();
-		} if (languageChoiceBox.getValue() == App.bundle.getString("gaeilge.choice.text")) {
-			App.setLocaleGaeilge();
+		if (languageChoiceBox.getValue() == controller.getLocalisedString("english.choice.text")) {
+			controller.setLocale("en_IE");
+			App.reloadView();
+		} if (languageChoiceBox.getValue() == controller.getLocalisedString("gaeilge.choice.text")) {
+			controller.setLocale("ga_IE");
+			App.reloadView();
 		}
+		controller.localiseCategories();
 	}
 	
 	/**
@@ -156,7 +161,7 @@ public class FridgeController {
      */
     private void initializeColumns() {
     	fridgeNameColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("name"));
-		fridgeCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("localizedCategory"));
+		fridgeCategoryColumn.setCellValueFactory(new PropertyValueFactory<Product, Integer>("localisedCategory"));
 		fridgeIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
 		fridgePriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 		fridgeBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
@@ -174,7 +179,7 @@ public class FridgeController {
     public void updateFridgeContents() throws SQLException {
     	List<Product> products = controller.getProducts("fridge");
     	checkBestBefore(products);
-    	controller.localize(products);
+    	controller.localise(products);
     	fridgeTable.setItems(FXCollections.observableArrayList(products));
     }
     
