@@ -7,6 +7,8 @@ import static org.mockito.Mockito.when;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -16,6 +18,7 @@ import org.junit.jupiter.api.TestInstance.Lifecycle;
 import group4.householdhero.controller.Controller;
 import group4.householdhero.controller.FridgeController;
 import group4.householdhero.model.Budget;
+import group4.householdhero.model.Model;
 import group4.householdhero.model.Product;
 
 @TestInstance(Lifecycle.PER_CLASS)
