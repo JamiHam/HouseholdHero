@@ -96,10 +96,7 @@ public class DataAccessObject {
 	 * @param product
 	 * @throws SQLException
 	 */
-	public void updateProduct(Product product) throws SQLException {
-		// Päivittää kaikki productin fieldit (paitsi budjetin ja statuksen) id:n
-		// perusteella.
-
+	public int updateProduct(Product product) throws SQLException {
 		String updateProductQuery = "update Product set name=?, price=?, best_before=?, budget_ID=?, category_ID=? where product_ID=?";
 
 		PreparedStatement stmt = conn.prepareStatement(updateProductQuery);
@@ -113,6 +110,7 @@ public class DataAccessObject {
 		System.out.println(updateProductQuery);
 		int updates = stmt.executeUpdate();
 		System.out.println("Amount of updated products: " + updates);
+		return updates;
 	}
 
 	/**
@@ -136,12 +134,12 @@ public class DataAccessObject {
 	 * @param product
 	 * @return boolean
 	 */
-	public boolean addProduct(Product product) {
+	public int addProduct(Product product) throws SQLException {
 		String addProductQuery = "insert into Product (Product_ID, name, price, best_before, category_ID, status_ID, budget_ID) "
 				+ "values (?, ?, ?, ?, ?, ?, ?)";
 		System.out.println("Adding new product");
 
-		try {
+		
 			PreparedStatement stmt = conn.prepareStatement(addProductQuery);
 			stmt.setInt(1, product.getId());
 			stmt.setString(2, product.getName());
@@ -155,11 +153,7 @@ public class DataAccessObject {
 			int added = stmt.executeUpdate();
 			System.out.println("Added: " + added);
 			System.out.println(product.getName());
-			return true;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return false;
-		}
+			return added;
 	}
 	
 
@@ -189,7 +183,7 @@ public class DataAccessObject {
 	 * @param status
 	 * @throws SQLException
 	 */
-	public void updateStatus(Product product, String status) throws SQLException {
+	public int updateStatus(Product product, String status) throws SQLException {
 		String updateStatusQuery = "update Product set status_ID=? where product_ID=?";
 
 		PreparedStatement stmt = conn.prepareStatement(updateStatusQuery);
@@ -199,12 +193,13 @@ public class DataAccessObject {
 		System.out.println(updateStatusQuery);
 		int update = stmt.executeUpdate();
 		System.out.println("Updated: " + update);
+		return update;
 	}
 
 	/**
 	 * Gets whole budget by date from database
 	 * @param date
-	 * @return
+	 * @return budget
 	 * @throws SQLException
 	 */
 	public Budget getBudgetByDate(LocalDate date) throws SQLException {
@@ -233,7 +228,7 @@ public class DataAccessObject {
 	 * @param budget
 	 * @throws SQLException
 	 */
-	public void addBudget(Budget budget) throws SQLException {
+	public int addBudget(Budget budget) throws SQLException {
 		String addBudgetQuery = "insert into Budget (budget_ID, planned_budget, spent_budget, start_date, end_date) values (?, ?, ?, ?, ?)";
 
 		PreparedStatement stmt = conn.prepareStatement(addBudgetQuery);
@@ -245,6 +240,7 @@ public class DataAccessObject {
 
 		int added = stmt.executeUpdate();
 		System.out.println("Added: " + added);
+		return added;
 	}
 
 	/**
@@ -358,7 +354,7 @@ public class DataAccessObject {
 	 * @param newBudget
 	 * @throws SQLException
 	 */
-	public void updateBudget(Budget newBudget) throws SQLException {
+	public int updateBudget(Budget newBudget) throws SQLException {
 		String updateBudgetQuery = "update Budget set planned_budget=?, spent_budget=?, start_date=?, end_date=? where budget_ID=?";
 
 		PreparedStatement stmt = conn.prepareStatement(updateBudgetQuery);
@@ -368,7 +364,8 @@ public class DataAccessObject {
 		stmt.setDate(4, Date.valueOf(newBudget.getEndDate()));
 		stmt.setInt(5, newBudget.getId());
 
-		stmt.executeUpdate();
+		int updates = stmt.executeUpdate();
+		return updates;
 	}
 
 	/**
@@ -462,7 +459,7 @@ public class DataAccessObject {
 	 * @param budget
 	 * @throws SQLException
 	 */
-	public void deleteProductsFromBudget(Budget budget) throws SQLException {
+	public int deleteProductsFromBudget(Budget budget) throws SQLException {
 		String deleteProductsFromBudgetString = "delete from Product where Budget_ID=?";
 		
 		PreparedStatement stmt = conn.prepareStatement(deleteProductsFromBudgetString);
@@ -471,6 +468,7 @@ public class DataAccessObject {
 		System.out.println("Deleted products with budgetID: " + budget.getId());
 		int deletes = stmt.executeUpdate();
 		System.out.println("Deleted item count: " + deletes);
+		return deletes;
 	}
 	
 	/**
