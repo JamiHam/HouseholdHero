@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 
 import group4.householdhero.model.CategoryLocaliser;
 import group4.householdhero.model.Localiser;
@@ -27,17 +28,18 @@ public class FridgeController {
 	
 	@FXML private VBox expiredVBox;
 	
-	@FXML private ChoiceBox<String> languageChoiceBox;
+	@FXML
+	protected ChoiceBox<String> languageChoiceBox;
 	@FXML private Button putToUsedButton;
 	@FXML private Button putToWasteButton;
 	
-	@FXML private TableView<Product> fridgeTable;
+	@FXML
+	protected TableView<Product> fridgeTable;
 	@FXML private TableColumn<Product, String> fridgeNameColumn;
 	@FXML private TableColumn<Product, Integer> fridgeCategoryColumn;
 	@FXML private TableColumn<Product, ImageView> fridgeIconColumn;
 	@FXML private TableColumn<Product, Double> fridgePriceColumn;
 	@FXML private TableColumn<Product, LocalDate> fridgeBestBeforeColumn;
-	//@FXML private TableColumn<Product, String> fridgeExpirationColumn; // expiration status as String
 	@FXML private TableColumn<Product, ImageView> fridgeExpirationColumn; // expiration status as ImageView
 	@FXML private TableColumn<Product, Button> fridgeEditColumn;
 	@FXML private TableColumn<Product, Button> fridgePutToUsedColumn;
@@ -56,7 +58,7 @@ public class FridgeController {
 	/**
 	 * Sets languages to choice box
 	 */
-	private void setLanguageChoiceBox() {
+	protected void setLanguageChoiceBox() {
 		ObservableList<String> languages = FXCollections.observableArrayList(
 				controller.getLocalisedString("english.choice.text"),
 				controller.getLocalisedString("gaeilge.choice.text"));
@@ -75,15 +77,17 @@ public class FridgeController {
 	 * @throws IOException
 	 */
 	@FXML
-	private void changeSelectedLanguage() throws IOException {
+	protected Locale changeSelectedLanguage() throws IOException {
+		Locale selectedLocale = new Locale("");
 		if (languageChoiceBox.getValue() == controller.getLocalisedString("english.choice.text")) {
-			controller.setLocale("en_IE");
+			selectedLocale = controller.setLocale("en_IE");
 			App.reloadView();
 		} if (languageChoiceBox.getValue() == controller.getLocalisedString("gaeilge.choice.text")) {
-			controller.setLocale("ga_IE");
+			selectedLocale = controller.setLocale("ga_IE");
 			App.reloadView();
 		}
 		controller.localiseCategories();
+		return selectedLocale;
 	}
 	
 	/**
@@ -165,7 +169,6 @@ public class FridgeController {
 		fridgeIconColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("categoryImageView"));
 		fridgePriceColumn.setCellValueFactory(new PropertyValueFactory<Product, Double>("price"));
 		fridgeBestBeforeColumn.setCellValueFactory(new PropertyValueFactory<Product, LocalDate>("bestBefore"));
-		//fridgeExpirationColumn.setCellValueFactory(new PropertyValueFactory<Product, String>("expiration")); // expiration status as String
 		fridgeExpirationColumn.setCellValueFactory(new PropertyValueFactory<Product, ImageView>("statusImageView")); // expiration status as ImageView
 		fridgeEditColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("editButton"));
 		fridgePutToUsedColumn.setCellValueFactory(new PropertyValueFactory<Product, Button>("putToUsedButton"));

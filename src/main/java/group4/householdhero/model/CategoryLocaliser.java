@@ -58,6 +58,4 @@ public class CategoryLocaliser {
 	public List<String> getLocalizedCategories() {
 		return localisedCategories;
 	}
-	
-	
 }
