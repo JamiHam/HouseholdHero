@@ -10,7 +10,7 @@ JavaFX was used for the projects UI and Maven was used as the projects managemen
 # Installation and configuration
 ### Required software
 - [Eclipse IDE](https://www.eclipse.org/downloads/)
-- [MariaDB](https://mariadb.org/download/)
+- [Cisco AnyConnect Secure Mobility Client](https://vpn.metropolia.fi/)
 
 ### Steps
 
@@ -19,11 +19,9 @@ JavaFX was used for the projects UI and Maven was used as the projects managemen
 2. Import the project to Eclipse.
 ```File > Open projects from file system...```
 
-3. Run [HouseholdHero.sql](documents/HouseholdHero.sql) in MariaDB.
+3. Connect to vpn.metropolia.fi using the Cisco AnyConnect Secure Mobility Client and login using your Metropolia credentials.
 
-4. Add your MariaDB credentials to DBInfo.java in Eclipse.
-
-5. Run the application by right clicking the project name in Eclipse and selecting ```Run As > Java Application.```
+4. Run the application by right clicking the project name in Eclipse and selecting ```Run As > Java Application.```
 
 # Team members
 - Jami Hämäläinen
