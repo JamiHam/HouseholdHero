@@ -2,7 +2,7 @@
 
 HouseholdHero is a grocery tracking and budget management application for everyone interested in budget-friendly and ecological food consumption.
 
-The key features of the application are:
+## Key features:
 
 ### Budget management
 - You can set a budget for a selected time period and an amount of your choice
