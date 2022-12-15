@@ -1,7 +1,22 @@
 # Project vision
 
-HouseHoldHero is a software for households to keep track of their economy.
-With the software you can keep track of your food and the amount of money spent on the groceries.
+HouseholdHero is a grocery tracking and budget management application for everyone interested in budget-friendly and ecological food consumption.
+
+The key features of the application are:
+
+###Budget management
+- You can set a budget for a selected time period and an amount of your choice
+- You can check your planned, spent and remaining budget and track whether you stay on budget
+
+###Keeping track of products in your fridge
+- You can add products to your fridge
+- With the help of the products’ status information, you can manage your fridge 
+- You will always know whether you have food at home and if it’s still fresh
+- You can prioritize using products that are about to expire soon
+
+###Keeping track of food waste
+- You can see how much food during a budget period has gone to waste
+- You can adjust your grocery shopping and food consumption habits to reduce food waste
 
 # Development environment
 JavaFX was used for the projects UI and Maven was used as the projects management and comprehension tool.
