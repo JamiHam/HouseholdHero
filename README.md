@@ -10,7 +10,7 @@ JavaFX was used for the projects UI and Maven was used as the projects managemen
 # Installation and configuration
 ### Required software
 - [Eclipse IDE](https://www.eclipse.org/downloads/)
-- [Cisco AnyConnect Secure Mobility Client](https://vpn.metropolia.fi/)
+- [Cisco AnyConnect Secure Mobility Client](https://vpn.metropolia.fi/) (Required to connect to our database server)
 
 ### Steps
 
