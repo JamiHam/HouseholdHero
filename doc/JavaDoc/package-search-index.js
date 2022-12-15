@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"group4.householdhero.controller"},{"l":"group4.householdhero.model"},{"l":"group4.householdhero.view"},{"l":"householdhero"}];updateSearchResults();
