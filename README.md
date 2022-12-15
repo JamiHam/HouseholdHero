@@ -34,6 +34,10 @@ HouseholdHero is a grocery tracking and budget management application for everyo
 
 4. Run the application by right clicking the project name in Eclipse and selecting ```Run As > Java Application.```
 
+# Usage
+
+[Link to our detailed user guide](https://github.com/JamiHam/HouseholdHero/blob/main/documents/HouseholdHero_User_Guide.pdf)
+
 # Team members
 - Jami Hämäläinen
 - Iina Laamo
