@@ -18,10 +18,6 @@ HouseholdHero is a grocery tracking and budget management application for everyo
 - You can see how much food during a budget period has gone to waste
 - You can adjust your grocery shopping and food consumption habits to reduce food waste
 
-# Development environment
-JavaFX was used for the projects UI and Maven was used as the projects management and comprehension tool.
-
-
 # Installation and configuration
 ### Required software
 - [Eclipse IDE](https://www.eclipse.org/downloads/)
